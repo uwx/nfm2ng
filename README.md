@@ -1,3 +1,3 @@
 ## Need For Madness: LIT
 
-This is a tidied up NFM2 repository, based on cravxx's unfm2jg revised branch.
+This aims to be a tidied up NFM2 repository, based on cravxx's unfm2jg revised branch.
