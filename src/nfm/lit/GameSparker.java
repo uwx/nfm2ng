@@ -59,7 +59,7 @@ public class GameSparker extends Applet implements Runnable {
             "thewall", "checkpoint", "fixpoint", "offcheckpoint", "sideoff", "bsideoff", "uprise", "riseroad", "sroad",
             "soffroad", "tside", "launchpad", "thenet", "speedramp", "offhill", "slider", "uphill", "roll1", "roll2",
             "roll3", "roll4", "roll5", "roll6", "opile1", "opile2", "aircheckpoint", "tree1", "tree2", "tree3", "tree4",
-            "tree5", "tree6", "tree7", "tree8", "cac1", "cac2", "cac3", "8sroad", "8soffroad", "singlewallroad"
+            "tree5", "tree6", "tree7", "tree8", "cac1", "cac2", "cac3", "8sroad", "8soffroad", "singlewallroad", "thewall2"
     };
     private static final String[] extraModels = {};
 
@@ -112,6 +112,8 @@ public class GameSparker extends Applet implements Runnable {
     public static String gameState = "None";
     public static int gameStateID;
     public static int ContosCount;
+
+    public String wallmodel;
 
     /**
      * <a href=
@@ -503,13 +505,13 @@ public class GameSparker extends Applet implements Runnable {
         Medium.detailtype = 2;
         Medium.ground = 250;
 
+        wallmodel = "thewall";
+
         //reset noarrow and nostatus
         xtgraphics.arrowDisabled = false;
         xtgraphics.opstatusDisabled = false;
 
         view = 0;
-
-        final int wall_id = getModel("thewall");
         int r_wall = 0;
         int l_wall = 100;
         int t_wall = 0;
@@ -625,6 +627,10 @@ public class GameSparker extends Applet implements Runnable {
                         notb = nob + 1;
                     }
                     nob++;
+                }
+                if (line.startsWith("wall")) {
+                    String modelname = Utility.getstring("wall", line, 0);
+                    wallmodel = modelname;
                 }
                 if (line.startsWith("ds:set")) {
                     String modelname = Utility.getstring("ds:set", line, 0);
@@ -743,6 +749,9 @@ public class GameSparker extends Applet implements Runnable {
                     CheckPoints.trackformat = Utility.getstring("soundtrack", line, 1);
                     // xtGraphics.sndsize[18] = Utility.getint("soundtrack", string, 2);
                 }
+
+                int wall_id = getModel(wallmodel);
+
                 if (line.startsWith("maxr")) {
                     int j2 = Utility.getint("maxr", line, 0);
                     int j3 = Utility.getint("maxr", line, 1);
