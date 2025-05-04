@@ -11,6 +11,8 @@ nlaps(1)
 soundtrack(purple_dream_5,zip)
 lightson()
 
+name(Example Stage - with all the parts used in it)
+
 set(47,0,0,0)p
 set(10,0,5600,0)p
 fix(41,0,12800,-2000,0)

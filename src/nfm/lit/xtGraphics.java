@@ -1300,7 +1300,7 @@ public class xtGraphics extends Panel implements Runnable {
             }
             k = (int) (90 + l2 + Math.atan((double) (checkpoints.opz[l] - checkpoints.opz[0])
                     / (double) (checkpoints.opx[l] - checkpoints.opx[0])) / 0.017453292519943295D);
-            drawcs(13, "[                                ]", 76, 67, 240, 0);
+            drawcs(13, "[ " + names[sc[l]] + " ]", 76, 67, 240, 0);
             drawcs(13, names[sc[l]], 0, 0, 0, 0);
             /*
              * example use of drawOver
@@ -3364,7 +3364,7 @@ public class xtGraphics extends Panel implements Runnable {
      * @param i checkpoints.stage
      * @author rafa
      */
-    private void sortcars(final int i) {
+    private void sortcars(int i) {
         if (i != 0) {
             int lastcar = GameFacts.numberOfPlayers;
 
@@ -3378,14 +3378,19 @@ public class xtGraphics extends Panel implements Runnable {
             }
 
             if (sc[0] != maxId) {
-                sc[GameFacts.numberOfPlayers - 1] = maxId;
-                lastcar--; // boss car won't be randomized
+                if (i != -1) {
+                    sc[GameFacts.numberOfPlayers - 1] = maxId;
+                    lastcar--; // boss car won't be randomized if stage isnt custom
+                }
             }
 
             // DEBUG: Prints the range of possible cars to the console
             // HLogger.info("Minimum car: " + cd.names[(i - 1) / 2] + ", maximum car: " +
             // cd.names[nplayers + ((i - 1) / 2)] + ", therefore: " + (((i - 1) / 2) -
             // (nplayers + ((i - 1) / 2))) + " car difference");
+
+            if (i == -1)
+                i = GameFacts.numberOfCars + 2;
 
             // create a list of car ids, each item completely unique
             ArrayList<Integer> list = new ArrayList<>();

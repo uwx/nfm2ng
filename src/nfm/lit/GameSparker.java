@@ -115,6 +115,11 @@ public class GameSparker extends Applet implements Runnable {
 
     public String wallmodel;
 
+    public int noboffset = 10;      //this makes it so IDs are offset correctly, can be modified by stage via idoffset(x)
+    public int nobfix = carModels.length - noboffset;
+
+    public boolean reverseYRot = false;
+
     /**
      * <a href=
      * "http://www.expandinghead.net/keycode.html">http://www.expandinghead.net/keycode.html</a>
@@ -505,6 +510,11 @@ public class GameSparker extends Applet implements Runnable {
         Medium.detailtype = 2;
         Medium.ground = 250;
 
+        reverseYRot = false;
+
+        noboffset = 10;
+        nobfix = carModels.length - noboffset;
+
         wallmodel = "thewall";
 
         //reset noarrow and nostatus
@@ -582,12 +592,22 @@ public class GameSparker extends Applet implements Runnable {
                 if (line.startsWith("nostatus"))
                     xtgraphics.opstatusDisabled = true;
 
+                if (line.startsWith("idoffset")) {
+                    noboffset = Utility.getint("idoffset", line, 0);
+                    nobfix = carModels.length - noboffset;
+                }
+
+                if (line.startsWith("yrot")) {
+                    reverseYRot = true;
+                }
+
                 if (line.startsWith("set")) {
                     int k1 = Utility.getint("set", line, 0);
-                    k1 += 6;
+                    k1 += nobfix;
                 
                     // compute default Y (ground-height)
                     int yVal = Medium.ground - aconto1[k1].grat;
+                    int rot = Utility.getint("set", line, 3);
                 
                     // if there *is* a 5th comma-separated value, use that instead
                     // (splitting only the part inside the parentheses)
@@ -595,6 +615,10 @@ public class GameSparker extends Applet implements Runnable {
                     String[] parts = inside.split("\\s*,\\s*");
                     if (parts.length > 4) {
                         yVal = Utility.getint("set", line, 4);
+                        if (reverseYRot) {
+                            yVal = Utility.getint("set", line, 3);
+                            rot = Utility.getint("set", line, 4);
+                        }
                     }
                 
                     // now create the object, exactly as before but with our yVal
@@ -603,7 +627,7 @@ public class GameSparker extends Applet implements Runnable {
                         Utility.getint("set", line, 1),
                         yVal,
                         Utility.getint("set", line, 2),
-                        Utility.getint("set", line, 3)
+                        rot
                     );
                 
                     if (line.contains(")p")) {
@@ -613,6 +637,9 @@ public class GameSparker extends Applet implements Runnable {
                         // same trick for the checkpoint Y (default=0)
                         if (parts.length > 4) {
                             checkpoints.y[checkpoints.n] = Utility.getint("set", line, 4);
+                            if (reverseYRot) {
+                                checkpoints.y[checkpoints.n] = Utility.getint("set", line, 3);
+                            }
                         } else {
                             checkpoints.y[checkpoints.n] = 0;
                         }
@@ -620,6 +647,7 @@ public class GameSparker extends Applet implements Runnable {
                         checkpoints.typ[checkpoints.n] = 0;
                         if (line.contains(")pt")) checkpoints.typ[checkpoints.n] = -1;
                         if (line.contains(")pr")) checkpoints.typ[checkpoints.n] = -2;
+                        if (line.contains(")pl")) checkpoints.typ[checkpoints.n] = -2;
                         if (line.contains(")po")) checkpoints.typ[checkpoints.n] = -3;
                         if (line.contains(")ph")) checkpoints.typ[checkpoints.n] = -4;
                 
@@ -668,6 +696,7 @@ public class GameSparker extends Applet implements Runnable {
                         checkpoints.typ[checkpoints.n] = 0;
                         if (line.contains(")pt")) checkpoints.typ[checkpoints.n] = -1;
                         if (line.contains(")pr")) checkpoints.typ[checkpoints.n] = -2;
+                        if (line.contains(")pl")) checkpoints.typ[checkpoints.n] = -2;
                         if (line.contains(")po")) checkpoints.typ[checkpoints.n] = -3;
                         if (line.contains(")ph")) checkpoints.typ[checkpoints.n] = -4;
                 
@@ -678,10 +707,11 @@ public class GameSparker extends Applet implements Runnable {
                 }
                 if (line.startsWith("chk")) {
                     int l1 = Utility.getint("chk", line, 0);
-                    l1 += 6;
+                    l1 += nobfix;
                 
                     // compute default Y (ground-height)
                     int yVal = Medium.ground - aconto1[l1].grat;
+                    int rot = Utility.getint("chk", line, 3);
                 
                     // grab the args between '(' and ')', split on commas
                     String inside = line.substring(line.indexOf('(') + 1, line.lastIndexOf(')'));
@@ -689,6 +719,10 @@ public class GameSparker extends Applet implements Runnable {
                     // if there's a 5th element, use it as Y instead
                     if (parts.length > 4) {
                         yVal = Utility.getint("chk", line, 4);
+                        if (reverseYRot) {
+                            yVal = Utility.getint("chk", line, 3);
+                            rot = Utility.getint("chk", line, 4);
+                        }
                     }
                 
                     // create your object exactly as before, but with our yVal
@@ -697,7 +731,7 @@ public class GameSparker extends Applet implements Runnable {
                         Utility.getint("chk", line, 1),
                         yVal,
                         Utility.getint("chk", line, 2),
-                        Utility.getint("chk", line, 3)
+                        rot
                     );
                 
                     // now the checkpoint data:
@@ -721,7 +755,7 @@ public class GameSparker extends Applet implements Runnable {
                 }
                 if (line.startsWith("fix")) {
                     int i2 = Utility.getint("fix", line, 0);
-                    i2 += 6;
+                    i2 += nobfix;
                     aconto[nob] = new ContO(aconto1[i2], Utility.getint("fix", line, 1), Utility.getint("fix", line, 3),
                             Utility.getint("fix", line, 2), Utility.getint("fix", line, 4));
                     checkpoints.fx[checkpoints.fn] = Utility.getint("fix", line, 1);
@@ -1393,6 +1427,8 @@ public class GameSparker extends Applet implements Runnable {
                                 amadness[l12].cntdest);
                     while (++l12 < GameFacts.numberOfPlayers);
                     checkpoints.checkstat(amadness, aconto1, record, GameFacts.numberOfPlayers);
+
+                    // This starts the AI code for all the cars.
                     l12 = 1;
                     do
                         u[l12].preform(amadness[l12], aconto1[l12], checkpoints, trackers, GameFacts.numberOfPlayers);
@@ -1867,6 +1903,10 @@ public class GameSparker extends Applet implements Runnable {
                 case STAGESELECT:
                     gameState = "Selecting a Stage";
                     gameStateID = 1;
+                    break;
+                case ERRORLOADINGSTAGE:
+                    gameState = "Selecting a Stage";
+                    gameStateID = 3;
                     break;
                 case CARSELECT:
                     gameState = "Selecting a Car";

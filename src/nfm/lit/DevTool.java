@@ -265,7 +265,7 @@ public class DevTool {
                     print("Usage: nfm <n>");
                 }
                 break;
-            case "loadstage":
+            case "map":
                 if (args.length == 1) {
                     try {
                         String path = args[0];
@@ -276,14 +276,14 @@ public class DevTool {
                         if (GameSparker.gameStateID == 0) {
                             xt.fase = Phase.LOADSTAGE2;
                         }
-                        if (GameSparker.gameStateID == 1) {
+                        if (GameSparker.gameStateID == 1 || GameSparker.gameStateID == 3) {
                             xt.fase = Phase.LOADSTAGE;
                         }
                     } catch (NumberFormatException e) {
                         print("Invalid argument.");
                     }
                 } else {
-                    print("Usage: loadstage <directory>");
+                    print("Usage: map <dir to .txt>");
                 }
                 break;
             case "stagesubdir":

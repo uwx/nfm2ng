@@ -84,6 +84,11 @@ public class Control {
     private boolean exitattack;
     private int avoidnlev;
 
+    /**
+     * This void is the entire code for the AI in NFM.
+     * 
+     * @author Omar Waly
+     */
     public void preform(Madness madness, ContO conto, CheckPoints checkpoints, Trackers trackers, int ncars) {
         left = false;
         right = false;
