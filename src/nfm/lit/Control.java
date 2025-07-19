@@ -98,7 +98,7 @@ public class Control {
         if (!madness.dest) {
             if (madness.mtouch) {
                 if (stcnt > statusque) {
-                    acuracy = (7 - checkpoints.pos[madness.im]) * checkpoints.pos[0] * (6 - checkpoints.stage * 2);
+                    acuracy = (GameFacts.numberOfPlayers - checkpoints.pos[madness.im]) * checkpoints.pos[0] * (6 - checkpoints.stage * 2);
                     if (acuracy < 0) {
                         acuracy = 0;
                     }
