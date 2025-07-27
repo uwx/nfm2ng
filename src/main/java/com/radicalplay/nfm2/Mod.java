@@ -6,6 +6,8 @@ import java.io.DataInputStream;
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 class Mod {
 
@@ -54,7 +56,7 @@ class Mod {
         datainputstream.readFully(abyte0, 0, i);
         for (int j = i - 1; j >= 0; j--) {
             if (abyte0[j] != 0) {
-                return new String(abyte0, 0, 0, j + 1);
+                return new String(abyte0, 0, j + 1, StandardCharsets.US_ASCII);
             }
         }
 

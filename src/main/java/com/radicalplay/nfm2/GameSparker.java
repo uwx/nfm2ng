@@ -130,7 +130,7 @@ public class GameSparker extends AppletPolyfill implements Runnable {
             lostfcs = true;
             mouses = 0;
             u[0].falseo();
-            setCursor(new Cursor(0));
+            setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         }
         return false;
     }
@@ -1082,7 +1082,7 @@ public class GameSparker extends AppletPolyfill implements Runnable {
                             xtgraphics.stracks[checkpoints.stage - 1].play();
                         }*/
                     }
-                    setCursor(new Cursor(0));
+                    setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                     xtgraphics.fase = 6;
                 }
             }
@@ -1716,19 +1716,19 @@ public class GameSparker extends AppletPolyfill implements Runnable {
         if (!lostfcs) {
             if (i == 0)
                 if (xm > 0 && xm < GameFacts.screenWidth && ym > 110 && ym < 169 || xm > 210 && xm < 460 && ym > 240 && ym < 259) {
-                    setCursor(new Cursor(12));
+                    setCursor(new Cursor(Cursor.HAND_CURSOR));
                     if (mouses == 2)
                         openurl("http://www.radicalplay.com/");
                 } else {
-                    setCursor(new Cursor(0));
+                    setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                 }
             if (i == 1)
                 if (xm > 0 && xm < GameFacts.screenWidth && ym > 205 && ym < 267) {
-                    setCursor(new Cursor(12));
+                    setCursor(new Cursor(Cursor.HAND_CURSOR));
                     if (mouses == 2)
                         openurl("http://www.radicalplay.com/");
                 } else {
-                    setCursor(new Cursor(0));
+                    setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                 }
         }
     }

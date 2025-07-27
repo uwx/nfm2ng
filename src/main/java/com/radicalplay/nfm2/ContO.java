@@ -204,7 +204,7 @@ public class ContO {
 
     public ContO(byte[] abyte0, Trackers trackers) {
         t = trackers;
-        p = new Plane[270];
+        p = new Plane[GameFacts.polyLimit];
         boolean flag = false;
         boolean flag1 = false;
         int i = 0;

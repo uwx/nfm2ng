@@ -243,4 +243,9 @@ class StatList {
     static final int[] engine = {
             0, 1, 2, 1, 0, 3, 2, 2, 1, 0, 3, 4, 1, 4, 0, 3
     };
+    static final String[] names = {
+            "Tornado Shark", "Formula 7", "Wow Caninaro", "La Vite Crab", "Nimi", "MAX Revenge", "Lead Oxide",
+            "Kool Kat", "Drifter X", "Sword of Justice", "High Rider", "EL KING", "Mighty Eight", "M A S H E E N",
+            "Radical One", "DR Monstaa"
+    };
 }

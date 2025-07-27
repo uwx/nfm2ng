@@ -9,11 +9,6 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 class RunApp extends Panel {
-    /**
-     *
-     */
-    private static final long serialVersionUID = -8590687589434803725L;
-
     private static Frame frame;
     private static GameSparker applet;
     private static ArrayList<Image> icons;
@@ -53,8 +48,6 @@ class RunApp extends Panel {
         frame.setIconImages(getIcons());
 
         applet = new GameSparker();
-
-        applet.setStub(new DesktopStub());
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent windowevent) {
@@ -79,7 +72,6 @@ class RunApp extends Panel {
             Thread.sleep(200L);
         } catch (Exception exception) {
         }
-        applet.destroy();
         applet = null;
         System.exit(0);
     }
