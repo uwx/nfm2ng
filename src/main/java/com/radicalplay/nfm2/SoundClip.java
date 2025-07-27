@@ -2,10 +2,10 @@ package com.radicalplay.nfm2;
 
 public interface SoundClip {
 
-    void play();
+    public void play();
 
-    void loop();
+    public void loop();
 
-    void stop();
+    public void stop();
 
 }

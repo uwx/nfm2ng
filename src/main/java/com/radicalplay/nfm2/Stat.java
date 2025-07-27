@@ -39,8 +39,6 @@ public class Stat {
 
     public int msquash = 0;
 
-    private float outdam = 0;
-
     public int powerloss = 0;
 
     public int push = 0;
@@ -55,11 +53,11 @@ public class Stat {
 
     public int turn = 0;
 
-    public int engine = 0;
-
-    public float proba = 0F;
-
     public float dishandle = 0F;
+
+    public float outdam = 0F;
+
+    public int engine = 0;
 
     /**
      * set up a new stat
@@ -88,10 +86,9 @@ public class Stat {
         revpush = StatList.revpush[car];
         turn = StatList.turn[car];
         simag = StatList.simag[car];
-        engine = StatList.engine[car];
         outdam = StatList.outdam[car];
-        proba = StatList.proba[car];
         dishandle = StatList.dishandle[car];
+        engine = StatList.engine[car];
     }
 
     public Stat(){

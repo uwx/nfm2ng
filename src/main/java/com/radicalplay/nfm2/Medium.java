@@ -54,7 +54,7 @@ public class Medium {
     public static final int[] cfade = {
             255, 220, 220
     };
-    public static int[] snap = {
+    public static int snap[] = {
             0, 0, 0
     };
     public static int origfade = 3000;
@@ -67,16 +67,16 @@ public class Medium {
     public static int flex = 0;
     public static boolean trk = false;
     public static boolean crs = false;
-    public static int cx = 335;
-    public static int cy = 200;
+    public static int cx = GameFacts.screenWidth / 2;
+    public static int cy = GameFacts.screenHeight / 2;
     public static int cz = 50;
     public static int xz = 0;
     public static int zy = 0;
     public static int x = 0;
     public static int y = 0;
     public static int z = 0;
-    public static int w = 670;
-    public static int h = 400;
+    public static int w = GameFacts.screenWidth;
+    public static int h = GameFacts.screenHeight;
     public static int nsp = 0;
     public static int[] spx = new int[7];
     public static int[] spz = new int[7];
@@ -429,6 +429,73 @@ public class Medium {
                 graphics2d.fillPolygon(ai5, ai7, 8);
             }
         }
+    }
+
+    public Medium() {
+        focus_point = 500;
+        ground = 250;
+        skyline = -300;
+        fogd = 7;
+        mgen = (int) (Math.random() * 100000D);
+        snap = new int[3];
+        origfade = 3000;
+        fogd = 3;
+        lightson = false;
+        lightn = -1;
+        lilo = 217;
+        flex = 0;
+        trk = false;
+        crs = false;
+        noelec = 0;
+        cx = GameFacts.screenWidth / 2;
+        cy = GameFacts.screenHeight / 2;
+        cz = 50;
+        xz = 0;
+        zy = 0;
+        x = 0;
+        y = 0;
+        z = 0;
+        w = GameFacts.screenWidth;
+        h = GameFacts.screenHeight;
+        nsp = 0;
+        spx = new int[7];
+        spz = new int[7];
+        sprad = new int[7];
+        td = false;
+        bcxz = 0;
+        vxz = 180;
+        adv = 500;
+        vert = false;
+        trns = 1;
+        ogpx = new int[9500][8];
+        ogpz = new int[9500][8];
+        cgpx = new int[9500];
+        cgpz = new int[9500];
+        sgpx = 0;
+        sgpz = 0;
+        nrw = 0;
+        ncl = 0;
+        lastmaf = 0;
+        checkpoint = -1;
+        lastcheck = false;
+        elecr = 0.0F;
+        cpflik = false;
+        nochekflk = false;
+        cntrn = 0;
+        diup = new boolean[3];
+        rand = new int[3];
+        trn = 0;
+        hit = 45000;
+        ptr = 0;
+        ptcnt = -10;
+        nrnd = 0;
+        trx = 0L;
+        trz = 0L;
+        atrx = 0L;
+        atrz = 0L;
+        fallen = 0;
+        fo = 1.0F;
+        gofo = (float) (0.33000001311302185D + Math.random() * 1.3400000000000001D);
     }
 
     public static void newclouds(int i, int j, int k, int l) {
