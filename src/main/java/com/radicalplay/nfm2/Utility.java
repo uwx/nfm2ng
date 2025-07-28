@@ -32,6 +32,9 @@ public class Utility {
     public static int getvalue(final String string, final String source, final int i) {
         return (int) Float.parseFloat(getstring(string, source, i));
     }
+    public static float getfloat(final String string, final String source, final int i) {
+        return Float.parseFloat(getstring(string, source, i));
+    }
 
     /**
      * Turns a 3D XY coordinate into a 2D X perspective coordinate.
@@ -250,4 +253,5 @@ public class Utility {
 
         HLogger.info("Timer ended at " + finalTime + " ms");
     }
+
 }
