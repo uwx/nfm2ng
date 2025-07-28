@@ -4164,7 +4164,7 @@ class xtGraphics implements Runnable {
 
     public void blendude(Image image) {
         if (!macn) {
-            if (Math.random() > Math.random()) {
+            if (RadicalRand.bool()) {
                 dudo = 217;
             } else {
                 dudo = 331;
@@ -4220,7 +4220,7 @@ class xtGraphics implements Runnable {
                 }
             } while (++j < 3);
         } else {
-            if (Math.random() > Math.random()) {
+            if (RadicalRand.bool()) {
                 dudo = 176;
             } else {
                 dudo = 372;
