@@ -18,13 +18,12 @@ public class SoundClipUnthreaded implements SoundClip {
 
     public SoundClipUnthreaded(byte[] byteInput) {
         try {
-            ByteArrayInputStream var2 = new ByteArrayInputStream(byteInput);
-            sound = AudioSystem.getAudioInputStream(var2);
+            sound = AudioSystem.getAudioInputStream(new ByteArrayInputStream(byteInput));
             sound.mark(byteInput.length);
             clip = (Clip) AudioSystem.getLine(new DataLine.Info(Clip.class, this.sound.getFormat()));
             loaded = true;
-        } catch (Exception var4) {
-            HLogger.error("Loading Clip error: " + var4);
+        } catch (Exception ex) {
+            HLogger.error("Loading Clip error: " + ex);
             loaded = false;
         }
     }

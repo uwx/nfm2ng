@@ -1,5 +1,9 @@
 package com.radicalplay.nfm2;
 
+import com.radicalplay.nfm2.music.RadicalIBXM;
+import com.radicalplay.nfm2.music.RadicalMidi;
+import com.radicalplay.nfm2.music.RadicalMp3;
+import com.radicalplay.nfm2.music.RadicalMusic;
 import fallk.logmaster.HLogger;
 
 import javax.imageio.ImageIO;
@@ -10,8 +14,10 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
+import java.util.function.Function;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -1841,14 +1847,74 @@ class xtGraphics implements Runnable {
         String path = "data/music/" + GameSparker.stageSubDir + "stage" + i;
 
         if (CheckPoints.customTrack) {
-            path = "data/music/custom/" + CheckPoints.trackname + ".zip";
+            path = "data/music/custom/" + CheckPoints.trackname;
             HLogger.info(path);
         }
 
-        strack = new RadicalMod(path);
+        strack = loadMusicFile(path);
 
         loadedt = true;
     }
+
+    private RadicalMusic loadMusicFile(String fileWithoutExtension) {
+        Map<String, Function<byte[], RadicalMusic>> formats = new HashMap<>() {{
+            put("mod", RadicalIBXM::new);
+            put("s3m", RadicalIBXM::new);
+            put("xm", RadicalIBXM::new);
+            put("mp3", RadicalMp3::new);
+            put("mid", RadicalMidi::new);
+        }};
+
+        FileFromZip fileFromZip = null;
+
+        try {
+            if (new File(fileWithoutExtension + ".zip").exists()) {
+                fileFromZip = loadFirstFileFromZip(fileWithoutExtension + ".zip");
+            }
+            if (new File(fileWithoutExtension + ".zipo").exists()) {
+                fileFromZip = loadFirstFileFromZip(fileWithoutExtension + ".zipo");
+            }
+            if (new File(fileWithoutExtension + ".radq").exists()) {
+                fileFromZip = loadFirstFileFromZip(fileWithoutExtension + ".radq");
+            }
+
+            if (fileFromZip == null) {
+                for (String format : formats.keySet()) {
+                    if (new File(fileWithoutExtension + "." + format).exists()) {
+                        fileFromZip = new FileFromZip(
+                                Files.readAllBytes(Paths.get(fileWithoutExtension + "." + format)),
+                                "dummy." + format
+                        );
+                        break;
+                    }
+                }
+            }
+
+            if (fileFromZip == null) {
+                throw new RuntimeException("No file found");
+            }
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        String extension = fileFromZip.name.substring(fileFromZip.name.lastIndexOf(".") + 1).toLowerCase(Locale.ROOT);
+        return formats.get(extension).apply(fileFromZip.data);
+    }
+
+    private FileFromZip loadFirstFileFromZip(String zipFile) throws IOException {
+        ZipInputStream zipinputstream = new ZipInputStream(new FileInputStream(zipFile));
+        ZipEntry zipentry = zipinputstream.getNextEntry();
+        int size = (int) zipentry.getSize();
+        byte[] modf = new byte[size];
+        int offset = 0;
+        for (int bytesRead; size > 0; size -= bytesRead) {
+            bytesRead = zipinputstream.read(modf, offset, size);
+            offset += bytesRead;
+        }
+        return new FileFromZip(modf, zipentry.getName());
+    }
+
+    record FileFromZip(byte[] data, String name) {}
 
     public void loadmusic(int i, int j) {
         hipnoload(i, false);
@@ -4654,7 +4720,7 @@ class xtGraphics implements Runnable {
     }
 
     void loadIntertrack(String track) {     //load interface track
-        intertrack = new RadicalMod("data/music/interface/" + track + ".zip");
+        intertrack = loadMusicFile("data/music/interface/" + track);
     }
 
     public void inishcarselect() {
@@ -4662,7 +4728,7 @@ class xtGraphics implements Runnable {
         flatrstart = 0;
         Medium.lightson = false;
         /// aaaaaaaa
-        (new Thread(() -> loadIntertrack("cars"))).start();
+        loadIntertrack("cars");
         pnext = 0;
         pback = 0;
     }

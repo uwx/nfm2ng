@@ -19,6 +19,10 @@
             <id>logmaster</id>
             <url>https://uwx.github.io/logmaster</url>
         </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -26,6 +30,11 @@
             <groupId>fallk</groupId>
             <artifactId>logmaster</artifactId>
             <version>rev16</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.umjammer</groupId>
+            <artifactId>jlayer</artifactId>
+            <version>1.0.3</version>
         </dependency>
     </dependencies>
 </project>

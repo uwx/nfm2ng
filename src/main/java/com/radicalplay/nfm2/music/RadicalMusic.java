@@ -1,4 +1,4 @@
-package com.radicalplay.nfm2;
+package com.radicalplay.nfm2.music;
 
 public interface RadicalMusic {
     void setPaused(boolean paused);

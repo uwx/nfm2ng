@@ -5,72 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4c6dd2f9-66f8-4c22-8b8f-cfee1c82e01c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/RadicalMusic.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fmod.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fmodL.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/RadicalSimpleAudio.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/music/BASSLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/music/RadicalIBXM.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/music/RadicalMidi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/music/RadicalMp3.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/fonts/LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/fonts/LICENSE.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hello.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/ico_16.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/ico_32.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/ico_48.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/loadbar.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/models.radq" beforeDir="false" afterPath="$PROJECT_DIR$/data/models.radq" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/sign.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/sounds.radq" beforeDir="false" afterPath="$PROJECT_DIR$/data/sounds.radq" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/com.radicalplay.nfm2.RunApp-2025-07-28.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/com.radicalplay.nfm2.RunApp-2025-07-28.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music/cars.radq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/music/stage1.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/music/stage1.radq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/music/stage10.radq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/music/stage11.radq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/music/stage12.radq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/music/stage13.radq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/music/stage14.radq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/music/stage15.radq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/music/stage16.radq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/music/stage17.radq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/music/stage2.radq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/music/stage3.radq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/music/stage4.radq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/music/stage5.radq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/music/stage6.radq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/music/stage7.radq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/music/stage8.radq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/music/stage9.radq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/music/stages.radq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/CheckPoints.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/CheckPoints.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/ContO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/ContO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/Control.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/Control.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/FontHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/FontHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/GameFacts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/GameFacts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/GameSparker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/GameSparker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/Madness.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/Madness.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/Medium.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/Medium.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/Plane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/Plane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/RadicalMath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/RadicalMath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/RadicalMod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/RadicalMod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/RunApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/RunApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/StatList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/StatList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/Trackers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/Trackers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/Utility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/Utility.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/Mod.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/ModInstrument.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/ModSlayer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/ModTrackInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/RadicalMod.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/RadicalMusic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/music/RadicalMusic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/SoundClipUnthreaded.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/SoundClipUnthreaded.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/SuperClip.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/UlawUtils.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/xtGraphics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/xtGraphics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/uwx/AppletPolyfill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/uwx/AppletPolyfill.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stages/1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/stages/10.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/stages/11.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/stages/12.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/stages/13.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/stages/14.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/stages/15.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/stages/16.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/stages/17.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/stages/2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/stages/3.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/stages/4.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/stages/5.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/stages/6.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/stages/7.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/stages/8.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/stages/9.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,8 +34,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -98,7 +52,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.RunApp.executor": "Run",
+    "Application.RunApp.executor": "Debug",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -120,6 +74,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\projects\nfm2ng" />
       <recent name="C:\projects\nfm2ng\src\main\java" />
     </key>
     <key name="MoveMembersDialog.RECENTS_KEY">
@@ -131,6 +86,9 @@
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.radicalplay.nfm2" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.radicalplay.nfm2.music" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="RunApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -139,7 +97,7 @@
       <option name="VM_PARAMETERS" value="-XX:-DontCompileHugeMethods --patch-module java.desktop=lib/marlin-0.9.4.8-Unsafe-OpenJDK17.jar" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.radicalplay.nfm2.*" />
+          <option name="PATTERN" value="com.radicalplay.nfm2.music.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -169,7 +127,7 @@
       <option name="presentableId" value="Default" />
       <updated>1753645926943</updated>
       <workItem from="1753645928055" duration="1195000" />
-      <workItem from="1753647140714" duration="7856000" />
+      <workItem from="1753647140714" duration="14786000" />
     </task>
     <servers />
   </component>
@@ -183,6 +141,26 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/GameSparker.java</url>
           <line>122</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.m2/repository/com/github/goxr3plus/java-stream-player/9.0.4/java-stream-player-9.0.4.jar!/com/goxr3plus/streamplayer/stream/StreamPlayer.class</url>
+          <line>90</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.m2/repository/com/github/goxr3plus/java-stream-player/9.0.4/java-stream-player-9.0.4.jar!/com/goxr3plus/streamplayer/stream/StreamPlayer.class</url>
+          <line>91</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.m2/repository/com/github/goxr3plus/java-stream-player/9.0.4/java-stream-player-9.0.4.jar!/com/goxr3plus/streamplayer/stream/StreamPlayer.class</url>
+          <line>92</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.m2/repository/com/github/goxr3plus/java-stream-player/9.0.4/java-stream-player-9.0.4.jar!/com/goxr3plus/streamplayer/stream/StreamPlayer.class</url>
+          <line>94</line>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

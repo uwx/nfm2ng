@@ -245,3 +245,162 @@ com.radicalplay.nfm2.RunApp --- 2025-07-28T15:06:44.480246900
 +09.1s [91msevere[39m com.radicalplay.nfm2.RadicalMod.<init>:40 Error loading com.radicalplay.nfm2.Mod from zip file: java.io.FileNotFoundException: data\music\interface\red_dream_nfmmix.zip (The system cannot find the file specified)
 +09.6s [96minfo[39m com.radicalplay.nfm2.GameSparker.savecookie:219 Successfully saved game (usercar)
 +09.6s [91msevere[39m com.radicalplay.nfm2.RadicalMod.<init>:40 Error loading com.radicalplay.nfm2.Mod from zip file: java.io.FileNotFoundException: data\music\nfm2\stage2 (The system cannot find the file specified)
+com.radicalplay.nfm2.RunApp --- 2025-07-28T15:29:47.839700
++00.0s [96minfo[39m com.radicalplay.nfm2.RunApp.main:35 Need For Madness NG
++00.3s [96minfo[39m com.radicalplay.nfm2.FontHandler.<init>:27 Done loading fonts!
++00.3s [96minfo[39m com.radicalplay.nfm2.Utility.startTimer:242 Timer started!
++00.6s [96minfo[39m com.radicalplay.nfm2.xtGraphics.loadimages:2126 Images loaded: 74
++00.7s [96minfo[39m com.radicalplay.nfm2.GameSparker.loadbase:406 Contos loaded: 86
++00.7s [96minfo[39m com.radicalplay.nfm2.Utility.stopTimer:251 Timer ended at 369 ms
++00.7s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie unlocked with value 2
++00.7s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie usercar with value 0
++00.7s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie gameprfact with value 46
+com.radicalplay.nfm2.RunApp --- 2025-07-28T15:30:11.591228500
++00.0s [96minfo[39m com.radicalplay.nfm2.RunApp.main:35 Need For Madness NG
++00.3s [96minfo[39m com.radicalplay.nfm2.FontHandler.<init>:27 Done loading fonts!
++00.3s [96minfo[39m com.radicalplay.nfm2.Utility.startTimer:242 Timer started!
++00.5s [96minfo[39m com.radicalplay.nfm2.xtGraphics.loadimages:2126 Images loaded: 74
++00.6s [96minfo[39m com.radicalplay.nfm2.GameSparker.loadbase:406 Contos loaded: 86
++00.6s [96minfo[39m com.radicalplay.nfm2.Utility.stopTimer:251 Timer ended at 336 ms
++00.6s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie unlocked with value 2
++00.6s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie usercar with value 0
++00.6s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie gameprfact with value 46
+com.radicalplay.nfm2.RunApp --- 2025-07-28T15:34:25.964777600
++00.0s [96minfo[39m com.radicalplay.nfm2.RunApp.main:35 Need For Madness NG
++00.4s [96minfo[39m com.radicalplay.nfm2.FontHandler.<init>:27 Done loading fonts!
++00.4s [96minfo[39m com.radicalplay.nfm2.Utility.startTimer:242 Timer started!
++00.6s [96minfo[39m com.radicalplay.nfm2.xtGraphics.loadimages:2126 Images loaded: 74
++00.7s [96minfo[39m com.radicalplay.nfm2.GameSparker.loadbase:406 Contos loaded: 86
++00.7s [96minfo[39m com.radicalplay.nfm2.Utility.stopTimer:251 Timer ended at 342 ms
++00.7s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie unlocked with value 2
++00.7s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie usercar with value 0
++00.7s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie gameprfact with value 46
++05.4s [96minfo[39m com.radicalplay.nfm2.xtGraphics.maini:3887 Developer Console triggered
++06.4s [91msevere[39m com.radicalplay.nfm2.RadicalFMod.<init>:70 Error loading RadicalFMod from zip file: java.io.FileNotFoundException: data\music\interface\cars.zip (The system cannot find the file specified)
+com.radicalplay.nfm2.RunApp --- 2025-07-28T15:40:21.924848900
++00.0s [96minfo[39m com.radicalplay.nfm2.RunApp.main:35 Need For Madness NG
++00.5s [96minfo[39m com.radicalplay.nfm2.FontHandler.<init>:27 Done loading fonts!
++00.5s [96minfo[39m com.radicalplay.nfm2.Utility.startTimer:242 Timer started!
++00.9s [96minfo[39m com.radicalplay.nfm2.xtGraphics.loadimages:2169 Images loaded: 74
++01.1s [96minfo[39m com.radicalplay.nfm2.GameSparker.loadbase:406 Contos loaded: 86
++01.1s [96minfo[39m com.radicalplay.nfm2.Utility.stopTimer:251 Timer ended at 595 ms
++01.1s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie unlocked with value 2
++01.1s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie usercar with value 0
++01.1s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie gameprfact with value 46
++05.2s [96minfo[39m com.radicalplay.nfm2.xtGraphics.maini:3930 Developer Console triggered
++06.1s [91msevere[39m com.radicalplay.nfm2.RadicalFMod.<init>:60 Error loading RadicalFMod from zip file: java.lang.IllegalStateException: FMOD returned error code: 31
+com.radicalplay.nfm2.RunApp --- 2025-07-28T15:41:14.376734200
++00.0s [96minfo[39m com.radicalplay.nfm2.RunApp.main:35 Need For Madness NG
++00.3s [96minfo[39m com.radicalplay.nfm2.FontHandler.<init>:27 Done loading fonts!
++00.3s [96minfo[39m com.radicalplay.nfm2.Utility.startTimer:242 Timer started!
++00.6s [96minfo[39m com.radicalplay.nfm2.xtGraphics.loadimages:2169 Images loaded: 74
++00.7s [96minfo[39m com.radicalplay.nfm2.GameSparker.loadbase:406 Contos loaded: 86
++00.7s [96minfo[39m com.radicalplay.nfm2.Utility.stopTimer:251 Timer ended at 378 ms
++00.7s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie unlocked with value 2
++00.7s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie usercar with value 0
++00.7s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie gameprfact with value 46
++04.8s [96minfo[39m com.radicalplay.nfm2.xtGraphics.maini:3930 Developer Console triggered
++06.1s [91msevere[39m com.radicalplay.nfm2.RadicalFMod.<init>:60 Error loading RadicalFMod from zip file: java.lang.IllegalStateException: FMOD returned error code: 31
+com.radicalplay.nfm2.RunApp --- 2025-07-28T15:45:28.232304800
++00.0s [96minfo[39m com.radicalplay.nfm2.RunApp.main:35 Need For Madness NG
++00.3s [96minfo[39m com.radicalplay.nfm2.FontHandler.<init>:27 Done loading fonts!
++00.3s [96minfo[39m com.radicalplay.nfm2.Utility.startTimer:242 Timer started!
++00.6s [96minfo[39m com.radicalplay.nfm2.xtGraphics.loadimages:2169 Images loaded: 74
++00.7s [96minfo[39m com.radicalplay.nfm2.GameSparker.loadbase:406 Contos loaded: 86
++00.7s [96minfo[39m com.radicalplay.nfm2.Utility.stopTimer:251 Timer ended at 343 ms
++00.7s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie unlocked with value 2
++00.7s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie usercar with value 0
++00.7s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie gameprfact with value 46
++04.7s [96minfo[39m com.radicalplay.nfm2.xtGraphics.maini:3930 Developer Console triggered
++05.6s [91msevere[39m com.radicalplay.nfm2.RadicalFMod.<init>:160 Error loading RadicalFMod from zip file: java.lang.IllegalStateException: FMOD returned error: An invalid parameter was passed to this function.
+com.radicalplay.nfm2.RunApp --- 2025-07-28T15:47:37.391259800
++00.0s [96minfo[39m com.radicalplay.nfm2.RunApp.main:35 Need For Madness NG
++00.3s [96minfo[39m com.radicalplay.nfm2.FontHandler.<init>:27 Done loading fonts!
++00.3s [96minfo[39m com.radicalplay.nfm2.Utility.startTimer:242 Timer started!
++00.5s [96minfo[39m com.radicalplay.nfm2.xtGraphics.loadimages:2169 Images loaded: 74
++00.6s [96minfo[39m com.radicalplay.nfm2.GameSparker.loadbase:406 Contos loaded: 86
++00.7s [96minfo[39m com.radicalplay.nfm2.Utility.stopTimer:251 Timer ended at 341 ms
++00.7s com.radicalplay.nfm2.RunApp --- 2025-07-28T15:48:13.332451200
++00.0s [96minfo[39m com.radicalplay.nfm2.RunApp.main:35 Need For Madness NG
++00.4s [96minfo[39m com.radicalplay.nfm2.FontHandler.<init>:27 Done loading fonts!
++00.4s [96minfo[39m com.radicalplay.nfm2.Utility.startTimer:242 Timer started!
++00.8s [96minfo[39m com.radicalplay.nfm2.xtGraphics.loadimages:2169 Images loaded: 74
++01.0s [96minfo[39m com.radicalplay.nfm2.GameSparker.loadbase:406 Contos loaded: 86
++01.0s [96minfo[39m com.radicalplay.nfm2.Utility.stopTimer:251 Timer ended at 615 ms
++01.0s com.radicalplay.nfm2.RunApp --- 2025-07-28T16:17:28.626798600
++00.0s [96minfo[39m com.radicalplay.nfm2.RunApp.main:35 Need For Madness NG
++00.7s [96minfo[39m com.radicalplay.nfm2.FontHandler.<init>:27 Done loading fonts!
++00.7s [96minfo[39m com.radicalplay.nfm2.Utility.startTimer:242 Timer started!
++01.1s [96minfo[39m com.radicalplay.nfm2.xtGraphics.loadimages:2192 Images loaded: 74
++01.4s [96minfo[39m com.radicalplay.nfm2.GameSparker.loadbase:406 Contos loaded: 86
++01.4s [96minfo[39m com.radicalplay.nfm2.Utility.stopTimer:251 Timer ended at 764 ms
++01.4s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie unlocked with value 2
++01.4s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie usercar with value 0
++01.4s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie gameprfact with value 46
++06.2s [96minfo[39m com.radicalplay.nfm2.xtGraphics.maini:3953 Developer Console triggered
+com.radicalplay.nfm2.RunApp --- 2025-07-28T16:18:08.058215600
++00.0s [96minfo[39m com.radicalplay.nfm2.RunApp.main:35 Need For Madness NG
++00.5s [96minfo[39m com.radicalplay.nfm2.FontHandler.<init>:27 Done loading fonts!
++00.5s [96minfo[39m com.radicalplay.nfm2.Utility.startTimer:242 Timer started!
++01.1s [96minfo[39m com.radicalplay.nfm2.xtGraphics.loadimages:2192 Images loaded: 74
++01.4s [96minfo[39m com.radicalplay.nfm2.GameSparker.loadbase:406 Contos loaded: 86
++01.4s [96minfo[39m com.radicalplay.nfm2.Utility.stopTimer:251 Timer ended at 897 ms
++01.4s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie unlocked with value 2
++01.4s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie usercar with value 0
++01.4s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie gameprfact with value 46
++10.3s [96minfo[39m com.radicalplay.nfm2.xtGraphics.maini:3953 Developer Console triggered
+com.radicalplay.nfm2.RunApp --- 2025-07-28T16:20:09.764862500
++00.0s [96minfo[39m com.radicalplay.nfm2.RunApp.main:35 Need For Madness NG
++00.4s [96minfo[39m com.radicalplay.nfm2.FontHandler.<init>:27 Done loading fonts!
++00.4s [96minfo[39m com.radicalplay.nfm2.Utility.startTimer:242 Timer started!
++00.6s [96minfo[39m com.radicalplay.nfm2.xtGraphics.loadimages:2192 Images loaded: 74
++00.8s [96minfo[39m com.radicalplay.nfm2.GameSparker.loadbase:406 Contos loaded: 86
++00.9s [96minfo[39m com.radicalplay.nfm2.Utility.stopTimer:251 Timer ended at 484 ms
++00.9s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie unlocked with value 2
++00.9s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie usercar with value 0
++00.9s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie gameprfact with value 46
++04.8s [96minfo[39m com.radicalplay.nfm2.xtGraphics.maini:3953 Developer Console triggered
+com.radicalplay.nfm2.RunApp --- 2025-07-28T16:21:40.528230900
++00.0s [96minfo[39m com.radicalplay.nfm2.RunApp.main:35 Need For Madness NG
++00.4s [96minfo[39m com.radicalplay.nfm2.FontHandler.<init>:27 Done loading fonts!
++00.4s [96minfo[39m com.radicalplay.nfm2.Utility.startTimer:242 Timer started!
++00.7s [96minfo[39m com.radicalplay.nfm2.xtGraphics.loadimages:2192 Images loaded: 74
++00.9s [96minfo[39m com.radicalplay.nfm2.GameSparker.loadbase:406 Contos loaded: 86
++00.9s [96minfo[39m com.radicalplay.nfm2.Utility.stopTimer:251 Timer ended at 458 ms
++00.9s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie unlocked with value 2
++00.9s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie usercar with value 0
++00.9s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie gameprfact with value 46
+com.radicalplay.nfm2.RunApp --- 2025-07-28T17:43:43.001809900
++00.0s [96minfo[39m com.radicalplay.nfm2.RunApp.main:35 Need For Madness NG
++00.4s [96minfo[39m com.radicalplay.nfm2.FontHandler.<init>:27 Done loading fonts!
++00.4s [96minfo[39m com.radicalplay.nfm2.Utility.startTimer:242 Timer started!
++00.6s [96minfo[39m com.radicalplay.nfm2.xtGraphics.loadimages:2192 Images loaded: 74
++00.7s [96minfo[39m com.radicalplay.nfm2.GameSparker.loadbase:406 Contos loaded: 86
++00.7s [96minfo[39m com.radicalplay.nfm2.Utility.stopTimer:251 Timer ended at 337 ms
++00.7s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie unlocked with value 2
++00.7s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie usercar with value 0
++00.7s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie gameprfact with value 46
++04.7s [96minfo[39m com.radicalplay.nfm2.xtGraphics.maini:3953 Developer Console triggered
++09.5s [91msevere[39m com.radicalplay.nfm2.music.RadicalIBXM.<init>:28 java.io.IOException: mark/reset not supported
+	at java.base/java.io.InputStream.reset(InputStream.java:740)
+	at java.desktop/com.sun.media.sound.SunFileReader.getAudioFileFormat(SunFileReader.java:59)
+	at java.desktop/com.sun.media.sound.WaveExtensibleFileReader.getAudioInputStream(WaveExtensibleFileReader.java:259)
+	at java.desktop/javax.sound.sampled.AudioSystem.getAudioInputStream(AudioSystem.java:990)
+	at com.radicalplay.nfm2.music.RadicalIBXM.<init>(RadicalIBXM.java:25)
+	at com.radicalplay.nfm2.xtGraphics.loadMusicFile(xtGraphics.java:1901)
+	at com.radicalplay.nfm2.xtGraphics.loadIntertrack(xtGraphics.java:4723)
+	at com.radicalplay.nfm2.xtGraphics.carselect(xtGraphics.java:4990)
+	at com.radicalplay.nfm2.GameSparker.run(GameSparker.java:1121)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+com.radicalplay.nfm2.RunApp --- 2025-07-28T17:44:27.459893900
++00.0s [96minfo[39m com.radicalplay.nfm2.RunApp.main:35 Need For Madness NG
++00.3s [96minfo[39m com.radicalplay.nfm2.FontHandler.<init>:27 Done loading fonts!
++00.3s [96minfo[39m com.radicalplay.nfm2.Utility.startTimer:242 Timer started!
++00.5s [96minfo[39m com.radicalplay.nfm2.xtGraphics.loadimages:2192 Images loaded: 74
++00.6s [96minfo[39m com.radicalplay.nfm2.GameSparker.loadbase:406 Contos loaded: 86
++00.7s [96minfo[39m com.radicalplay.nfm2.Utility.stopTimer:251 Timer ended at 351 ms
++00.7s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie unlocked with value 2
++00.7s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie usercar with value 0
++00.7s [96minfo[39m com.radicalplay.nfm2.GameSparker.readcookie:261 Successfully read cookie gameprfact with value 46
++04.7s [96minfo[39m com.radicalplay.nfm2.xtGraphics.maini:3953 Developer Console triggered
++07.6s [96minfo[39m com.radicalplay.nfm2.GameSparker.savecookie:219 Successfully saved game (usercar)
