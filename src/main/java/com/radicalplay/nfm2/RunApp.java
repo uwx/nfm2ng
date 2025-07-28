@@ -59,6 +59,7 @@ class RunApp extends Panel {
 
         JPanel wrapperPanel = new JPanel(new SingleComponentAspectRatioKeeperLayout());
         wrapperPanel.add(applet);
+        wrapperPanel.setBackground(new Color(0, 0, 0));
 
         frame.getContentPane().add(wrapperPanel);
         frame.setResizable(true);
