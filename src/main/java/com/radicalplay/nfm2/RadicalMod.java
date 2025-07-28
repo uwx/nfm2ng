@@ -106,7 +106,7 @@ public class RadicalMod implements RadicalMusic {
                 byte[] abyte0 = modslayer.turnbytesNorm();
                 sClip = new SuperClip(abyte0, modslayer.oln, l);
             } catch (Exception exception) {
-                HLogger.error("Error making a com.radicalplay.nfm2.Mod: " + exception);
+                HLogger.error("Error making a Mod: " + exception);
                 loaded = 0;
             }
         }
