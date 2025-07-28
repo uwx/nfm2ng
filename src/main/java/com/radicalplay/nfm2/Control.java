@@ -331,7 +331,7 @@ public class Control {
                     if (checkpoints.stage == 3 && madness.im == 6 && trickprf > 0.69999999999999996D) {
                         trickprf = 0.7F;
                     }
-                    if (checkpoints.stage == 6 && trickprf > 0.29999999999999999D) {
+                    if (checkpoints.stage == 6 && trickprf > 0.3) {
                         trickprf = 0.3F;
                     }
                     if (checkpoints.stage == 8 && trickprf > 0.20000000000000001D) {
@@ -341,7 +341,7 @@ public class Control {
                         if (trickprf > 0.5D) {
                             trickprf = 0.5F;
                         }
-                        if ((madness.im == 6 || madness.im == 5) && trickprf > 0.29999999999999999D) {
+                        if ((madness.im == 6 || madness.im == 5) && trickprf > 0.3) {
                             trickprf = 0.3F;
                         }
                     }
@@ -719,7 +719,7 @@ public class Control {
                                 if (flag1 && k8 > 100
                                         && Utility.py(conto.x / 100, checkpoints.opx[i4] / 100, conto.z / 100,
                                         checkpoints.opz[i4] / 100) < 300
-                                        && Medium.random() > 0.59999999999999998D
+                                        && Medium.random() > 0.6
                                         - checkpoints.pos[madness.im] / 10F) {
                                     clrnce = 0;
                                     acuracy = 0;
@@ -1373,7 +1373,7 @@ public class Control {
                                     for (int k6 = 0; k6 < checkpoints.n; k6++) {
                                         if (checkpoints.typ[k6] == -4 && (Utility.py(conto.x / 100, checkpoints.x[k6] / 100,
                                                 conto.z / 100, checkpoints.z[k6] / 100) < l4
-                                                && Medium.random() > 0.59999999999999998D || l4 == -10)) {
+                                                && Medium.random() > 0.6 || l4 == -10)) {
                                             l4 = Utility.py(conto.x / 100, checkpoints.x[k6] / 100, conto.z / 100,
                                                     checkpoints.z[k6] / 100);
                                             oupnt = k6;

@@ -17,7 +17,7 @@ public class Medium {
     private static int[][] mty = null;
     private static int[][] mtz = null;
     private static int[][][] mtc = null;
-    public static int mgen = (int) (Math.random() * 100000D);
+    public static int mgen = (int) (RadicalRand.random() * 100000D);
     public static int focus_point = 400;
     public static int ground = 250;
     private static int skyline = -300;
@@ -54,7 +54,7 @@ public class Medium {
     public static final int[] cfade = {
             255, 220, 220
     };
-    public static int snap[] = {
+    public static int[] snap = {
             0, 0, 0
     };
     public static int origfade = 3000;
@@ -115,7 +115,7 @@ public class Medium {
     private static long atrz = 0L;
     public static int fallen = 0;
     private static float fo = 1.0F;
-    private static float gofo = (float) (0.33000001311302185D + Math.random() * 1.3400000000000001D);
+    private static float gofo = (float) (0.33000001311302185D + RadicalRand.random() * 1.3400000000000001D);
     private static float[][] pvr;
     private static int[] pmx;
     private static float[] pcv;
@@ -142,8 +142,8 @@ public class Medium {
         if (cntrn == 0) {
             int i = 0;
             do {
-                rand[i] = (int) (10D * Math.random());
-                diup[i] = Math.random() <= Math.random();
+                rand[i] = (int) (10D * RadicalRand.random());
+                diup[i] = RadicalRand.random() <= RadicalRand.random();
             } while (++i < 3);
             cntrn = 20;
         } else {
@@ -220,22 +220,22 @@ public class Medium {
         }
 
         for (int i2 = 0; i2 < nrw * ncl; i2++) {
-            float f = (float) (0.29999999999999999D + 1.6000000000000001D * random1.nextDouble());
+            float f = (float) (0.3 + 1.6000000000000001D * random1.nextDouble());
             ogpx[i2][0] = 0;
             ogpz[i2][0] = (int) ((100D + random1.nextDouble() * 760D) * f);
-            ogpx[i2][1] = (int) ((100D + random1.nextDouble() * 760D) * 0.70709999999999995D * f);
+            ogpx[i2][1] = (int) ((100D + random1.nextDouble() * 760D) * 0.7071 * f);
             ogpz[i2][1] = ogpx[i2][1];
             ogpx[i2][2] = (int) ((100D + random1.nextDouble() * 760D) * f);
             ogpz[i2][2] = 0;
-            ogpx[i2][3] = (int) ((100D + random1.nextDouble() * 760D) * 0.70709999999999995D * f);
+            ogpx[i2][3] = (int) ((100D + random1.nextDouble() * 760D) * 0.7071 * f);
             ogpz[i2][3] = -ogpx[i2][3];
             ogpx[i2][4] = 0;
             ogpz[i2][4] = -(int) ((100D + random1.nextDouble() * 760D) * f);
-            ogpx[i2][5] = -(int) ((100D + random1.nextDouble() * 760D) * 0.70709999999999995D * f);
+            ogpx[i2][5] = -(int) ((100D + random1.nextDouble() * 760D) * 0.7071 * f);
             ogpz[i2][5] = ogpx[i2][5];
             ogpx[i2][6] = -(int) ((100D + random1.nextDouble() * 760D) * f);
             ogpz[i2][6] = 0;
-            ogpx[i2][7] = -(int) ((100D + random1.nextDouble() * 760D) * 0.70709999999999995D * f);
+            ogpx[i2][7] = -(int) ((100D + random1.nextDouble() * 760D) * 0.7071 * f);
             ogpz[i2][7] = -ogpx[i2][7];
             for (int k2 = 0; k2 < 8; k2++) {
                 int l2 = k2 - 1;
@@ -248,7 +248,7 @@ public class Medium {
                 }
                 ogpx[i2][k2] = ((ogpx[i2][l2] + ogpx[i2][i3]) / 2 + ogpx[i2][k2]) / 2;
                 ogpz[i2][k2] = ((ogpz[i2][l2] + ogpz[i2][i3]) / 2 + ogpz[i2][k2]) / 2;
-                pvr[i2][k2] = (float) (1.1000000000000001D + random1.nextDouble() * 0.80000000000000004D);
+                pvr[i2][k2] = (float) (1.1 + random1.nextDouble() * 0.80000000000000004D);
                 int j3 = (int) Math.sqrt((int) (ogpx[i2][k2] * ogpx[i2][k2] * pvr[i2][k2] * pvr[i2][k2]
                         + ogpz[i2][k2] * ogpz[i2][k2] * pvr[i2][k2] * pvr[i2][k2]));
                 if (j3 > pmx[i2]) {
@@ -431,12 +431,12 @@ public class Medium {
         }
     }
 
-    public Medium() {
-        focus_point = 500;
+    static {
+        focus_point = 400;
         ground = 250;
         skyline = -300;
         fogd = 7;
-        mgen = (int) (Math.random() * 100000D);
+        mgen = (int) (RadicalRand.random() * 100000D);
         snap = new int[3];
         origfade = 3000;
         fogd = 3;
@@ -495,7 +495,7 @@ public class Medium {
         atrz = 0L;
         fallen = 0;
         fo = 1.0F;
-        gofo = (float) (0.33000001311302185D + Math.random() * 1.3400000000000001D);
+        gofo = (float) (0.33000001311302185D + RadicalRand.random() * 1.3400000000000001D);
     }
 
     public static void newclouds(int i, int j, int k, int l) {
@@ -519,57 +519,57 @@ public class Medium {
         claz = new int[noc][3][12];
         clc = new int[noc][2][6][3];
         for (int i1 = 0; i1 < noc; i1++) {
-            clx[i1] = (int) (i + (j - i) * Math.random());
-            clz[i1] = (int) (k + (l - k) * Math.random());
-            float f = (float) (0.25D + Math.random() * 1.25D);
-            float f1 = (float) ((200D + Math.random() * 700D) * f);
+            clx[i1] = (int) (i + (j - i) * RadicalRand.random());
+            clz[i1] = (int) (k + (l - k) * RadicalRand.random());
+            float f = (float) (0.25D + RadicalRand.random() * 1.25D);
+            float f1 = (float) ((200D + RadicalRand.random() * 700D) * f);
             clax[i1][0][0] = (int) (f1 * 0.3826D);
-            claz[i1][0][0] = (int) (f1 * 0.92379999999999995D);
-            clay[i1][0][0] = (int) ((25D - Math.random() * 50D) * f);
-            f1 = (float) ((200D + Math.random() * 700D) * f);
-            clax[i1][0][1] = (int) (f1 * 0.70709999999999995D);
-            claz[i1][0][1] = (int) (f1 * 0.70709999999999995D);
-            clay[i1][0][1] = (int) ((25D - Math.random() * 50D) * f);
-            f1 = (float) ((200D + Math.random() * 700D) * f);
-            clax[i1][0][2] = (int) (f1 * 0.92379999999999995D);
+            claz[i1][0][0] = (int) (f1 * 0.9238D);
+            clay[i1][0][0] = (int) ((25D - RadicalRand.random() * 50D) * f);
+            f1 = (float) ((200D + RadicalRand.random() * 700D) * f);
+            clax[i1][0][1] = (int) (f1 * 0.7071);
+            claz[i1][0][1] = (int) (f1 * 0.7071);
+            clay[i1][0][1] = (int) ((25D - RadicalRand.random() * 50D) * f);
+            f1 = (float) ((200D + RadicalRand.random() * 700D) * f);
+            clax[i1][0][2] = (int) (f1 * 0.9238D);
             claz[i1][0][2] = (int) (f1 * 0.3826D);
-            clay[i1][0][2] = (int) ((25D - Math.random() * 50D) * f);
-            f1 = (float) ((200D + Math.random() * 700D) * f);
-            clax[i1][0][3] = (int) (f1 * 0.92379999999999995D);
+            clay[i1][0][2] = (int) ((25D - RadicalRand.random() * 50D) * f);
+            f1 = (float) ((200D + RadicalRand.random() * 700D) * f);
+            clax[i1][0][3] = (int) (f1 * 0.9238D);
             claz[i1][0][3] = -(int) (f1 * 0.3826D);
-            clay[i1][0][3] = (int) ((25D - Math.random() * 50D) * f);
-            f1 = (float) ((200D + Math.random() * 700D) * f);
-            clax[i1][0][4] = (int) (f1 * 0.70709999999999995D);
-            claz[i1][0][4] = -(int) (f1 * 0.70709999999999995D);
-            clay[i1][0][4] = (int) ((25D - Math.random() * 50D) * f);
-            f1 = (float) ((200D + Math.random() * 700D) * f);
+            clay[i1][0][3] = (int) ((25D - RadicalRand.random() * 50D) * f);
+            f1 = (float) ((200D + RadicalRand.random() * 700D) * f);
+            clax[i1][0][4] = (int) (f1 * 0.7071);
+            claz[i1][0][4] = -(int) (f1 * 0.7071);
+            clay[i1][0][4] = (int) ((25D - RadicalRand.random() * 50D) * f);
+            f1 = (float) ((200D + RadicalRand.random() * 700D) * f);
             clax[i1][0][5] = (int) (f1 * 0.3826D);
-            claz[i1][0][5] = -(int) (f1 * 0.92379999999999995D);
-            clay[i1][0][5] = (int) ((25D - Math.random() * 50D) * f);
-            f1 = (float) ((200D + Math.random() * 700D) * f);
+            claz[i1][0][5] = -(int) (f1 * 0.9238D);
+            clay[i1][0][5] = (int) ((25D - RadicalRand.random() * 50D) * f);
+            f1 = (float) ((200D + RadicalRand.random() * 700D) * f);
             clax[i1][0][6] = -(int) (f1 * 0.3826D);
-            claz[i1][0][6] = -(int) (f1 * 0.92379999999999995D);
-            clay[i1][0][6] = (int) ((25D - Math.random() * 50D) * f);
-            f1 = (float) ((200D + Math.random() * 700D) * f);
-            clax[i1][0][7] = -(int) (f1 * 0.70709999999999995D);
-            claz[i1][0][7] = -(int) (f1 * 0.70709999999999995D);
-            clay[i1][0][7] = (int) ((25D - Math.random() * 50D) * f);
-            f1 = (float) ((200D + Math.random() * 700D) * f);
-            clax[i1][0][8] = -(int) (f1 * 0.92379999999999995D);
+            claz[i1][0][6] = -(int) (f1 * 0.9238D);
+            clay[i1][0][6] = (int) ((25D - RadicalRand.random() * 50D) * f);
+            f1 = (float) ((200D + RadicalRand.random() * 700D) * f);
+            clax[i1][0][7] = -(int) (f1 * 0.7071);
+            claz[i1][0][7] = -(int) (f1 * 0.7071);
+            clay[i1][0][7] = (int) ((25D - RadicalRand.random() * 50D) * f);
+            f1 = (float) ((200D + RadicalRand.random() * 700D) * f);
+            clax[i1][0][8] = -(int) (f1 * 0.9238D);
             claz[i1][0][8] = -(int) (f1 * 0.3826D);
-            clay[i1][0][8] = (int) ((25D - Math.random() * 50D) * f);
-            f1 = (float) ((200D + Math.random() * 700D) * f);
-            clax[i1][0][9] = -(int) (f1 * 0.92379999999999995D);
+            clay[i1][0][8] = (int) ((25D - RadicalRand.random() * 50D) * f);
+            f1 = (float) ((200D + RadicalRand.random() * 700D) * f);
+            clax[i1][0][9] = -(int) (f1 * 0.9238D);
             claz[i1][0][9] = (int) (f1 * 0.3826D);
-            clay[i1][0][9] = (int) ((25D - Math.random() * 50D) * f);
-            f1 = (float) ((200D + Math.random() * 700D) * f);
-            clax[i1][0][10] = -(int) (f1 * 0.70709999999999995D);
-            claz[i1][0][10] = (int) (f1 * 0.70709999999999995D);
-            clay[i1][0][10] = (int) ((25D - Math.random() * 50D) * f);
-            f1 = (float) ((200D + Math.random() * 700D) * f);
+            clay[i1][0][9] = (int) ((25D - RadicalRand.random() * 50D) * f);
+            f1 = (float) ((200D + RadicalRand.random() * 700D) * f);
+            clax[i1][0][10] = -(int) (f1 * 0.7071);
+            claz[i1][0][10] = (int) (f1 * 0.7071);
+            clay[i1][0][10] = (int) ((25D - RadicalRand.random() * 50D) * f);
+            f1 = (float) ((200D + RadicalRand.random() * 700D) * f);
             clax[i1][0][11] = -(int) (f1 * 0.3826D);
-            claz[i1][0][11] = (int) (f1 * 0.92379999999999995D);
-            clay[i1][0][11] = (int) ((25D - Math.random() * 50D) * f);
+            claz[i1][0][11] = (int) (f1 * 0.9238D);
+            clay[i1][0][11] = (int) ((25D - RadicalRand.random() * 50D) * f);
             for (int j1 = 0; j1 < 12; j1++) {
                 int j2 = j1 - 1;
                 if (j2 == -1) {
@@ -585,14 +585,14 @@ public class Medium {
             }
 
             for (int k1 = 0; k1 < 12; k1++) {
-                float f2 = (float) (1.2D + 0.59999999999999998D * Math.random());
+                float f2 = (float) (1.2D + 0.6 * RadicalRand.random());
                 clax[i1][1][k1] = (int) (clax[i1][0][k1] * f2);
                 claz[i1][1][k1] = (int) (claz[i1][0][k1] * f2);
-                clay[i1][1][k1] = (int) (clay[i1][0][k1] - 100D * Math.random());
-                f2 = (float) (1.1000000000000001D + 0.29999999999999999D * Math.random());
+                clay[i1][1][k1] = (int) (clay[i1][0][k1] - 100D * RadicalRand.random());
+                f2 = (float) (1.1 + 0.3 * RadicalRand.random());
                 clax[i1][2][k1] = (int) (clax[i1][1][k1] * f2);
                 claz[i1][2][k1] = (int) (claz[i1][1][k1] * f2);
-                clay[i1][2][k1] = (int) (clay[i1][1][k1] - 240D * Math.random());
+                clay[i1][2][k1] = (int) (clay[i1][1][k1] - 240D * RadicalRand.random());
             }
 
             cmx[i1] = 0;
@@ -614,8 +614,8 @@ public class Medium {
             }
 
             for (int i2 = 0; i2 < 6; i2++) {
-                double d1 = Math.random();
-                double d2 = Math.random();
+                double d1 = RadicalRand.random();
+                double d2 = RadicalRand.random();
                 for (int k3 = 0; k3 < 3; k3++) {
                     float f3 = clds[k3] * 1.05F - clds[k3];
                     clc[i1][0][i2][k3] = (int) (clds[k3] + f3 * d1);
@@ -1095,7 +1095,7 @@ public class Medium {
         twn = null;
         nst = 0;
         if (lightson) {
-            Random random1 = new Random((long) (Math.random() * 100000D));
+            Random random1 = new Random((long) (RadicalRand.random() * 100000D));
             nst = 40;
             stx = new int[nst];
             stz = new int[nst];
@@ -1153,7 +1153,7 @@ public class Medium {
                 continue;
             }
             if (twn[i] == 0) {
-                int j1 = (int) (3D * Math.random());
+                int j1 = (int) (3D * RadicalRand.random());
                 if (j1 >= 3) {
                     j1 = 0;
                 }
@@ -1161,7 +1161,7 @@ public class Medium {
                     j1 = 2;
                 }
                 int l1 = j1 + 1;
-                if (Math.random() > Math.random()) {
+                if (RadicalRand.bool()) {
                     l1 = j1 - 1;
                 }
                 if (l1 == 3) {
@@ -1173,7 +1173,7 @@ public class Medium {
                 for (int i2 = 0; i2 < 3; i2++) {
                     stc[i][0][i2] = 200;
                     if (j1 == i2) {
-                        stc[i][0][i2] += (int) (55D * Math.random());
+                        stc[i][0][i2] += (int) (55D * RadicalRand.random());
                     }
                     if (l1 == i2) {
                         stc[i][0][i2] += 55;
@@ -1611,30 +1611,7 @@ public class Medium {
         i = (ogrnd[0] * l + i) / (1 + l);
         j = (ogrnd[1] * l + j) / (1 + l);
         k = (ogrnd[2] * l + k) / (1 + l);
-        cpol[0] = (int) (i + i * (snap[0] / 100F));
-        if (cpol[0] > 255) {
-            cpol[0] = 255;
-        }
-        if (cpol[0] < 0) {
-            cpol[0] = 0;
-        }
-        cpol[1] = (int) (j + j * (snap[1] / 100F));
-        if (cpol[1] > 255) {
-            cpol[1] = 255;
-        }
-        if (cpol[1] < 0) {
-            cpol[1] = 0;
-        }
-        cpol[2] = (int) (k + k * (snap[2] / 100F));
-        if (cpol[2] > 255) {
-            cpol[2] = 255;
-        }
-        if (cpol[2] < 0) {
-            cpol[2] = 0;
-        }
-        for (int i1 = 0; i1 < 3; i1++) {
-            crgrnd[i1] = (int) ((cpol[i1] * 0.98999999999999999D + cgrnd[i1]) / 2D);
-        }
+        setPolys(i, j, k);
 
     }
 
@@ -1687,15 +1664,14 @@ public class Medium {
                     + ((conto.z + 5000) - conto.z) * RadicalMath.cos(i));
             td = false;
         }
-        char c = '\0';
+        char c = 0;
         if (conto.x - x - cx > 0) {
-            c = '\264';
+            c = 180;
         }
-        int j = -(int) (90 + c
-                + Math.atan((double) (conto.z - z) / (double) (conto.x - x - cx)) / 0.017453292519943295D);
-        c = '\0';
+        int j = -(int) (90 + c + Math.atan((double) (conto.z - z) / (double) (conto.x - x - cx)) / 0.017453292519943295D);
+        c = 0;
         if (conto.y - y - cy < 0) {
-            c = '\uFF4C';
+            c = 65356;
         }
         int k = (int) Math.sqrt((conto.z - z) * (conto.z - z) + (conto.x - x - cx) * (conto.x - x - cx));
         int l = (int) (90 + c - Math.atan((double) k / (double) (conto.y - y - cy)) / 0.017453292519943295D);
@@ -1740,20 +1716,20 @@ public class Medium {
         if (y > 10) {
             vert = false;
         }
-        x = conto.x + (int) ((conto.x - i - conto.x) * RadicalMath.cos(vxz));
-        z = conto.z + (int) ((conto.x - i - conto.x) * RadicalMath.sin(vxz));
+        x = conto.x + (int) ((-i) * RadicalMath.cos(vxz));
+        z = conto.z + (int) ((-i) * RadicalMath.sin(vxz));
         if (!flag) {
             vxz += 2;
         } else {
             vxz += 4;
         }
-        char c = '\0';
+        char c = 0;
         int j = y;
         if (j > 0) {
             j = 0;
         }
         if (conto.y - j - cy < 0) {
-            c = '\uFF4C';
+            c = 65356;
         }
         int k = (int) Math.sqrt(((conto.z - z) + cz) * ((conto.z - z) + cz) + (conto.x - x - cx) * (conto.x - x - cx));
         int l = (int) (90 + c - Math.atan((double) k / (double) (conto.y - j - cy)) / 0.017453292519943295D);
@@ -1806,7 +1782,7 @@ public class Medium {
                     fo -= 0.005F;
                 }
             } else {
-                gofo = (float) (0.34999999403953552D + Math.random() * 1.3D);
+                gofo = (float) (0.34999999403953552D + RadicalRand.random() * 1.3D);
             }
             vxz++;
             trx -= (trx - checkpoints.x[ptr]) / 10L;
@@ -1826,8 +1802,7 @@ public class Medium {
             vxz -= 360;
         }
         xz = -vxz - 90;
-        Math.sqrt(((trz - z) + cz) * ((trz - z) + cz)
-                + (trx - x - cx) * (trx - x - cx));
+//        Math.sqrt(((trz - z) + cz) * ((trz - z) + cz) + (trx - x - cx) * (trx - x - cx));
         cpflik = !cpflik;
     }
 
@@ -1865,8 +1840,8 @@ public class Medium {
         }
         i += bcxz;
         xz = -i;
-        x = (conto.x - cx) + (int) ((-(conto.z - 800 - conto.z)) * RadicalMath.sin(i));
-        z = (conto.z - cz) + (int) ((conto.z - 800 - conto.z) * RadicalMath.cos(i));
+        x = (conto.x - cx) + (int) ((800) * RadicalMath.sin(i));
+        z = (conto.z - cz) + (int) ((-800) * RadicalMath.cos(i));
         y = conto.y - 250 - cy;
         if (trns != 1) {
             trns = 1;
@@ -1893,8 +1868,8 @@ public class Medium {
             i = 1000;
         }
         int j = conto.y - adv;
-        int k = conto.x + (int) ((conto.x - i - conto.x) * RadicalMath.cos(vxz));
-        int l = conto.z + (int) ((conto.x - i - conto.x) * RadicalMath.sin(vxz));
+        int k = conto.x + (int) ((-i) * RadicalMath.cos(vxz));
+        int l = conto.z + (int) ((-i) * RadicalMath.sin(vxz));
         int i1 = 0;
         if (Math.abs(j - y) > fvect) {
             if (y < j) {
@@ -1931,7 +1906,9 @@ public class Medium {
         } else {
             fvect += 2;
         }
-        for (vxz += 2; vxz > 360; vxz -= 360) {
+        vxz += 2;
+        while (vxz > 360) {
+            vxz -= 360;
         }
         int j1 = -vxz + 90;
         char c = '\0';
@@ -1941,12 +1918,12 @@ public class Medium {
         int k1 = -(int) (90 + c
                 + Math.atan((double) (conto.z - z) / (double) (conto.x - x - cx)) / 0.017453292519943295D);
         int l1 = y;
-        c = '\0';
+        c = 0;
         if (l1 > 0) {
             l1 = 0;
         }
         if (conto.y - l1 - cy < 0) {
-            c = '\uFF4C';
+            c = 65356;
         }
         int i2 = (int) Math.sqrt(((conto.z - z) + cz) * ((conto.z - z) + cz) + (conto.x - x - cx) * (conto.x - x - cx));
         int j2 = 25;
@@ -1954,13 +1931,17 @@ public class Medium {
             j2 = (int) (90 + c
                     - Math.atan((double) i2 / (double) (conto.y - l1 - cy)) / 0.017453292519943295D);
         }
-        for (; j1 < 0; j1 += 360) {
+        while (j1 < 0) {
+            j1 += 360;
         }
-        for (; j1 > 360; j1 -= 360) {
+        while (j1 > 360) {
+            j1 -= 360;
         }
-        for (; k1 < 0; k1 += 360) {
+        while (k1 < 0) {
+            k1 += 360;
         }
-        for (; k1 > 360; k1 -= 360) {
+        while (k1 > 360) {
+            k1 -= 360;
         }
         if ((Math.abs(j1 - k1) < 30 || Math.abs(j1 - k1) > 330) && i1 == 3) {
             if (Math.abs(j1 - xz) > 7 && Math.abs(j1 - xz) < 353) {
@@ -2022,16 +2003,16 @@ public class Medium {
         if (y > 10) {
             vert = false;
         }
-        x = j + (int) ((j - i1 - j) * RadicalMath.cos(vxz));
-        z = l + (int) ((j - i1 - j) * RadicalMath.sin(vxz));
+        x = j + (int) ((-i1) * RadicalMath.cos(vxz));
+        z = l + (int) ((-i1) * RadicalMath.sin(vxz));
         vxz += 2;
-        char c = '\0';
+        char c = 0;
         int j1 = y;
         if (j1 > 0) {
             j1 = 0;
         }
         if (k - j1 - cy < 0) {
-            c = '\uFF4C';
+            c = 65356;
         }
         int k1 = (int) Math.sqrt(((l - z) + cz) * ((l - z) + cz) + (j - x - cx) * (j - x - cx));
         int l1 = (int) (90 + c - Math.atan((double) k1 / (double) (k - j1 - cy)) / 0.017453292519943295D);

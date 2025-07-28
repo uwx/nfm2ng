@@ -15,16 +15,11 @@ import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
 /**
- * com.radicalplay.nfm2.GameSparker brings everything together.
+ * GameSparker brings everything together.
  *
  * @author Kaffeinated, Omar Waly
  */
 public class GameSparker extends AppletPolyfill implements Runnable {
-    /**
-     *
-     */
-    private static final long serialVersionUID = -34048182014310663L;
-
     private static final String[] carModels = {
             "2000tornados", "formula7", "canyenaro", "lescrab", "nimi", "maxrevenge", "leadoxide", "koolkat", "drifter",
             "policecops", "mustang", "king", "audir8", "masheen", "radicalone", "drmonster"
@@ -81,32 +76,33 @@ public class GameSparker extends AppletPolyfill implements Runnable {
     /**
      * <a href="http://www.expandinghead.net/keycode.html">http://www.expandinghead.net/keycode.html</a>
      */
+    @SuppressWarnings("deprecation")
     @Override
-    public boolean keyDown(Event event, int i) {
+    public boolean keyDown(Event event, int key) {
         if (!exwist) {
-            if (i == 1004)
+            if (key == Event.UP)
                 u[0].up = true;
-            if (i == 1005)
+            if (key == Event.DOWN)
                 u[0].down = true;
-            if (i == 1007)
+            if (key == Event.RIGHT)
                 u[0].right = true;
-            if (i == 1006)
+            if (key == Event.LEFT)
                 u[0].left = true;
-            if (i == 32)
+            if (key == ' ')
                 u[0].handb = true;
-            if (i == 120 || i == 88)
+            if (key == 'x' || key == 'X')
                 u[0].lookback = -1;
-            if (i == 122 || i == 90)
+            if (key == 'z' || key == 'Z')
                 u[0].lookback = 1;
-            if (i == 10 || i == 80 || i == 112 || i == 27)
+            if (key == '\n' || key == 'P' || key == 'p' || key == Event.ESCAPE)
                 u[0].enter = true;
-            if (i == 77 || i == 109)
-                 u[0].mutem = ! u[0].mutem;
-            if (i == 78 || i == 110)
-                u[0].mutes = ! u[0].mutes;
-            if (i == 97 || i == 65)
+            if (key == 'm' || key == 'M')
+                Control.mutem = !Control.mutem;
+            if (key == 'n' || key == 'N')
+                Control.mutes = !Control.mutes;
+            if (key == 'a' || key == 'A')
                 u[0].arrace = !u[0].arrace;
-            if (i == 118 || i == 86) {
+            if (key == 'v' || key == 'V') {
                 view++;
                 if (view == 3)
                     view = 0;
@@ -124,6 +120,7 @@ public class GameSparker extends AppletPolyfill implements Runnable {
         exwist = true;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public boolean lostFocus(Event event, Object obj) {
         if (!exwist && !lostfcs) {
@@ -135,6 +132,7 @@ public class GameSparker extends AppletPolyfill implements Runnable {
         return false;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public boolean gotFocus(Event event, Object obj) {
         if (!exwist && lostfcs)
@@ -251,20 +249,22 @@ public class GameSparker extends AppletPolyfill implements Runnable {
 	}
     @Override
     public void paint(Graphics g) {
-        Graphics2D graphics2d = (Graphics2D)g;
+        final Graphics2D graphics2d = (Graphics2D) g;
+
         int i = 0;
         int i_97_ = 0;
-        if (this.shaka > 10) {
-            i = (int)((double)(this.shaka * 2) * Math.random() - (double)this.shaka);
-            i_97_ = (int)((double)(this.shaka * 2) * Math.random() - (double)this.shaka);
-            this.shaka -= 5;
+        if (shaka > 10) {
+            i = (int) ((shaka * 2 * Math.random() - shaka));
+            i_97_ = (int) ((shaka * 2 * Math.random() - shaka));
+            shaka--;
         }
+        apx = (int) (getWidth() / 2 - 335.0F);
+        apy = (int) (getHeight() / 2 - 200.0F);
 
-        this.apx = (int)((float)(this.getWidth() / 2) - 640.0F);
-        this.apy = (int)((float)(this.getHeight() / 2) - 360.0F);
         graphics2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-        graphics2d.drawImage(this.offImage, this.apx + i, this.apy + i_97_, this);
-        this.cropit(graphics2d, i, i_97_);
+        graphics2d.drawImage(offImage, apx + i, apy + i_97_, this);
+
+        cropit(graphics2d, i, i_97_);
     }
 
     public GameSparker() {
@@ -316,7 +316,6 @@ public class GameSparker extends AppletPolyfill implements Runnable {
      * Loads all models
      *
      * @param conto      conto instance
-     * @param medium     medium instance
      * @param trackers   trackers instance
      * @param xtgraphics xtgraphics instance
      * @author Kaffeinated, Omar Waly
@@ -379,20 +378,21 @@ public class GameSparker extends AppletPolyfill implements Runnable {
     /**
      * <a href="http://www.expandinghead.net/keycode.html">http://www.expandinghead.net/keycode.html</a>
      */
+    @SuppressWarnings("deprecation")
     @Override
     public boolean keyUp(Event event, int i) {
         if (!exwist) {
-            if (i == 1004)
+            if (i == Event.UP)
                 u[0].up = false;
-            if (i == 1005)
+            if (i == Event.DOWN)
                 u[0].down = false;
-            if (i == 1007)
+            if (i == Event.RIGHT)
                 u[0].right = false;
-            if (i == 1006)
+            if (i == Event.LEFT)
                 u[0].left = false;
-            if (i == 32)
+            if (i == ' ')
                 u[0].handb = false;
-            if (i == 120 || i == 88 || i == 122 || i == 90)
+            if (i == 'x' || i == 'X' || i == 'z' || i == 'Z')
                 u[0].lookback = 0;
         }
         return false;
@@ -406,6 +406,7 @@ public class GameSparker extends AppletPolyfill implements Runnable {
             gamer.start();
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public boolean mouseDown(Event event, int i, int j) {
         if (!exwist && mouses == 0) {
@@ -814,7 +815,7 @@ public class GameSparker extends AppletPolyfill implements Runnable {
             if (xtgraphics.unlocked != GameFacts.numberOfStages)
                 checkpoints.stage = xtgraphics.unlocked;
             else
-                checkpoints.stage = (int) (Math.random() * 17D) + 1;
+                checkpoints.stage = (int) (RadicalRand.random() * 17D) + 1;
             xtgraphics.opselect = 0;
         }
         l = readcookie("usercar");
@@ -1608,7 +1609,6 @@ public class GameSparker extends AppletPolyfill implements Runnable {
                 rd.dispose();
                 xtgraphics.stopallnow();
                 System.gc();
-                gamer.stop();
                 gamer = null;
             }
             long l2 = Math.round(f1) - (l5 - l4);
@@ -1693,7 +1693,7 @@ public class GameSparker extends AppletPolyfill implements Runnable {
             }
         } else {
             try {
-                Runtime.getRuntime().exec("" + urlopen() + " " + string + "");
+                Runtime.getRuntime().exec(urlopen() + " " + string);
             } catch (final Exception exception) {
 
             }

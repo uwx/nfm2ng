@@ -1,0 +1,140 @@
+com.radicalplay.nfm2.RunApp --- 2025-07-28T01:00:27.348005700
++00.0s [96minfo[39m com.radicalplay.nfm2.RunApp.main:35 UNFM2 Console
++00.3s [96minfo[39m com.radicalplay.nfm2.FontHandler.<init>:27 Done loading fonts!
++00.3s [96minfo[39m com.radicalplay.nfm2.Utility.startTimer:181 Timer started!
++00.5s [96minfo[39m com.radicalplay.nfm2.xtGraphics.loadimages:1901 Images loaded: 74
++00.6s [96minfo[39m com.radicalplay.nfm2.GameSparker.loadbase:365 Contos loaded: 55
++00.7s [96minfo[39m com.radicalplay.nfm2.Utility.stopTimer:190 Timer ended at 310 ms
++00.7s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:225 unlocked.dat probably doesn't exist
++00.7s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:225 usercar.dat probably doesn't exist
++00.7s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:225 gameprfact.dat probably doesn't exist
+com.radicalplay.nfm2.RunApp --- 2025-07-28T13:07:42.559967900
++00.0s [96minfo[39m com.radicalplay.nfm2.RunApp.main:35 UNFM2 Console
++00.3s [96minfo[39m com.radicalplay.nfm2.FontHandler.<init>:27 Done loading fonts!
++00.3s [96minfo[39m com.radicalplay.nfm2.Utility.startTimer:181 Timer started!
++00.5s [96minfo[39m com.radicalplay.nfm2.xtGraphics.loadimages:1901 Images loaded: 74
++00.6s [96minfo[39m com.radicalplay.nfm2.GameSparker.loadbase:359 Contos loaded: 55
++00.7s [96minfo[39m com.radicalplay.nfm2.Utility.stopTimer:190 Timer ended at 325 ms
++00.7s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:220 unlocked.dat probably doesn't exist
++00.7s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:220 usercar.dat probably doesn't exist
++00.7s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:220 gameprfact.dat probably doesn't exist
+com.radicalplay.nfm2.RunApp --- 2025-07-28T13:07:55.624433100
++00.0s [96minfo[39m com.radicalplay.nfm2.RunApp.main:35 UNFM2 Console
++00.3s [96minfo[39m com.radicalplay.nfm2.FontHandler.<init>:27 Done loading fonts!
++00.3s [96minfo[39m com.radicalplay.nfm2.Utility.startTimer:181 Timer started!
++00.5s [96minfo[39m com.radicalplay.nfm2.xtGraphics.loadimages:1901 Images loaded: 74
++00.6s [96minfo[39m com.radicalplay.nfm2.GameSparker.loadbase:359 Contos loaded: 55
++00.6s [96minfo[39m com.radicalplay.nfm2.Utility.stopTimer:190 Timer ended at 332 ms
++00.6s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:220 unlocked.dat probably doesn't exist
++00.6s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:220 usercar.dat probably doesn't exist
++00.6s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:220 gameprfact.dat probably doesn't exist
+com.radicalplay.nfm2.RunApp --- 2025-07-28T13:08:25.901543600
++00.0s [96minfo[39m com.radicalplay.nfm2.RunApp.main:35 UNFM2 Console
++00.3s [96minfo[39m com.radicalplay.nfm2.FontHandler.<init>:27 Done loading fonts!
++00.3s [96minfo[39m com.radicalplay.nfm2.Utility.startTimer:181 Timer started!
++00.5s [96minfo[39m com.radicalplay.nfm2.xtGraphics.loadimages:1901 Images loaded: 74
++00.6s [96minfo[39m com.radicalplay.nfm2.GameSparker.loadbase:359 Contos loaded: 55
++00.7s [96minfo[39m com.radicalplay.nfm2.Utility.stopTimer:190 Timer ended at 321 ms
++00.7s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:220 unlocked.dat probably doesn't exist
++00.7s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:220 usercar.dat probably doesn't exist
++00.7s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:220 gameprfact.dat probably doesn't exist
+com.radicalplay.nfm2.RunApp --- 2025-07-28T13:08:39.887036800
++00.0s [96minfo[39m com.radicalplay.nfm2.RunApp.main:35 UNFM2 Console
++00.3s [96minfo[39m com.radicalplay.nfm2.FontHandler.<init>:27 Done loading fonts!
++00.3s [96minfo[39m com.radicalplay.nfm2.Utility.startTimer:181 Timer started!
++00.5s [96minfo[39m com.radicalplay.nfm2.xtGraphics.loadimages:1901 Images loaded: 74
++00.6s [96minfo[39m com.radicalplay.nfm2.GameSparker.loadbase:359 Contos loaded: 55
++00.6s [96minfo[39m com.radicalplay.nfm2.Utility.stopTimer:190 Timer ended at 313 ms
++00.7s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:220 unlocked.dat probably doesn't exist
++00.7s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:220 usercar.dat probably doesn't exist
++00.7s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:220 gameprfact.dat probably doesn't exist
+com.radicalplay.nfm2.RunApp --- 2025-07-28T13:14:30.478927100
++00.0s [96minfo[39m com.radicalplay.nfm2.RunApp.main:35 UNFM2 Console
++00.3s [96minfo[39m com.radicalplay.nfm2.FontHandler.<init>:27 Done loading fonts!
++00.3s [96minfo[39m com.radicalplay.nfm2.Utility.startTimer:181 Timer started!
++00.5s [96minfo[39m com.radicalplay.nfm2.xtGraphics.loadimages:1901 Images loaded: 74
++00.6s [96minfo[39m com.radicalplay.nfm2.GameSparker.loadbase:359 Contos loaded: 55
++00.6s [96minfo[39m com.radicalplay.nfm2.Utility.stopTimer:190 Timer ended at 317 ms
++00.6s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:220 unlocked.dat probably doesn't exist
++00.6s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:220 usercar.dat probably doesn't exist
++00.6s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:220 gameprfact.dat probably doesn't exist
+com.radicalplay.nfm2.RunApp --- 2025-07-28T13:26:09.036766300
++00.0s [96minfo[39m com.radicalplay.nfm2.RunApp.main:35 UNFM2 Console
++00.5s [96minfo[39m com.radicalplay.nfm2.FontHandler.<init>:27 Done loading fonts!
++00.5s [96minfo[39m com.radicalplay.nfm2.Utility.startTimer:181 Timer started!
++00.7s [96minfo[39m com.radicalplay.nfm2.xtGraphics.loadimages:1901 Images loaded: 74
++00.8s [96minfo[39m com.radicalplay.nfm2.GameSparker.loadbase:362 Contos loaded: 55
++00.9s [96minfo[39m com.radicalplay.nfm2.Utility.stopTimer:190 Timer ended at 399 ms
++00.9s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:223 unlocked.dat probably doesn't exist
++00.9s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:223 usercar.dat probably doesn't exist
++00.9s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:223 gameprfact.dat probably doesn't exist
+com.radicalplay.nfm2.RunApp --- 2025-07-28T13:26:21.025262900
++00.0s [96minfo[39m com.radicalplay.nfm2.RunApp.main:35 UNFM2 Console
++00.3s [96minfo[39m com.radicalplay.nfm2.FontHandler.<init>:27 Done loading fonts!
++00.3s [96minfo[39m com.radicalplay.nfm2.Utility.startTimer:181 Timer started!
++00.5s [96minfo[39m com.radicalplay.nfm2.xtGraphics.loadimages:1901 Images loaded: 74
++00.6s [96minfo[39m com.radicalplay.nfm2.GameSparker.loadbase:362 Contos loaded: 55
++00.6s [96minfo[39m com.radicalplay.nfm2.Utility.stopTimer:190 Timer ended at 316 ms
++00.6s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:223 unlocked.dat probably doesn't exist
++00.6s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:223 usercar.dat probably doesn't exist
++00.6s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:223 gameprfact.dat probably doesn't exist
+com.radicalplay.nfm2.RunApp --- 2025-07-28T13:30:35.321524300
++00.0s [96minfo[39m com.radicalplay.nfm2.RunApp.main:35 UNFM2 Console
++00.3s [96minfo[39m com.radicalplay.nfm2.FontHandler.<init>:27 Done loading fonts!
++00.3s [96minfo[39m com.radicalplay.nfm2.Utility.startTimer:181 Timer started!
++00.5s [96minfo[39m com.radicalplay.nfm2.xtGraphics.loadimages:1901 Images loaded: 74
++00.6s [96minfo[39m com.radicalplay.nfm2.GameSparker.loadbase:362 Contos loaded: 55
++00.6s [96minfo[39m com.radicalplay.nfm2.Utility.stopTimer:190 Timer ended at 314 ms
++00.6s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:223 unlocked.dat probably doesn't exist
++00.6s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:223 usercar.dat probably doesn't exist
++00.6s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:223 gameprfact.dat probably doesn't exist
+com.radicalplay.nfm2.RunApp --- 2025-07-28T13:37:30.266977900
++00.0s [96minfo[39m com.radicalplay.nfm2.RunApp.main:35 UNFM2 Console
++00.5s [96minfo[39m com.radicalplay.nfm2.FontHandler.<init>:27 Done loading fonts!
++00.5s [96minfo[39m com.radicalplay.nfm2.Utility.startTimer:181 Timer started!
++00.7s [96minfo[39m com.radicalplay.nfm2.xtGraphics.loadimages:1895 Images loaded: 74
++00.8s [96minfo[39m com.radicalplay.nfm2.GameSparker.loadbase:362 Contos loaded: 55
++00.9s [96minfo[39m com.radicalplay.nfm2.Utility.stopTimer:190 Timer ended at 369 ms
++00.9s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:223 unlocked.dat probably doesn't exist
++00.9s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:223 usercar.dat probably doesn't exist
++00.9s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:223 gameprfact.dat probably doesn't exist
+com.radicalplay.nfm2.RunApp --- 2025-07-28T13:38:08.167869
++00.0s [96minfo[39m com.radicalplay.nfm2.RunApp.main:35 UNFM2 Console
++00.4s [96minfo[39m com.radicalplay.nfm2.FontHandler.<init>:27 Done loading fonts!
++00.4s [96minfo[39m com.radicalplay.nfm2.Utility.startTimer:181 Timer started!
++00.8s [96minfo[39m com.radicalplay.nfm2.xtGraphics.loadimages:1895 Images loaded: 74
++00.9s [96minfo[39m com.radicalplay.nfm2.GameSparker.loadbase:362 Contos loaded: 55
++00.9s [96minfo[39m com.radicalplay.nfm2.Utility.stopTimer:190 Timer ended at 510 ms
++00.9s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:223 unlocked.dat probably doesn't exist
++00.9s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:223 usercar.dat probably doesn't exist
++00.9s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:223 gameprfact.dat probably doesn't exist
+com.radicalplay.nfm2.RunApp --- 2025-07-28T13:38:27.040771
++00.0s [96minfo[39m com.radicalplay.nfm2.RunApp.main:35 UNFM2 Console
++00.4s [96minfo[39m com.radicalplay.nfm2.FontHandler.<init>:27 Done loading fonts!
++00.4s [96minfo[39m com.radicalplay.nfm2.Utility.startTimer:181 Timer started!
++00.5s [96minfo[39m com.radicalplay.nfm2.xtGraphics.loadimages:1895 Images loaded: 74
++00.6s [96minfo[39m com.radicalplay.nfm2.GameSparker.loadbase:362 Contos loaded: 55
++00.7s [96minfo[39m com.radicalplay.nfm2.Utility.stopTimer:190 Timer ended at 304 ms
++00.7s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:223 unlocked.dat probably doesn't exist
++00.7s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:223 usercar.dat probably doesn't exist
++00.7s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:223 gameprfact.dat probably doesn't exist
+com.radicalplay.nfm2.RunApp --- 2025-07-28T13:39:13.220941500
++00.0s [96minfo[39m com.radicalplay.nfm2.RunApp.main:35 UNFM2 Console
++00.4s [96minfo[39m com.radicalplay.nfm2.FontHandler.<init>:27 Done loading fonts!
++00.4s [96minfo[39m com.radicalplay.nfm2.Utility.startTimer:181 Timer started!
++00.7s [96minfo[39m com.radicalplay.nfm2.xtGraphics.loadimages:1895 Images loaded: 74
++00.8s [96minfo[39m com.radicalplay.nfm2.GameSparker.loadbase:362 Contos loaded: 55
++00.8s [96minfo[39m com.radicalplay.nfm2.Utility.stopTimer:190 Timer ended at 410 ms
++00.8s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:223 unlocked.dat probably doesn't exist
++00.8s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:223 usercar.dat probably doesn't exist
++00.8s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:223 gameprfact.dat probably doesn't exist
+com.radicalplay.nfm2.RunApp --- 2025-07-28T13:39:38.130253800
++00.0s [96minfo[39m com.radicalplay.nfm2.RunApp.main:35 UNFM2 Console
++00.4s [96minfo[39m com.radicalplay.nfm2.FontHandler.<init>:27 Done loading fonts!
++00.4s [96minfo[39m com.radicalplay.nfm2.Utility.startTimer:181 Timer started!
++00.7s [96minfo[39m com.radicalplay.nfm2.xtGraphics.loadimages:1895 Images loaded: 74
++00.8s [96minfo[39m com.radicalplay.nfm2.GameSparker.loadbase:364 Contos loaded: 55
++00.9s [96minfo[39m com.radicalplay.nfm2.Utility.stopTimer:190 Timer ended at 445 ms
++00.9s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:223 unlocked.dat probably doesn't exist
++00.9s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:223 usercar.dat probably doesn't exist
++00.9s [91msevere[39m com.radicalplay.nfm2.GameSparker.readcookie:223 gameprfact.dat probably doesn't exist

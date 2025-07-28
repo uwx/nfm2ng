@@ -3,7 +3,7 @@ package com.radicalplay.nfm2;
 import java.awt.*;
 
 /**
- * com.radicalplay.nfm2.Madness is where the stats, collisions, locations of the cars, and more, are handled.
+ * Madness is where the stats, collisions, locations of the cars, and more, are handled.
  *
  * @author Kaffeinated, Omar Waly
  */
@@ -140,7 +140,7 @@ class Madness {
                                 conto.p[l].hsb[2] = 0.7F;
                             if (conto.p[l].bfase > 30 && conto.p[l].hsb[1] > 0.14999999999999999D)
                                 conto.p[l].hsb[1] = 0.15F;
-                            if (conto.p[l].bfase > 35 && conto.p[l].hsb[2] > 0.59999999999999998D)
+                            if (conto.p[l].bfase > 35 && conto.p[l].hsb[2] > 0.6)
                                 conto.p[l].hsb[2] = 0.6F;
                             if (conto.p[l].bfase > 40)
                                 conto.p[l].hsb[0] = 0.075F;
@@ -304,7 +304,7 @@ class Madness {
                             conto.p[j].hsb[2] = 0.7F;
                         if (conto.p[j].bfase > 30 && conto.p[j].hsb[1] > 0.14999999999999999D)
                             conto.p[j].hsb[1] = 0.15F;
-                        if (conto.p[j].bfase > 35 && conto.p[j].hsb[2] > 0.59999999999999998D)
+                        if (conto.p[j].bfase > 35 && conto.p[j].hsb[2] > 0.6)
                             conto.p[j].hsb[2] = 0.6F;
                         if (conto.p[j].bfase > 40)
                             conto.p[j].hsb[0] = 0.075F;
@@ -492,7 +492,7 @@ class Madness {
                 + (float) Math.sqrt(conto.keyz[1] * conto.keyz[1] + conto.keyx[1] * conto.keyx[1])
                 + (float) Math.sqrt(conto.keyz[2] * conto.keyz[2] + conto.keyx[2] * conto.keyx[2])
                 + (float) Math.sqrt(conto.keyz[3] * conto.keyz[3] + conto.keyx[3] * conto.keyx[3])) / 10000F)
-                * (float) (stat.bounce - 0.29999999999999999D);
+                * (float) (stat.bounce - 0.3);
         mtouch = false;
         wtouch = false;
         txz = 0;
@@ -580,7 +580,7 @@ class Madness {
                             conto.p[j].hsb[2] = 0.7F;
                         if (conto.p[j].bfase > 30 && conto.p[j].hsb[1] > 0.14999999999999999D)
                             conto.p[j].hsb[1] = 0.15F;
-                        if (conto.p[j].bfase > 35 && conto.p[j].hsb[2] > 0.59999999999999998D)
+                        if (conto.p[j].bfase > 35 && conto.p[j].hsb[2] > 0.6)
                             conto.p[j].hsb[2] = 0.6F;
                         if (conto.p[j].bfase > 40)
                             conto.p[j].hsb[0] = 0.075F;
@@ -1046,12 +1046,12 @@ class Madness {
                 if (k3 == 3) {
                     int k7 = (int) (Medium.random() * 4F);
                     scy[k7] = (float) (-100F * Medium.random() * (speed / stat.swits[2])
-                            * (stat.bounce - 0.29999999999999999D));
+                            * (stat.bounce - 0.3));
                 }
                 if (k3 == 4) {
                     int l7 = (int) (Medium.random() * 4F);
                     scy[l7] = (float) (-150F * Medium.random() * (speed / stat.swits[2])
-                            * (stat.bounce - 0.29999999999999999D));
+                            * (stat.bounce - 0.3));
                 }
                 f9 += scx[l6];
                 f10 += scz[l6];
@@ -1090,10 +1090,10 @@ class Madness {
                 gtouch = true;
                 if (!flag4 && scy[l4] != 7F) {
                     float f7 = scy[l4] / 333.33F;
-                    if (f7 > 0.29999999999999999D)
+                    if (f7 > 0.3)
                         f7 = 0.3F;
                     if (k3 == 0)
-                        f7 = (float) (f7 + 1.1000000000000001D);
+                        f7 = (float) (f7 + 1.1);
                     else
                         f7 = (float) (f7 + 1.2D);
                     conto.dust(l4, af[l4], af2[l4], af1[l4], scx[l4], scz[l4], f7 * stat.simag, true, 0);
@@ -1109,7 +1109,7 @@ class Madness {
                 if (f8 > 0.40000000000000002D)
                     f8 = 0.4F;
                 f8 += stat.bounce;
-                if (f8 < 1.1000000000000001D)
+                if (f8 < 1.1)
                     f8 = 1.1F;
                 regy(l4, Math.abs(scy[l4] * f8), conto);
                 if (scy[l4] > 0.0F)
@@ -1136,10 +1136,10 @@ class Madness {
                         gtouch = true;
                         if (!flag4 && scy[i7] != 7F) {
                             float f12 = scy[i7] / 333.33F;
-                            if (f12 > 0.29999999999999999D)
+                            if (f12 > 0.3)
                                 f12 = 0.3F;
                             if (k3 == 0)
-                                f12 = (float) (f12 + 1.1000000000000001D);
+                                f12 = (float) (f12 + 1.1);
                             else
                                 f12 = (float) (f12 + 1.2D);
                             conto.dust(i7, af[i7], af2[i7], af1[i7], scx[i7], scz[i7], f12 * stat.simag, true, 0);
@@ -1155,7 +1155,7 @@ class Madness {
                         if (f13 > 0.40000000000000002D)
                             f13 = 0.4F;
                         f13 += stat.bounce;
-                        if (f13 < 1.1000000000000001D)
+                        if (f13 < 1.1)
                             f13 = 1.1F;
                         regy(i7, Math.abs(scy[i7] * f13), conto);
                         if (scy[i7] > 0.0F)
@@ -1172,12 +1172,12 @@ class Madness {
                         while (++f14 < 4F);
                         f14 = Math.abs(RadicalMath.cos(pxy)) + Math.abs(RadicalMath.cos(pzy));
                         f14 /= 4F;
-                        if (f14 > 0.29999999999999999D)
+                        if (f14 > 0.3)
                             f14 = 0.3F;
                         if (flag4)
                             f14 = 0.0F;
                         f14 = (float) (f14 + (stat.bounce - 0.20000000000000001D));
-                        if (f14 < 1.1000000000000001D)
+                        if (f14 < 1.1)
                             f14 = 1.1F;
                         regz(i7, Math.abs(scz[i7] * f14 * trackers.dam[j5]), conto);
                         scz[i7] += Math.abs(scz[i7] * f14);
@@ -1196,12 +1196,12 @@ class Madness {
                         while (++f15 < 4F);
                         f15 = Math.abs(RadicalMath.cos(pxy)) + Math.abs(RadicalMath.cos(pzy));
                         f15 /= 4F;
-                        if (f15 > 0.29999999999999999D)
+                        if (f15 > 0.3)
                             f15 = 0.3F;
                         if (flag4)
                             f15 = 0.0F;
                         f15 = (float) (f15 + (stat.bounce - 0.20000000000000001D));
-                        if (f15 < 1.1000000000000001D)
+                        if (f15 < 1.1)
                             f15 = 1.1F;
                         regz(i7, -Math.abs(scz[i7] * f15 * trackers.dam[j5]), conto);
                         scz[i7] -= Math.abs(scz[i7] * f15);
@@ -1220,12 +1220,12 @@ class Madness {
                         while (++f16 < 4F);
                         f16 = Math.abs(RadicalMath.cos(pxy)) + Math.abs(RadicalMath.cos(pzy));
                         f16 /= 4F;
-                        if (f16 > 0.29999999999999999D)
+                        if (f16 > 0.3)
                             f16 = 0.3F;
                         if (flag4)
                             f16 = 0.0F;
                         f16 = (float) (f16 + (stat.bounce - 0.20000000000000001D));
-                        if (f16 < 1.1000000000000001D)
+                        if (f16 < 1.1)
                             f16 = 1.1F;
                         regx(i7, Math.abs(scx[i7] * f16 * trackers.dam[j5]), conto);
                         scx[i7] += Math.abs(scx[i7] * f16);
@@ -1244,12 +1244,12 @@ class Madness {
                         while (++f17 < 4F);
                         f17 = Math.abs(RadicalMath.cos(pxy)) + Math.abs(RadicalMath.cos(pzy));
                         f17 /= 4F;
-                        if (f17 > 0.29999999999999999D)
+                        if (f17 > 0.3)
                             f17 = 0.3F;
                         if (flag4)
                             f17 = 0.0F;
                         f17 = (float) (f17 + (stat.bounce - 0.20000000000000001D));
-                        if (f17 < 1.1000000000000001D)
+                        if (f17 < 1.1)
                             f17 = 1.1F;
                         regx(i7, -Math.abs(scx[i7] * f17 * trackers.dam[j5]), conto);
                         scx[i7] -= Math.abs(scx[i7] * f17);
@@ -1514,9 +1514,9 @@ class Madness {
                 tilt -= 0.40000000000000002D;
             else if (Math.abs(tilt) > 3D * (stat.bounce - 0.40000000000000002D)) {
                 if (tilt > 0.0F)
-                    tilt -= 3D * (stat.bounce - 0.29999999999999999D);
+                    tilt -= 3D * (stat.bounce - 0.3);
                 else
-                    tilt += 3D * (stat.bounce - 0.29999999999999999D);
+                    tilt += 3D * (stat.bounce - 0.3);
             } else {
                 tilt = 0.0F;
             }

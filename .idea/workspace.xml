@@ -5,20 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4c6dd2f9-66f8-4c22-8b8f-cfee1c82e01c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameFacts.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RadicalMusic.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/DesktopContext.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/DesktopSoundClip.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/DesktopStub.java" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/RadicalRand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/NativeBass-Examples.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/NativeBass.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/dragshotMod.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/easyogg.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/jasypt-1.9.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/javazoom/jl/player/PausablePlayer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/jl1.0.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/jogg-0.0.7.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/jorbis-0.0.15.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/org/newdawn/easyogg/OggClip.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/org/newdawn/easyogg/TestOgg.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/startup2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/Control.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/Control.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/GameFacts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/GameFacts.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/GameSparker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/GameSparker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/Mod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/Mod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/RunApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/RunApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/StatList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/StatList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/Madness.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/Madness.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/Medium.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/Medium.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/Plane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/Plane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/xtGraphics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/radicalplay/nfm2/xtGraphics.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/uwx/AppletPolyfill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/uwx/AppletPolyfill.java" afterDir="false" />
     </list>
@@ -60,9 +66,9 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
@@ -82,6 +88,7 @@
     <configuration name="RunApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.radicalplay.nfm2.RunApp" />
       <module name="nfm2ng" />
+      <option name="VM_PARAMETERS" value="-XX:-DontCompileHugeMethods --patch-module java.desktop=lib/marlin-0.9.4.8-Unsafe-OpenJDK17.jar" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.radicalplay.nfm2.*" />
@@ -114,7 +121,7 @@
       <option name="presentableId" value="Default" />
       <updated>1753645926943</updated>
       <workItem from="1753645928055" duration="1195000" />
-      <workItem from="1753647140714" duration="1304000" />
+      <workItem from="1753647140714" duration="4823000" />
     </task>
     <servers />
   </component>

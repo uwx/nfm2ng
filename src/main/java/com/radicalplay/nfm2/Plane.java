@@ -129,19 +129,19 @@ public class Plane {
             oc[j3] = ai3[j3];
         } while (++j3 < 3);
         if (j == -15) {
-            j3 = (int) (185D + Math.random() * 30D);
+            j3 = (int) (185D + RadicalRand.random() * 30D);
             ai3[0] = (217 + j3) / 2;
             ai3[1] = (189 + j3) / 2;
             ai3[2] = (132 + j3) / 2;
             for (int k3 = 0; k3 < n; k3++) {
-                if (Math.random() > Math.random()) {
-                    ox[k3] += (int) (8D * Math.random() - 4D);
+                if (RadicalRand.bool()) {
+                    ox[k3] += (int) (8D * RadicalRand.random() - 4D);
                 }
-                if (Math.random() > Math.random()) {
-                    oy[k3] += (int) (8D * Math.random() - 4D);
+                if (RadicalRand.bool()) {
+                    oy[k3] += (int) (8D * RadicalRand.random() - 4D);
                 }
-                if (Math.random() > Math.random()) {
-                    oz[k3] += (int) (8D * Math.random() - 4D);
+                if (RadicalRand.bool()) {
+                    oz[k3] += (int) (8D * RadicalRand.random() - 4D);
                 }
             }
 
@@ -181,7 +181,7 @@ public class Plane {
             if (bfase > 30 && hsb[1] > 0.14999999999999999D) {
                 hsb[1] = 0.15F;
             }
-            if (bfase > 35 && hsb[2] > 0.59999999999999998D) {
+            if (bfase > 35 && hsb[2] > 0.6) {
                 hsb[2] = 0.6F;
             }
             if (bfase > 40) {
@@ -283,7 +283,7 @@ public class Plane {
             if (embos > 9 && embos <= 10)/////// /// explode outward a little + white flame a bit bigger than previous + maor darkening
             {
                 f = 1.0F + Medium.random() / 2.0F;
-                if (hsb[2] > 0.59999999999999998D) {
+                if (hsb[2] > 0.6) {
                     hsb[2] = 0.6F;
                 }
             }
@@ -485,7 +485,7 @@ public class Plane {
         if (wx != 0) {
             Utility.rot(ai, ai1, wx + i, wz + k, k1, n);
         }
-        if (chip == 1 && (Medium.random() > 0.59999999999999998D || bfase == 0)) {
+        if (chip == 1 && (Medium.random() > 0.6 || bfase == 0)) {
             chip = 0;
             if (bfase == 0 && nocol) {
                 bfase = 1;
@@ -834,12 +834,12 @@ public class Plane {
             if (gr == -16 && av > 1500) {
                 flag2 = false;
             }
-            if (flx != 0 && Medium.random() > 0.29999999999999999D) {
+            if (flx != 0 && Medium.random() > 0.3) {
                 flag2 = false;
             }
         }
         if (flag2) {
-            float f1 = (float) (projf / deltaf + 0.29999999999999999D);
+            float f1 = (float) (projf / deltaf + 0.3);
             if (flag && !solo) {
                 boolean flag3 = false;
                 if (f1 > 1.0F) {
@@ -895,7 +895,7 @@ public class Plane {
                 if (f1 > 1.0F) {
                     f1 = 1.0F;
                 }
-                if (f1 < 0.59999999999999998D || flag1) {
+                if (f1 < 0.6 || flag1) {
                     f1 = 0.6F;
                 }
             }
@@ -1086,7 +1086,7 @@ public class Plane {
                     rd.setColor(new Color(i12, k13, l14));
                     rd.drawPolygon(ai14, ai15, n);
                 } else if (Medium.cpflik && Medium.hit == 5000) {
-                    int l13 = (int) (Math.random() * 115D);
+                    int l13 = (int) (RadicalRand.random() * 115D);
                     int j12 = l13 * 2 - 54;
                     if (j12 < 0) {
                         j12 = 0;
