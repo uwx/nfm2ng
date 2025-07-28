@@ -1,15 +1,16 @@
 package com.radicalplay.nfm2;
 
+import com.radicalplay.nfm2.gui.SingleComponentAspectRatioKeeperLayout;
 import fallk.logmaster.HLogger;
 
-import javax.swing.UIManager;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 class RunApp extends Panel {
-    private static Frame frame;
+    private static JFrame frame;
     private static GameSparker applet;
     private static ArrayList<Image> icons;
 
@@ -42,7 +43,7 @@ class RunApp extends Panel {
     }
 
     private static void startup() {
-        frame = new Frame("Need For Madness NG");// Change this to the name of your preference
+        frame = new JFrame("Need For Madness NG");// Change this to the name of your preference
         frame.setBackground(new Color(0, 0, 0));
         frame.setIgnoreRepaint(true);
         frame.setIconImages(getIcons());
@@ -55,8 +56,12 @@ class RunApp extends Panel {
             }
         });
         applet.setPreferredSize(new Dimension(GameFacts.screenWidth, GameFacts.screenHeight));// The resolution of your game goes here
-        frame.add("Center", applet);
-        frame.setResizable(false);// If you plan to make you game support changes in resolution, you can comment out this line.
+
+        JPanel wrapperPanel = new JPanel(new SingleComponentAspectRatioKeeperLayout());
+        wrapperPanel.add(applet);
+
+        frame.getContentPane().add(wrapperPanel);
+        frame.setResizable(true);
         frame.pack();
         frame.setMinimumSize(frame.getSize());
         frame.setLocationRelativeTo(null);

@@ -4,6 +4,7 @@ import fallk.logmaster.HLogger;
 import io.github.uwx.AppletPolyfill;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.io.*;
 import java.net.URI;
 import java.util.Date;
@@ -20,10 +21,6 @@ import java.util.zip.ZipOutputStream;
  * @author Kaffeinated, Omar Waly
  */
 public class GameSparker extends AppletPolyfill implements Runnable {
-    /**
-    *
-    */
-
     /**
      * get os name / type
      */
@@ -113,6 +110,7 @@ public class GameSparker extends AppletPolyfill implements Runnable {
     public int nobfix = carModels.length - noboffset;
 
     public boolean reverseYRot = false;
+    private xtGraphics xtgraphics;
 
     /**
      * <a href="http://www.expandinghead.net/keycode.html">http://www.expandinghead.net/keycode.html</a>
@@ -293,19 +291,28 @@ public class GameSparker extends AppletPolyfill implements Runnable {
     @Override
     public void paint(Graphics g) {
         Graphics2D graphics2d = (Graphics2D) g;
-        int i = 0;
-        int i_97_ = 0;
-        if (this.shaka > 10) {
-            i = (int) ((double) (this.shaka * 2) * Math.random() - (double) this.shaka);
-            i_97_ = (int) ((double) (this.shaka * 2) * Math.random() - (double) this.shaka);
-            this.shaka -= 5;
+
+        graphics2d.setColor(new Color(0, 0, 0));
+        graphics2d.fillRect(0, 0, getWidth(), getHeight());
+
+        int xshake = 0;
+        int yshake = 0;
+        if (shaka > 10) {
+            xshake = (int) ((double) (shaka * 2) * Math.random() - (double) shaka);
+            yshake = (int) ((double) (shaka * 2) * Math.random() - (double) shaka);
+            shaka -= 5;
         }
 
-        this.apx = (int) ((float) (this.getWidth() / 2) - GameFacts.screenWidth/2);
-        this.apy = (int) ((float) (this.getHeight() / 2) - GameFacts.screenHeight/2);
+        if (!useUnlimitedResize) {
+            apx = (int) ((getWidth() / 2f) - (GameFacts.screenWidth / 2f));
+            apy = (int) ((getHeight() / 2f) - (GameFacts.screenHeight / 2f));
+        } else {
+            apx = 0;
+            apy = 0;
+        }
         graphics2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-        graphics2d.drawImage(this.offImage, this.apx + i, this.apy + i_97_, this);
-        this.cropit(graphics2d, i, i_97_);
+        graphics2d.drawImage(offImage, apx + xshake, apy + yshake, null);
+        cropit(graphics2d, xshake, yshake);
     }
 
     public GameSparker() {
@@ -451,10 +458,10 @@ public class GameSparker extends AppletPolyfill implements Runnable {
 
     @SuppressWarnings("deprecation")
     @Override
-    public boolean mouseDown(Event event, int i, int j) {
+    public boolean mouseDown(Event event, int x, int y) {
         if (!exwist && mouses == 0) {
-            xm = i;
-            ym = j;
+            xm = x - this.apx;
+            ym = y - this.apy;
             mouses = 1;
         }
         return false;
@@ -947,7 +954,7 @@ public class GameSparker extends AppletPolyfill implements Runnable {
     @Override
     public void run() {
         rd.setColor(new Color(0, 0, 0));
-        rd.fillRect(0, 0,GameFacts.screenWidth, GameFacts.screenHeight);
+        rd.fillRect(0, 0, GameFacts.screenWidth, GameFacts.screenHeight);
         repaint();
         /*
          * start an example timer
@@ -955,7 +962,7 @@ public class GameSparker extends AppletPolyfill implements Runnable {
         Utility.startTimer();
         Trackers trackers = new Trackers();
         CheckPoints checkpoints = new CheckPoints();
-        xtGraphics xtgraphics = new xtGraphics(rd, this);
+        xtgraphics = new xtGraphics(rd, this);
         xtgraphics.loaddata();
         Record record = new Record();
         ContO[] aconto = new ContO[carModels.length + trackModels.length + extraModels.length]; // be sure all your arrays get in here
@@ -1855,13 +1862,23 @@ public class GameSparker extends AppletPolyfill implements Runnable {
     }
 
     @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(GameFacts.screenWidth, GameFacts.screenHeight);
+    }
+
+    @Override
     public void init() {
         /*
          * load some fonts
          */
         new FontHandler();
 
-        offImage = createImage(GameFacts.screenWidth, GameFacts.screenHeight);
+        createOffImage();
+    }
+
+    private void createOffImage() {
+        Dimension dimension = getOffImageDimensions();
+        offImage = createImage(dimension.width, dimension.height);
         if (offImage != null) {
             sg = offImage.getGraphics();
             rd = ((Graphics2D) sg);
@@ -1969,12 +1986,37 @@ public class GameSparker extends AppletPolyfill implements Runnable {
         }
     }
 
+    @SuppressWarnings("deprecation")
     @Override
-    public boolean mouseMove(Event event, int i, int j) {
+    public boolean mouseMove(Event event, int x, int y) {
         if (!exwist && !lostfcs) {
-            xm = i;
-            ym = j;
+            xm = x - apx;
+            ym = y - apy;
         }
         return false;
+    }
+
+    boolean useUnlimitedResize = true;
+    private Dimension getOffImageDimensions() {
+        if (useUnlimitedResize) {
+            return new Dimension(getWidth(), getHeight());
+        } else {
+            return new Dimension(GameFacts.screenWidth, GameFacts.screenHeight);
+        }
+    }
+
+    @Override
+    public void ratioChanged(double newRatio) {
+        if (useUnlimitedResize && offImage != null && (getWidth() != offImage.getWidth(null) || getHeight() != offImage.getHeight(null))) {
+            createOffImage();
+
+            if (xtgraphics != null) {
+                xtgraphics.setGraphics(rd);
+            }
+
+            rd.setTransform(new AffineTransform());
+            rd.scale(newRatio, newRatio);
+            HLogger.info("Scaling to " + newRatio);
+        }
     }
 }

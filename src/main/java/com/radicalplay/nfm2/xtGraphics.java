@@ -32,7 +32,7 @@ class xtGraphics implements Runnable {
             25, 50, 100
     };
 
-    private final Graphics2D rd;
+    private Graphics2D rd;
     private final GameSparker app;
     public Phase fase;
     private Phase oldfase;
@@ -5545,5 +5545,9 @@ class xtGraphics implements Runnable {
             pixelgrabber.grabPixels();
         } catch (InterruptedException _ex) {
         }
+    }
+
+    public void setGraphics(Graphics2D rd) {
+        this.rd = rd;
     }
 }

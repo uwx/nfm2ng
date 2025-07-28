@@ -1,16 +1,15 @@
 package io.github.uwx;
 
+import com.radicalplay.nfm2.gui.AspectRatioListener;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.util.HashMap;
 import java.util.Map;
 
 @SuppressWarnings("deprecation")
-public abstract class AppletPolyfill extends JPanel {
+public abstract class AppletPolyfill extends JPanel implements AspectRatioListener {
     public AppletPolyfill() {
         Map<Integer, Integer> legacyEventKeyMap = new HashMap<>() {{
             put(KeyEvent.VK_HOME, Event.HOME);
@@ -40,6 +39,12 @@ public abstract class AppletPolyfill extends JPanel {
             put(KeyEvent.VK_TAB, Event.TAB);
             put(KeyEvent.VK_ESCAPE, Event.ESCAPE);
             put(KeyEvent.VK_DELETE, Event.DELETE);
+            put(KeyEvent.VK_CANCEL, Event.ESCAPE);
+
+            put(KeyEvent.VK_CLEAR, Event.ESCAPE);
+            put(KeyEvent.VK_SHIFT, Event.ESCAPE);
+            put(KeyEvent.VK_CONTROL, Event.ESCAPE);
+            put(KeyEvent.VK_ALT, Event.ESCAPE);
 
             put(KeyEvent.VK_EURO_SIGN, 0x20AC);
             put(KeyEvent.VK_SPACE, 0x20);
@@ -129,12 +134,28 @@ public abstract class AppletPolyfill extends JPanel {
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                keyDown(sharedEvt, legacyEventKeyMap.get(e.getKeyCode()));
+                if (legacyEventKeyMap.containsKey(e.getKeyCode())) {
+                    keyDown(sharedEvt, legacyEventKeyMap.get(e.getKeyCode()));
+                }
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                keyUp(sharedEvt, legacyEventKeyMap.get(e.getKeyCode()));
+                if (legacyEventKeyMap.containsKey(e.getKeyCode())) {
+                    keyUp(sharedEvt, legacyEventKeyMap.get(e.getKeyCode()));
+                }
+            }
+        });
+
+        addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                gotFocus(sharedEvt, e.getSource());
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                lostFocus(sharedEvt, e.getSource());
             }
         });
 
@@ -147,4 +168,9 @@ public abstract class AppletPolyfill extends JPanel {
     public abstract void start();
 
     public abstract void init();
+
+    @Override
+    public void ratioChanged(double newRatio) {
+
+    }
 }
