@@ -4,7 +4,7 @@ import java.awt.*;
 import java.util.Random;
 
 /**
- * com.radicalplay.nfm2.Medium manages most of the graphics you see during games, such as clouds, ground, and dust.
+ * Medium manages most of the graphics you see during games, such as clouds, ground, and dust.
  * This class was edited and re-edited again by Chaotic for (mostly) full NFMM Graphics (excluding sparks and extra dust).
  *
  * @author Kaffeinated, Chaotic, Omar Wally
@@ -115,7 +115,7 @@ public class Medium {
     private static long atrz = 0L;
     public static int fallen = 0;
     private static float fo = 1.0F;
-    private static float gofo = (float) (0.33000001311302185D + RadicalRand.random() * 1.3400000000000001D);
+    private static float gofo = (float) (0.33 + RadicalRand.random() * 1.34);
     private static float[][] pvr;
     private static int[] pmx;
     private static float[] pcv;
@@ -137,6 +137,10 @@ public class Medium {
     private static int[] twn;
     private static int ih;
     private static int fvect;
+
+    public static int detailtype = 2;
+
+    public static boolean noclouds = false;
 
     public static float random() {
         if (cntrn == 0) {
@@ -171,6 +175,8 @@ public class Medium {
     }
 
     public static void newpolys(int i, int j, int k, int l, Trackers trackers, int i1) {
+        if (detailtype == 0)
+            return;
         Random random1 = new Random((i1 + cgrnd[0] + cgrnd[1] + cgrnd[2]) * 1671);
         nrw = j / 1200 + 9;
         ncl = l / 1200 + 9;
@@ -268,6 +274,8 @@ public class Medium {
     }
 
     private static void groundpolys(Graphics2D graphics2d) {
+        if (detailtype == 0)
+            return;
         int i = (x - sgpx) / 1200 - 12;
         if (i < 0) {
             i = 0;
@@ -495,10 +503,14 @@ public class Medium {
         atrz = 0L;
         fallen = 0;
         fo = 1.0F;
-        gofo = (float) (0.33000001311302185D + RadicalRand.random() * 1.3400000000000001D);
+        gofo = (float) (0.33000001311302185D + Math.random() * 1.3400000000000001D);
+        detailtype = 2;
+        noclouds = false;
     }
 
     public static void newclouds(int i, int j, int k, int l) {
+        if (detailtype == 0 || detailtype == 1 || noclouds)
+            return;
         clx = null;
         clz = null;
         cmx = null;
@@ -641,6 +653,8 @@ public class Medium {
     }
 
     private static void drawclouds(Graphics2D graphics2d) {
+        if (detailtype == 0 || detailtype == 1 || noclouds)
+            return;
         for (int i = 0; i < noc; i++) {
             int j = cx + (int) ((clx[i] - x / 20 - cx) * RadicalMath.cos(xz) - (clz[i] - z / 20 - cz) * RadicalMath.sin(xz));
             int k = cz + (int) ((clx[i] - x / 20 - cx) * RadicalMath.sin(xz) + (clz[i] - z / 20 - cz) * RadicalMath.cos(xz));
@@ -917,6 +931,8 @@ public class Medium {
     }
 
     public static void newmountains(int i, int i_167_, int i_168_, int i_169_) {
+        if (detailtype == 0 || detailtype == 1)
+            return;
         Random random = new Random(mgen);
         nmt = (int) (20.0 + 10.0 * random.nextDouble());
         int i_170_ = (i + i_167_) / 60;
@@ -1011,6 +1027,8 @@ public class Medium {
     }
 
     private static void drawmountains(Graphics2D rd) {
+        if (detailtype == 0 || detailtype == 1)
+            return;
         for (int i = 0; i < nmt; i++) {
             int i_185_ = mrd[i];
             int i_186_ = cx + (int) ((mtx[i_185_][0] - x / 30 - cx) * RadicalMath.cos(xz)
@@ -1088,6 +1106,8 @@ public class Medium {
     }
 
     public static void newstars() {
+        if (detailtype == 0 || detailtype == 1)
+            return;
         stx = null;
         stz = null;
         stc = null;
@@ -1142,6 +1162,8 @@ public class Medium {
     }
 
     private static void drawstars(Graphics2D graphics2d) {
+        if (detailtype == 0 || detailtype == 1)
+            return;
         for (int i = 0; i < nst; i++) {
             int j = cx + (int) (stx[i] * RadicalMath.cos(xz) - stz[i] * RadicalMath.sin(xz));
             int k = cz + (int) (stx[i] * RadicalMath.sin(xz) + stz[i] * RadicalMath.cos(xz));
@@ -1526,6 +1548,8 @@ public class Medium {
     }
 
     public static void setClouds(int i, int j, int k, int l, int i1) {
+        if (noclouds)
+            return;
         if (l < 0) {
             l = 0;
         }

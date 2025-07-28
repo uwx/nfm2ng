@@ -136,9 +136,9 @@ class Madness {
                         if (!conto.p[l].nocol && !conto.p[l].glass) {
                             if (conto.p[l].bfase > 20 && conto.p[l].hsb[1] > 0.25D)
                                 conto.p[l].hsb[1] = 0.25F;
-                            if (conto.p[l].bfase > 25 && conto.p[l].hsb[2] > 0.69999999999999996D)
+                            if (conto.p[l].bfase > 25 && conto.p[l].hsb[2] > 0.7)
                                 conto.p[l].hsb[2] = 0.7F;
-                            if (conto.p[l].bfase > 30 && conto.p[l].hsb[1] > 0.14999999999999999D)
+                            if (conto.p[l].bfase > 30 && conto.p[l].hsb[1] > 0.15)
                                 conto.p[l].hsb[1] = 0.15F;
                             if (conto.p[l].bfase > 35 && conto.p[l].hsb[2] > 0.6)
                                 conto.p[l].hsb[2] = 0.6F;
@@ -270,6 +270,15 @@ class Madness {
         stat = new Stat();
     }
 
+    public void devFixCar() {
+        this.squash = 0;
+        this.nbsq = 0;
+        this.hitmag = 0;
+        this.cntdest = 0;
+        this.dest = false;
+        this.newcar = true;
+    }
+
     private void regz(int i, float f, ContO conto) {
         f *= stat.dammult;
         if (Math.abs(f) > 100F) {
@@ -300,9 +309,9 @@ class Madness {
                     if (!conto.p[j].nocol && !conto.p[j].glass) {
                         if (conto.p[j].bfase > 20 && conto.p[j].hsb[1] > 0.25D)
                             conto.p[j].hsb[1] = 0.25F;
-                        if (conto.p[j].bfase > 25 && conto.p[j].hsb[2] > 0.69999999999999996D)
+                        if (conto.p[j].bfase > 25 && conto.p[j].hsb[2] > 0.7)
                             conto.p[j].hsb[2] = 0.7F;
-                        if (conto.p[j].bfase > 30 && conto.p[j].hsb[1] > 0.14999999999999999D)
+                        if (conto.p[j].bfase > 30 && conto.p[j].hsb[1] > 0.15)
                             conto.p[j].hsb[1] = 0.15F;
                         if (conto.p[j].bfase > 35 && conto.p[j].hsb[2] > 0.6)
                             conto.p[j].hsb[2] = 0.6F;
@@ -576,9 +585,9 @@ class Madness {
                     if (!conto.p[j].nocol && !conto.p[j].glass) {
                         if (conto.p[j].bfase > 20 && conto.p[j].hsb[1] > 0.25D)
                             conto.p[j].hsb[1] = 0.25F;
-                        if (conto.p[j].bfase > 25 && conto.p[j].hsb[2] > 0.69999999999999996D)
+                        if (conto.p[j].bfase > 25 && conto.p[j].hsb[2] > 0.7)
                             conto.p[j].hsb[2] = 0.7F;
-                        if (conto.p[j].bfase > 30 && conto.p[j].hsb[1] > 0.14999999999999999D)
+                        if (conto.p[j].bfase > 30 && conto.p[j].hsb[1] > 0.15)
                             conto.p[j].hsb[1] = 0.15F;
                         if (conto.p[j].bfase > 35 && conto.p[j].hsb[2] > 0.6)
                             conto.p[j].hsb[2] = 0.6F;
@@ -1507,12 +1516,12 @@ class Madness {
         }
         if (wtouch && !capsized) {
             float f18 = (float) ((speed / stat.swits[2]) * 14F
-                    * (stat.bounce - 0.40000000000000002D));
+                    * (stat.bounce - 0.4));
             if (control.left && tilt < f18 && tilt >= 0.0F)
-                tilt += 0.40000000000000002D;
+                tilt += 0.4;
             else if (control.right && tilt > -f18 && tilt <= 0.0F)
-                tilt -= 0.40000000000000002D;
-            else if (Math.abs(tilt) > 3D * (stat.bounce - 0.40000000000000002D)) {
+                tilt -= 0.4;
+            else if (Math.abs(tilt) > 3D * (stat.bounce - 0.4)) {
                 if (tilt > 0.0F)
                     tilt -= 3D * (stat.bounce - 0.3);
                 else
@@ -1527,15 +1536,15 @@ class Madness {
             tilt = 0.0F;
         if (wtouch && k3 == 2) {
             conto.zy += (int) (((Medium.random() * 25F * speed) / stat.swits[2]
-                    - (15F * speed) / stat.swits[2]) * (stat.bounce - 0.99999999999999989D));
+                    - (15F * speed) / stat.swits[2]) * (stat.bounce - 1));
             conto.xy += (int) (((Medium.random() * 25F * speed) / stat.swits[2]
-                    - (15F * speed) / stat.swits[2]) * (stat.bounce - 0.99999999999999989D));
+                    - (15F * speed) / stat.swits[2]) * (stat.bounce - 1));
         }
         if (wtouch && k3 == 1) {
             conto.zy += (int) (((Medium.random() * 20F * speed) / stat.swits[2]
-                    - (10F * speed) / stat.swits[2]) * (stat.bounce - 0.99999999999999989D));
+                    - (10F * speed) / stat.swits[2]) * (stat.bounce - 1));
             conto.xy += (int) (((Medium.random() * 20F * speed) / stat.swits[2]
-                    - (10F * speed) / stat.swits[2]) * (stat.bounce - 0.99999999999999989D));
+                    - (10F * speed) / stat.swits[2]) * (stat.bounce - 1));
         }
         if (hitmag > stat.maxmag && !dest) {
             distruct(conto);

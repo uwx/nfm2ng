@@ -20,6 +20,27 @@ import java.util.zip.ZipOutputStream;
  * @author Kaffeinated, Omar Waly
  */
 public class GameSparker extends AppletPolyfill implements Runnable {
+    /**
+    *
+    */
+
+    /**
+     * get os name / type
+     */
+    public static final String OPERATING_SYSTEM = System.getProperty("os.name").toLowerCase();
+    public static final boolean IS_UNIX = OPERATING_SYSTEM.indexOf("nix") == 0 || OPERATING_SYSTEM.indexOf("nux") == 0;
+    public static final boolean IS_WINDOWS = OPERATING_SYSTEM.indexOf("win") == 0;
+    public static final boolean IS_MAC = OPERATING_SYSTEM.indexOf("mac") == 0;
+    /**
+     * get os bit
+     */
+    public static final String IS_64_BIT = System.getProperty("sun.arch.data.model").equals("64") ? "64" : "32";
+    /**
+     * uh help
+     */
+    public static final String WORKING_DIRECTORY = ".";
+    public static final boolean DEBUG = true;
+
     private static final String[] carModels = {
             "2000tornados", "formula7", "canyenaro", "lescrab", "nimi", "maxrevenge", "leadoxide", "koolkat", "drifter",
             "policecops", "mustang", "king", "audir8", "masheen", "radicalone", "drmonster"
@@ -30,8 +51,9 @@ public class GameSparker extends AppletPolyfill implements Runnable {
             "roblend", "noblend", "rnblend", "roadend", "offroadend", "hpground", "ramp30", "cramp35", "dramp15",
             "dhilo15", "slide10", "takeoff", "sramp22", "offbump", "offramp", "sofframp", "halfpipe", "spikes", "rail",
             "thewall", "checkpoint", "fixpoint", "offcheckpoint", "sideoff", "bsideoff", "uprise", "riseroad", "sroad",
-            "soffroad"
-
+            "soffroad", "tside", "launchpad", "thenet", "speedramp", "offhill", "slider", "uphill", "roll1", "roll2",
+            "roll3", "roll4", "roll5", "roll6", "opile1", "opile2", "aircheckpoint", "tree1", "tree2", "tree3", "tree4",
+            "tree5", "tree6", "tree7", "tree8", "cac1", "cac2", "cac3", "8sroad", "8soffroad", "singlewallroad", "thewall2"
     };
     private static final String[] extraModels = {};
 
@@ -40,10 +62,18 @@ public class GameSparker extends AppletPolyfill implements Runnable {
      */
     private static final boolean splashScreenState = true;
 
-    private static final String stageDir = "stages/";
+    private static final String stageDir = "data/stages/";
+
+    public int stageID = 1;
+    public static String stageSubDir = "nfm2/";
+    public static String stageName = "";
+
+    public String loadStage = stageDir + stageSubDir + stageID + ".txt";
+    public static String loadStageCus;
 
     /**
-     * Set directory for temporary creation of cookies (directory is deleted after writing is complete)
+     * Set directory for temporary creation of cookies (directory is deleted after
+     * writing is complete)
      */
     private static final String cookieDirTemp = "data/cookies/";
     /**
@@ -72,6 +102,17 @@ public class GameSparker extends AppletPolyfill implements Runnable {
     private int shaka = 0;
     private int apx = 0;
     private int apy = 0;
+
+    public static String gameState = "None";
+    public static int gameStateID;
+    public static int ContosCount;
+
+    public String wallmodel;
+
+    public int noboffset = 10;      //this makes it so IDs are offset correctly, can be modified by stage via idoffset(x)
+    public int nobfix = carModels.length - noboffset;
+
+    public boolean reverseYRot = false;
 
     /**
      * <a href="http://www.expandinghead.net/keycode.html">http://www.expandinghead.net/keycode.html</a>
@@ -143,7 +184,8 @@ public class GameSparker extends AppletPolyfill implements Runnable {
     private void savecookie(String filename, String num) {
         try {
             /**
-             * since I want full control over the filenames, we'll create a normal file in the temporary file directory
+             * since I want full control over the filenames, we'll create a normal file in
+             * the temporary file directory
              */
             try {
                 File cookieTempLocation = new File(cookieDirTemp);
@@ -227,44 +269,43 @@ public class GameSparker extends AppletPolyfill implements Runnable {
         }
     }
 
-     private void cropit(final Graphics2D graphics2d, final int i, final int i_98_) {
-		if (i != 0 || i_98_ != 0) {
-			graphics2d.setComposite(AlphaComposite.getInstance(3, 1.0F));
-			graphics2d.setColor(new Color(0, 0, 0));
-		}
-		if (i != 0) {
-			if (i < 0) {
-				graphics2d.fillRect(apx + i, apy - (int) (25.0F), Math.abs(i), (int) (720.0F));
-			} else {
-				graphics2d.fillRect(apx + (int) (1280.0F), apy - (int) (25.0F), i, (int) (720.0F));
-			}
-		}
-		if (i_98_ != 0) {
-			if (i_98_ < 0) {
-				graphics2d.fillRect(apx - (int) (25.0F), apy + i_98_, (int) (1280.0F + 50.F), Math.abs(i_98_));
-			} else {
-				graphics2d.fillRect(apx - (int) (25.0F), apy + (int) (720.0F + 50.0F), (int) (1280.0F + 50.0F), i_98_);
-			}
-		}
-	}
+    private void cropit(final Graphics2D graphics2d, final int i, final int i_98_) {
+        if (i != 0 || i_98_ != 0) {
+            graphics2d.setComposite(AlphaComposite.getInstance(3, 1.0F));
+            graphics2d.setColor(new Color(0, 0, 0));
+        }
+        if (i != 0) {
+            if (i < 0) {
+                graphics2d.fillRect(apx + i, apy - (int) (25.0F), Math.abs(i), (int) (720.0F));
+            } else {
+                graphics2d.fillRect(apx + (int) (1280.0F), apy - (int) (25.0F), i, (int) (720.0F));
+            }
+        }
+        if (i_98_ != 0) {
+            if (i_98_ < 0) {
+                graphics2d.fillRect(apx - (int) (25.0F), apy + i_98_, (int) (1280.0F + 50.F), Math.abs(i_98_));
+            } else {
+                graphics2d.fillRect(apx - (int) (25.0F), apy + (int) (720.0F + 50.0F), (int) (1280.0F + 50.0F), i_98_);
+            }
+        }
+    }
+
     @Override
     public void paint(Graphics g) {
-        final Graphics2D graphics2d = (Graphics2D) g;
-
+        Graphics2D graphics2d = (Graphics2D) g;
         int i = 0;
         int i_97_ = 0;
-        if (shaka > 10) {
-            i = (int) ((shaka * 2 * Math.random() - shaka));
-            i_97_ = (int) ((shaka * 2 * Math.random() - shaka));
-            shaka--;
+        if (this.shaka > 10) {
+            i = (int) ((double) (this.shaka * 2) * Math.random() - (double) this.shaka);
+            i_97_ = (int) ((double) (this.shaka * 2) * Math.random() - (double) this.shaka);
+            this.shaka -= 5;
         }
-        apx = (int) (getWidth() / 2 - 335.0F);
-        apy = (int) (getHeight() / 2 - 200.0F);
 
+        this.apx = (int) ((float) (this.getWidth() / 2) - GameFacts.screenWidth/2);
+        this.apy = (int) ((float) (this.getHeight() / 2) - GameFacts.screenHeight/2);
         graphics2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-        graphics2d.drawImage(offImage, apx + i, apy + i_97_, this);
-
-        cropit(graphics2d, i, i_97_);
+        graphics2d.drawImage(this.offImage, this.apx + i, this.apy + i_97_, this);
+        this.cropit(graphics2d, i, i_97_);
     }
 
     public GameSparker() {
@@ -281,7 +322,8 @@ public class GameSparker extends AppletPolyfill implements Runnable {
 
     /**
      * @param input name of model you want id of
-     * @return Position on model in array. If you spelled it wrong or if it doesn't eist, it returns -1, so you have that to look forward to.
+     * @return Position on model in array. If you spelled it wrong or if it doesn't
+     *         eist, it returns -1, so you have that to look forward to.
      * @author Kaffeinated
      */
     private int getModel(String input) {
@@ -362,6 +404,7 @@ public class GameSparker extends AppletPolyfill implements Runnable {
              * be sure to add your added arrays here            
              */
             HLogger.info("Contos loaded: " + (carModels.length + trackModels.length + extraModels.length));
+            ContosCount = carModels.length + trackModels.length + extraModels.length;
             zipinputstream.close();
         } catch (IOException e) {
             HLogger.error("Error Reading Models: " + e);
@@ -430,7 +473,7 @@ public class GameSparker extends AppletPolyfill implements Runnable {
      * @author Kaffeinated, Omar Waly
      */
     private void loadstage(ContO[] aconto, ContO[] aconto1, Trackers trackers, CheckPoints checkpoints,
-                           xtGraphics xtgraphics, Madness[] amadness, Record record) {
+                           xtGraphics xtgraphics, Madness[] amadness, Record record, boolean custom) {
         trackers.nt = 0;
         nob = GameFacts.numberOfPlayers;
         notb = 0;
@@ -441,95 +484,200 @@ public class GameSparker extends AppletPolyfill implements Runnable {
         checkpoints.wasted = 0;
         checkpoints.catchfin = 0;
         Medium.lightson = false;
+        Medium.detailtype = 2;
         Medium.ground = 250;
+
+        reverseYRot = false;
+
+        noboffset = 10;
+        nobfix = carModels.length - noboffset;
+
+        wallmodel = "thewall";
+
+        //reset noarrow and nostatus
+        xtgraphics.arrowDisabled = false;
+        xtgraphics.opstatusDisabled = false;
+
         view = 0;
 
-        final int wall_id = getModel("thewall");
         int r_wall = 0;
         int l_wall = 100;
         int t_wall = 0;
         int b_wall = 100;
 
+        CheckPoints.customTrack = false;
 
-        try (BufferedReader bufferedreader = new BufferedReader(new FileReader(new File(stageDir + checkpoints.stage + ".txt")))) {
-            for (String line; (line = bufferedreader.readLine()) != null; ) {
+        loadStage = stageDir + stageSubDir + checkpoints.stage + ".txt";
+        if (xtgraphics.nfmmode == 1) {
+            stageSubDir = "nfm1/";
+        } else if (xtgraphics.nfmmode == 2) {
+            stageSubDir = "nfm2/";
+        }
+
+        if (custom) {
+            loadStage = stageDir + loadStageCus + ".txt";
+            HLogger.info(loadStage);
+        }
+
+        String string = "";
+
+        try (BufferedReader bufferedreader = new BufferedReader(new FileReader(new File(loadStage)))) {
+            for (String line; (line = bufferedreader.readLine()) != null;) {
                 line = line.trim();
 
                 if (line.startsWith("mountains"))
                     Medium.mgen = Utility.getint("mountains", line, 0);
                 if (line.startsWith("snap"))
-                    Medium.setSnap(Utility.getint("snap", line, 0), Utility.getint("snap", line, 1), Utility.getint("snap", line, 2));
+                    Medium.setSnap(Utility.getint("snap", line, 0), Utility.getint("snap", line, 1),
+                            Utility.getint("snap", line, 2));
                 if (line.startsWith("sky")) {
-                    Medium.setSky(Utility.getint("sky", line, 0), Utility.getint("sky", line, 1), Utility.getint("sky", line, 2));
+                    Medium.setSky(Utility.getint("sky", line, 0), Utility.getint("sky", line, 1),
+                            Utility.getint("sky", line, 2));
                     xtgraphics.snap(checkpoints.stage);
                 }
                 if (line.startsWith("ground"))
-                    Medium.setGround(Utility.getint("ground", line, 0), Utility.getint("ground", line, 1), Utility.getint("ground", line, 2));
+                    Medium.setGround(Utility.getint("ground", line, 0), Utility.getint("ground", line, 1),
+                            Utility.getint("ground", line, 2));
                 if (line.startsWith("polys"))
-                    Medium.setPolys(Utility.getint("polys", line, 0), Utility.getint("polys", line, 1), Utility.getint("polys", line, 2));
+                    Medium.setPolys(Utility.getint("polys", line, 0), Utility.getint("polys", line, 1),
+                            Utility.getint("polys", line, 2));
                 if (line.startsWith("fog"))
-                    Medium.setFade(Utility.getint("fog", line, 0), Utility.getint("fog", line, 1), Utility.getint("fog", line, 2));
+                    Medium.setFade(Utility.getint("fog", line, 0), Utility.getint("fog", line, 1),
+                            Utility.getint("fog", line, 2));
                 if (line.startsWith("density"))
                     Medium.fogd = Utility.getint("density", line, 0);
                 if (line.startsWith("texture")) {
-                    Medium.setTexture(Utility.getint("texture", line, 0), Utility.getint("texture", line, 1), Utility.getint("texture", line, 2),
+                    Medium.setTexture(Utility.getint("texture", line, 0), Utility.getint("texture", line, 1),
+                            Utility.getint("texture", line, 2),
                             Utility.getint("texture", line, 3));
                 }
                 if (line.startsWith("clouds")) {
-                    Medium.setClouds(Utility.getint("clouds", line, 0), Utility.getint("clouds", line, 1), Utility.getint("clouds", line, 2),
+                    Medium.setClouds(Utility.getint("clouds", line, 0), Utility.getint("clouds", line, 1),
+                            Utility.getint("clouds", line, 2),
                             Utility.getint("clouds", line, 3), Utility.getint("clouds", line, 4));
                 }
+                if (line.startsWith("noclouds"))
+                    Medium.noclouds = true;
                 if (line.startsWith("fadefrom")) {
                     Medium.fadeFrom(Utility.getint("fadefrom", line, 0));
                     Medium.origfade = Medium.fade[0];
                 }
                 if (line.startsWith("lightson"))
                     Medium.lightson = true;
+
+                if (line.startsWith("noarrow"))
+                    xtgraphics.arrowDisabled = true;
+                if (line.startsWith("nostatus"))
+                    xtgraphics.opstatusDisabled = true;
+
+                if (line.startsWith("idoffset")) {
+                    noboffset = Utility.getint("idoffset", line, 0);
+                    nobfix = carModels.length - noboffset;
+                }
+
+                if (line.startsWith("yrot")) {
+                    reverseYRot = true;
+                }
+
                 if (line.startsWith("set")) {
                     int k1 = Utility.getint("set", line, 0);
-                    k1 += 6;
-                    aconto[nob] = new ContO(aconto1[k1], Utility.getint("set", line, 1), Medium.ground - aconto1[k1].grat,
-                            Utility.getint("set", line, 2), Utility.getint("set", line, 3));
+                    k1 += nobfix;
+                
+                    // compute default Y (ground-height)
+                    int yVal = Medium.ground - aconto1[k1].grat;
+                    int rot = Utility.getint("set", line, 3);
+                
+                    // if there *is* a 5th comma-separated value, use that instead
+                    // (splitting only the part inside the parentheses)
+                    String inside = line.substring(line.indexOf('(') + 1, line.lastIndexOf(')'));
+                    String[] parts = inside.split("\\s*,\\s*");
+                    if (parts.length > 4) {
+                        yVal = Utility.getint("set", line, 4);
+                        if (reverseYRot) {
+                            yVal = Utility.getint("set", line, 3);
+                            rot = Utility.getint("set", line, 4);
+                        }
+                    }
+                
+                    // now create the object, exactly as before but with our yVal
+                    aconto[nob] = new ContO(
+                        aconto1[k1],
+                        Utility.getint("set", line, 1),
+                        yVal,
+                        Utility.getint("set", line, 2),
+                        rot
+                    );
+                
                     if (line.contains(")p")) {
                         checkpoints.x[checkpoints.n] = Utility.getint("set", line, 1);
                         checkpoints.z[checkpoints.n] = Utility.getint("set", line, 2);
-                        checkpoints.y[checkpoints.n] = 0;
+                
+                        // same trick for the checkpoint Y (default=0)
+                        if (parts.length > 4) {
+                            checkpoints.y[checkpoints.n] = Utility.getint("set", line, 4);
+                            if (reverseYRot) {
+                                checkpoints.y[checkpoints.n] = Utility.getint("set", line, 3);
+                            }
+                        } else {
+                            checkpoints.y[checkpoints.n] = 0;
+                        }
+                
                         checkpoints.typ[checkpoints.n] = 0;
-                        if (line.contains(")pt"))
-                            checkpoints.typ[checkpoints.n] = -1;
-                        if (line.contains(")pr"))
-                            checkpoints.typ[checkpoints.n] = -2;
-                        if (line.contains(")po"))
-                            checkpoints.typ[checkpoints.n] = -3;
-                        if (line.contains(")ph"))
-                            checkpoints.typ[checkpoints.n] = -4;
+                        if (line.contains(")pt")) checkpoints.typ[checkpoints.n] = -1;
+                        if (line.contains(")pr")) checkpoints.typ[checkpoints.n] = -2;
+                        if (line.contains(")pl")) checkpoints.typ[checkpoints.n] = -2;
+                        if (line.contains(")po")) checkpoints.typ[checkpoints.n] = -3;
+                        if (line.contains(")ph")) checkpoints.typ[checkpoints.n] = -4;
+                
                         checkpoints.n++;
                         notb = nob + 1;
                     }
                     nob++;
                 }
-                if (line.startsWith("fltset")) {
-                    int i2 = Utility.getint("fltset", line, 0);
-                    i2 += 6;
-                    aconto[nob] = new ContO(aconto1[i2], Utility.getint("fltset", line, 1), Utility.getint("fltset", line, 3),
-                            Utility.getint("fltset", line, 2), Utility.getint("fltset", line, 4));
+                if (line.startsWith("wall")) {
+                    String modelname = Utility.getstring("wall", line, 0);
+                    wallmodel = modelname;
+                }
+                if (line.startsWith("ds:set")) {
+                    String modelname = Utility.getstring("ds:set", line, 0);
+                    int id = getModel(modelname);
+                    int yVal = Medium.ground - aconto1[id].grat;
+                
+                    // if there *is* a 5th comma-separated value, use that instead
+                    // (splitting only the part inside the parentheses)
+                    String inside = line.substring(line.indexOf('(') + 1, line.lastIndexOf(')'));
+                    String[] parts = inside.split("\\s*,\\s*");
+                    if (parts.length > 4) {
+                        yVal = Utility.getint("ds:set", line, 4);
+                    }
+                
+                    // now create the object, exactly as before but with our yVal
+                    aconto[nob] = new ContO(
+                        aconto1[id],
+                        Utility.getint("ds:set", line, 1),
+                        yVal,
+                        Utility.getint("ds:set", line, 2),
+                        Utility.getint("ds:set", line, 3)
+                    );
+                
                     if (line.contains(")p")) {
-                        checkpoints.x[checkpoints.n] = Utility.getint("fltset", line, 1);
-                        checkpoints.z[checkpoints.n] = Utility.getint("fltset", line, 2);
-                        checkpoints.y[checkpoints.n] = Utility.getint("fltset", line, 3);
+                        checkpoints.x[checkpoints.n] = Utility.getint("ds:set", line, 1);
+                        checkpoints.z[checkpoints.n] = Utility.getint("ds:set", line, 2);
+                
+                        // same trick for the checkpoint Y (default=0)
+                        if (parts.length > 4) {
+                            checkpoints.y[checkpoints.n] = Utility.getint("ds:set", line, 4);
+                        } else {
+                            checkpoints.y[checkpoints.n] = 0;
+                        }
+                
                         checkpoints.typ[checkpoints.n] = 0;
-                        if (line.contains(")pt")) {
-                            checkpoints.typ[checkpoints.n] = -1;
-                        }
-                        if (line.contains(")pr")) {
-                            checkpoints.typ[checkpoints.n] = -2;
-                        }
-                        if (line.contains(")po")) {
-                            checkpoints.typ[checkpoints.n] = -3;
-                        }
-                        if (line.contains(")ph")) {
-                            checkpoints.typ[checkpoints.n] = -4;
-                        }
+                        if (line.contains(")pt")) checkpoints.typ[checkpoints.n] = -1;
+                        if (line.contains(")pr")) checkpoints.typ[checkpoints.n] = -2;
+                        if (line.contains(")pl")) checkpoints.typ[checkpoints.n] = -2;
+                        if (line.contains(")po")) checkpoints.typ[checkpoints.n] = -3;
+                        if (line.contains(")ph")) checkpoints.typ[checkpoints.n] = -4;
+                
                         checkpoints.n++;
                         notb = nob + 1;
                     }
@@ -537,35 +685,45 @@ public class GameSparker extends AppletPolyfill implements Runnable {
                 }
                 if (line.startsWith("chk")) {
                     int l1 = Utility.getint("chk", line, 0);
-                    l1 += 6;
-                    aconto[nob] = new ContO(aconto1[l1], Utility.getint("chk", line, 1), Medium.ground - aconto1[l1].grat,
-                            Utility.getint("chk", line, 2), Utility.getint("chk", line, 3));
+                    l1 += nobfix;
+                
+                    // compute default Y (ground-height)
+                    int yVal = Medium.ground - aconto1[l1].grat;
+                    int rot = Utility.getint("chk", line, 3);
+                
+                    // grab the args between '(' and ')', split on commas
+                    String inside = line.substring(line.indexOf('(') + 1, line.lastIndexOf(')'));
+                    String[] parts = inside.split("\\s*,\\s*");
+                    // if there's a 5th element, use it as Y instead
+                    if (parts.length > 4) {
+                        yVal = Utility.getint("chk", line, 4);
+                        if (reverseYRot) {
+                            yVal = Utility.getint("chk", line, 3);
+                            rot = Utility.getint("chk", line, 4);
+                        }
+                    }
+                
+                    // create your object exactly as before, but with our yVal
+                    aconto[nob] = new ContO(
+                        aconto1[l1],
+                        Utility.getint("chk", line, 1),
+                        yVal,
+                        Utility.getint("chk", line, 2),
+                        rot
+                    );
+                
+                    // now the checkpoint data:
                     checkpoints.x[checkpoints.n] = Utility.getint("chk", line, 1);
                     checkpoints.z[checkpoints.n] = Utility.getint("chk", line, 2);
-                    checkpoints.y[checkpoints.n] = Medium.ground - aconto1[l1].grat;
+                    // use the same yVal
+                    checkpoints.y[checkpoints.n] = yVal;
+                
+                    // type based on rotation-arg logic unchanged
                     if (Utility.getint("chk", line, 3) == 0)
                         checkpoints.typ[checkpoints.n] = 1;
                     else
                         checkpoints.typ[checkpoints.n] = 2;
-                    checkpoints.pcs = checkpoints.n;
-                    checkpoints.n++;
-                    aconto[nob].checkpoint = checkpoints.nsp + 1;
-                    checkpoints.nsp++;
-                    nob++;
-                    notb = nob;
-                }
-                if (line.startsWith("fltchk")) {
-                    int l1 = Utility.getint("fltchk", line, 0);
-                    l1 += 6;
-                    aconto[nob] = new ContO(aconto1[l1], Utility.getint("fltchk", line, 1), Utility.getint("fltchk", line, 3),
-                            Utility.getint("fltchk", line, 2), Utility.getint("fltchk", line, 4));
-                    checkpoints.x[checkpoints.n] = Utility.getint("fltchk", line, 1);
-                    checkpoints.z[checkpoints.n] = Utility.getint("fltchk", line, 2);
-                    checkpoints.y[checkpoints.n] = Utility.getint("fltchk", line, 3);
-                    if (Utility.getint("fltchk", line, 4) == 0)
-                        checkpoints.typ[checkpoints.n] = 1;
-                    else
-                        checkpoints.typ[checkpoints.n] = 2;
+                
                     checkpoints.pcs = checkpoints.n;
                     checkpoints.n++;
                     aconto[nob].checkpoint = checkpoints.nsp + 1;
@@ -575,7 +733,7 @@ public class GameSparker extends AppletPolyfill implements Runnable {
                 }
                 if (line.startsWith("fix")) {
                     int i2 = Utility.getint("fix", line, 0);
-                    i2 += 6;
+                    i2 += nobfix;
                     aconto[nob] = new ContO(aconto1[i2], Utility.getint("fix", line, 1), Utility.getint("fix", line, 3),
                             Utility.getint("fix", line, 2), Utility.getint("fix", line, 4));
                     checkpoints.fx[checkpoints.fn] = Utility.getint("fix", line, 1);
@@ -597,6 +755,15 @@ public class GameSparker extends AppletPolyfill implements Runnable {
                     checkpoints.nlaps = Utility.getint("nlaps", line, 0);
                 if (line.startsWith("name"))
                     checkpoints.name = Utility.getstring("name", line, 0).replace('|', ',');
+                if (line.startsWith("soundtrack")) {
+                    CheckPoints.customTrack = true;
+                    CheckPoints.trackname = Utility.getstring("soundtrack", line, 0);
+                    CheckPoints.trackformat = Utility.getstring("soundtrack", line, 1);
+                    // xtGraphics.sndsize[18] = Utility.getint("soundtrack", string, 2);
+                }
+
+                int wall_id = getModel(wallmodel);
+
                 if (line.startsWith("maxr")) {
                     int j2 = Utility.getint("maxr", line, 0);
                     int j3 = Utility.getint("maxr", line, 1);
@@ -686,6 +853,9 @@ public class GameSparker extends AppletPolyfill implements Runnable {
                     trackers.dam[trackers.nt] = 1;
                     trackers.nt++;
                 }
+                if (line.startsWith("detail")) {
+                    Medium.detailtype = Utility.getint("detail", line, 0);
+                }
             }
             Medium.newpolys(l_wall, r_wall - l_wall, b_wall, t_wall - b_wall, trackers, notb);
             Medium.newmountains(l_wall, r_wall, b_wall, t_wall);
@@ -698,7 +868,7 @@ public class GameSparker extends AppletPolyfill implements Runnable {
             int maxLength = (exceptStr.length() < maxChar) ? exceptStr.length() : maxChar;
             stageError = e.toString().substring(0, maxLength) + "...";
 
-            xtgraphics.fase = 3;
+            xtgraphics.fase = Phase.ERRORLOADINGSTAGE;
             HLogger.error("Error loading stage " + checkpoints.stage);
             e.printStackTrace();
         }
@@ -707,7 +877,7 @@ public class GameSparker extends AppletPolyfill implements Runnable {
         else
             Medium.lightn = -1;
         Medium.nochekflk = checkpoints.stage != 1;
-        if (xtgraphics.fase == 2) {
+        if (xtgraphics.fase == Phase.STAGESELECTTRIGGER) {
             Medium.trx = 0L;
             Medium.trz = 0L;
             if (trackers.nt >= 4) {
@@ -725,7 +895,8 @@ public class GameSparker extends AppletPolyfill implements Runnable {
             Medium.fallen = 0;
             Medium.nrnd = 0;
             Medium.trk = true;
-            xtgraphics.fase = 1;
+            //Medium.detailtype = 0;
+            xtgraphics.fase = Phase.STAGESELECT;
             mouses = 0;
         }
         int j1 = 0;
@@ -735,18 +906,18 @@ public class GameSparker extends AppletPolyfill implements Runnable {
         xtgraphics.resetstat(checkpoints.stage);
         j1 = 0;
         do {
-              if(j1 % 3 == 0)
-           {
-                 aconto[j1] = new ContO(aconto1[xtgraphics.sc[j1]], 0, 250 - aconto1[xtgraphics.sc[j1]].grat, -760 + ((j1 / 3) * 760), 0);
+            if (j1 % 3 == 0) {
+                aconto[j1] = new ContO(aconto1[xtgraphics.sc[j1]], 0, 250 - aconto1[xtgraphics.sc[j1]].grat,
+                        -760 + ((j1 / 3) * 760), 0);
             }
-              if(j1 % 3 == 1)
-           {
-                 aconto[j1] = new ContO(aconto1[xtgraphics.sc[j1]], -350, 250 - aconto1[xtgraphics.sc[j1]].grat, -380 + ((int)(j1 / 3) * 760), 0);
+            if (j1 % 3 == 1) {
+                aconto[j1] = new ContO(aconto1[xtgraphics.sc[j1]], -350, 250 - aconto1[xtgraphics.sc[j1]].grat,
+                        -380 + ((int) (j1 / 3) * 760), 0);
             }
-              if(j1 % 3 == 2)
-           {
-                 aconto[j1] = new ContO(aconto1[xtgraphics.sc[j1]], 350, 250 - aconto1[xtgraphics.sc[j1]].grat, -380 + ((int)(j1 / 3) * 760), 0);
-           }
+            if (j1 % 3 == 2) {
+                aconto[j1] = new ContO(aconto1[xtgraphics.sc[j1]], 350, 250 - aconto1[xtgraphics.sc[j1]].grat,
+                        -380 + ((int) (j1 / 3) * 760), 0);
+            }
             amadness[j1].reseto(xtgraphics.sc[j1], aconto[j1], checkpoints);
         } while (++j1 < GameFacts.numberOfPlayers);
         record.reset(aconto);
@@ -789,13 +960,13 @@ public class GameSparker extends AppletPolyfill implements Runnable {
         Record record = new Record();
         ContO[] aconto = new ContO[carModels.length + trackModels.length + extraModels.length]; // be sure all your arrays get in here
         loadbase(aconto, trackers, xtgraphics);
-        ContO[] aconto1 = new ContO[3000];
+        ContO[] aconto1 = new ContO[5000];
         Madness[] amadness = new Madness[51];
         int l = 0;
         do {
             amadness[l] = new Madness(record, xtgraphics, l);
             u[l] = new Control();
-        } while (++l < 51); //dont touch this
+        } while (++l < 51); // dont touch this
         l = 0;
         float f = 35F;
         int i1 = 80;
@@ -815,11 +986,11 @@ public class GameSparker extends AppletPolyfill implements Runnable {
             if (xtgraphics.unlocked != GameFacts.numberOfStages)
                 checkpoints.stage = xtgraphics.unlocked;
             else
-                checkpoints.stage = (int) (RadicalRand.random() * 17D) + 1;
+                checkpoints.stage = (int) (RadicalRand.random() * GameFacts.numberOfStages) + 1;
             xtgraphics.opselect = 0;
         }
         l = readcookie("usercar");
-        if (l >= 0 && l <= 15)
+        if (l >= 0 && l <= GameFacts.numberOfCars - 1)
             xtgraphics.sc[0] = l;
         l = readcookie("gameprfact");
         if (l != -1) {
@@ -846,7 +1017,7 @@ public class GameSparker extends AppletPolyfill implements Runnable {
         do {
             Date date1 = new Date();
             long l4 = date1.getTime();
-            if (xtgraphics.fase == 111) {
+            if (xtgraphics.fase == Phase.LOADING) {
                 if (mouses == 1)
                     i2 = 800;
                 if (i2 < 800) {
@@ -854,15 +1025,16 @@ public class GameSparker extends AppletPolyfill implements Runnable {
                     i2++;
                 } else {
                     i2 = 0;
-                    xtgraphics.fase = 9;
+                    xtgraphics.fase = Phase.AWAITLOADDISMISSAL;
+                    xtgraphics.sm.play("powerup");
                     mouses = 0;
                     lostfcs = false;
                 }
             }
-            if (xtgraphics.fase == 9)
-                if (i2 < 71 && splashScreenState) {
-                    xtgraphics.rad(i2, 1);
-                    catchlink(0);
+            if (xtgraphics.fase == Phase.AWAITLOADDISMISSAL)
+                if (i2 < 100 && splashScreenState) {
+                    xtgraphics.rad(i2);
+                    catchlink(0, xtgraphics);
                     if (mouses == 2)
                         mouses = 0;
                     if (mouses == 1)
@@ -870,11 +1042,11 @@ public class GameSparker extends AppletPolyfill implements Runnable {
                     i2++;
                 } else {
                     i2 = 0;
-                    xtgraphics.fase = 10;
+                    xtgraphics.fase = Phase.MAINMENU;
                     mouses = 0;
                     u[0].falseo();
                 }
-            if (xtgraphics.fase == -9)
+            if (xtgraphics.fase == Phase.CARSELECTTRIGGER)
                 if (i2 < 2) {
                     rd.setColor(new Color(0, 0, 0));
                     rd.fillRect(0, 0, GameFacts.screenWidth, GameFacts.screenHeight);
@@ -882,31 +1054,31 @@ public class GameSparker extends AppletPolyfill implements Runnable {
                 } else {
                     xtgraphics.inishcarselect();
                     i2 = 0;
-                    xtgraphics.fase = 7;
+                    xtgraphics.fase = Phase.CARSELECT;
                     mouses = 0;
                 }
-            if (xtgraphics.fase == 8) {
+            if (xtgraphics.fase == Phase.CREDITS) {
                 xtgraphics.credits(u[0]);
                 if (xtgraphics.flipo == 102) {
                     rd.drawImage(xtgraphics.credsnap(offImage), 0, 0, null);
                 }
                 xtgraphics.ctachm(xm, ym, mouses, u[0]);
                 if (xtgraphics.flipo <= 100)
-                    catchlink(0);
+                    catchlink(0, xtgraphics);
                 if (mouses == 2)
                     mouses = 0;
                 if (mouses == 1)
                     mouses = 2;
             }
-            if (xtgraphics.fase == 10) {
-                xtgraphics.maini(u[0]);
+            if (xtgraphics.fase == Phase.MAINMENU) {
+                xtgraphics.maini(u[0], checkpoints, amadness, aconto, aconto1);
                 xtgraphics.ctachm(xm, ym, mouses, u[0]);
                 if (mouses == 2)
                     mouses = 0;
                 if (mouses == 1)
                     mouses = 2;
             }
-            if (xtgraphics.fase == 11) {
+            if (xtgraphics.fase == Phase.INSTRUCTIONS) {
                 xtgraphics.inst(u[0]);
                 xtgraphics.ctachm(xm, ym, mouses, u[0]);
                 if (mouses == 2)
@@ -914,25 +1086,38 @@ public class GameSparker extends AppletPolyfill implements Runnable {
                 if (mouses == 1)
                     mouses = 2;
             }
-            if(xtgraphics.fase == -205) {
-                if (checkpoints.stage == xtgraphics.unlocked && xtgraphics.winner && xtgraphics.unlocked != GameFacts.numberOfStages)
-                    savecookie("unlocked", "" + xtgraphics.unlocked);
-                savecookie("gameprfact", "" + (int) f);
-                savecookie("usercar", "" + xtgraphics.sc[0]);
-
-                xtgraphics.fase = -5;
-            }
-            if (xtgraphics.fase == -5) {
-                xtgraphics.finish(checkpoints, aconto, u[0]);
+            if (xtgraphics.fase == Phase.CUSTOMSETTINGS) { // settings menu
+                xtgraphics.menusettings(u[0]);
                 xtgraphics.ctachm(xm, ym, mouses, u[0]);
-                if (checkpoints.stage == GameFacts.numberOfStages && xtgraphics.winner)
-                    catchlink(1);
                 if (mouses == 2)
                     mouses = 0;
                 if (mouses == 1)
                     mouses = 2;
             }
-            if (xtgraphics.fase == 7) {
+            if (xtgraphics.fase == Phase.POSTGAMEHANDOVER) {
+                xtgraphics.fase = Phase.POSTGAME;
+            }
+            if (xtgraphics.fase == Phase.SAVEGAME) { // save the fucking game properly
+
+                if (checkpoints.stage == xtgraphics.unlocked && xtgraphics.winner
+                        && xtgraphics.unlocked != GameFacts.numberOfStages + 1)
+                    savecookie("unlocked", "" + xtgraphics.unlocked);
+                savecookie("gameprfact", "" + (int) f);
+                savecookie("usercar", "" + xtgraphics.sc[0]);
+
+                xtgraphics.fase = Phase.MAINMENU;
+            }
+            if (xtgraphics.fase == Phase.POSTGAME) {
+                xtgraphics.finish(checkpoints, aconto, u[0]);
+                xtgraphics.ctachm(xm, ym, mouses, u[0]);
+                if (checkpoints.stage == GameFacts.numberOfStages && xtgraphics.winner)
+                    catchlink(1, xtgraphics);
+                if (mouses == 2)
+                    mouses = 0;
+                if (mouses == 1)
+                    mouses = 2;
+            }
+            if (xtgraphics.fase == Phase.CARSELECT) {
                 xtgraphics.carselect(u[0], aconto, amadness[0]);
                 xtgraphics.ctachm(xm, ym, mouses, u[0]);
                 if (mouses == 2)
@@ -940,7 +1125,7 @@ public class GameSparker extends AppletPolyfill implements Runnable {
                 if (mouses == 1)
                     mouses = 2;
             }
-            if (xtgraphics.fase == 6) {
+            if (xtgraphics.fase == Phase.PREGAME) {
                 xtgraphics.musicomp(checkpoints.stage, u[0]);
                 xtgraphics.ctachm(xm, ym, mouses, u[0]);
                 if (mouses == 2)
@@ -948,18 +1133,18 @@ public class GameSparker extends AppletPolyfill implements Runnable {
                 if (mouses == 1)
                     mouses = 2;
             }
-            if (xtgraphics.fase == 205) {
+            if (xtgraphics.fase == Phase.SELECTEDCARSAVE) {
                 savecookie("usercar", "" + xtgraphics.sc[0]);
 
                 for (int x = 0; x < GameFacts.numberOfPlayers; x++) {
                     amadness[x].stat = new Stat(xtgraphics.sc[x]);
                 }
-                xtgraphics.fase = 5;
+                xtgraphics.fase = Phase.PREGAMEMUSIC;
             }
-            if (xtgraphics.fase == 5) {
+            if (xtgraphics.fase == Phase.PREGAMEMUSIC) {
                 xtgraphics.loadmusic(checkpoints.stage, i1);
             }
-            if (xtgraphics.fase == 4) {
+            if (xtgraphics.fase == Phase.LOCKEDSTAGE) {
                 xtgraphics.cantgo(u[0]);
                 xtgraphics.ctachm(xm, ym, mouses, u[0]);
                 if (mouses == 2)
@@ -967,7 +1152,7 @@ public class GameSparker extends AppletPolyfill implements Runnable {
                 if (mouses == 1)
                     mouses = 2;
             }
-            if (xtgraphics.fase == 3) {
+            if (xtgraphics.fase == Phase.ERRORLOADINGSTAGE) {
                 xtgraphics.loadingfailed(checkpoints, u[0], stageError);
                 xtgraphics.ctachm(xm, ym, mouses, u[0]);
                 if (mouses == 2)
@@ -975,17 +1160,27 @@ public class GameSparker extends AppletPolyfill implements Runnable {
                 if (mouses == 1)
                     mouses = 2;
             }
-            if(xtgraphics.fase == 58) {
-                xtgraphics.carspergame();
+            if (xtgraphics.fase == Phase.NPLAYERSCHECK) {
+                xtgraphics.carspergame(checkpoints);
             }
-            if (xtgraphics.fase == 2) {
+            if (xtgraphics.fase == Phase.STAGESELECTTRIGGER) {
                 xtgraphics.loadingstage(checkpoints.stage);
-                loadstage(aconto1, aconto, trackers, checkpoints, xtgraphics, amadness, record);
+                loadstage(aconto1, aconto, trackers, checkpoints, xtgraphics, amadness, record, false);
                 u[0].falseo();
             }
-            if (xtgraphics.fase == 1) {
+            if (xtgraphics.fase == Phase.LOADSTAGE) { // for custom stage loading
+                repaint();
+                loadstage(aconto1, aconto, trackers, checkpoints, xtgraphics, amadness, record, true);
+                xtgraphics.fase = Phase.STAGESELECT;
+            }
+            if (xtgraphics.fase == Phase.LOADSTAGE2) { // for custom stage loading
+                repaint();
+                loadstage(aconto1, aconto, trackers, checkpoints, xtgraphics, amadness, record, true);
+                xtgraphics.loadmusic(checkpoints.stage, i1);
+            }
+            if (xtgraphics.fase == Phase.STAGESELECT) {
                 rd.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
-                xtgraphics.trackbg(false);
+                xtgraphics.trackbg(true);
                 Medium.d(rd);
                 Medium.aroundTrack(checkpoints);
                 int i3 = 0;
@@ -1031,7 +1226,7 @@ public class GameSparker extends AppletPolyfill implements Runnable {
                     mouses = 2;
                 xtgraphics.stageselect(checkpoints, u[0]);
             }
-            if (xtgraphics.fase == 176) {
+            if (xtgraphics.fase == Phase.DRAWENVIRONMENT) {
                 Medium.d(rd);
                 int j3 = 0;
                 int[] ai1 = new int[200];
@@ -1075,19 +1270,12 @@ public class GameSparker extends AppletPolyfill implements Runnable {
                 } else {
                     u[0].enter = false;
                     u[0].handb = false;
-                    if(xtgraphics.loadedt[checkpoints.stage - 1]) {
-                        xtgraphics.tracks[checkpoints.stage - 1].play();
-                        /*if (xtgraphics.isMidi[checkpoints.stage - 1]) {
-                            xtgraphics.mtracks[checkpoints.stage - 1].play();
-                        } else {
-                            xtgraphics.stracks[checkpoints.stage - 1].play();
-                        }*/
-                    }
-                    setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-                    xtgraphics.fase = 6;
+
+                    setCursor(new Cursor(0));
+                    xtgraphics.fase = Phase.PREGAME;
                 }
             }
-            if (xtgraphics.fase == 0) {
+            if (xtgraphics.fase == Phase.INGAME) {
                 int k3 = 0;
                 do {
                     if (amadness[k3].newcar) {
@@ -1173,17 +1361,18 @@ public class GameSparker extends AppletPolyfill implements Runnable {
                 }
                 if (xtgraphics.starcnt < 38) {
                     if (view == 0) {
-                        Medium.follow(aconto1[0], amadness[0].cxz, u[0].lookback);
-                        xtgraphics.stat(amadness, checkpoints, u[0], aconto1, true);
-                        initMoto(amadness, 2, 25);
+                        Medium.follow(aconto1[xtgraphics.spectate], amadness[xtgraphics.spectate].cxz,
+                                u[xtgraphics.spectate].lookback);
+                        xtgraphics.stat(amadness, checkpoints, u[xtgraphics.spectate], aconto1, true);
+                        initMoto(amadness, 2, 5);
                     }
                     if (view == 1) {
-                        Medium.around(aconto1[0], false);
-                        xtgraphics.stat(amadness, checkpoints, u[0], aconto1, false);
+                        Medium.around(aconto1[xtgraphics.spectate], false);
+                        xtgraphics.stat(amadness, checkpoints, u[xtgraphics.spectate], aconto1, false);
                     }
                     if (view == 2) {
-                        Medium.watch(aconto1[0], amadness[0].mxz);
-                        xtgraphics.stat(amadness, checkpoints, u[0], aconto1, false);
+                        Medium.watch(aconto1[xtgraphics.spectate], amadness[0].mxz);
+                        xtgraphics.stat(amadness, checkpoints, u[xtgraphics.spectate], aconto1, false);
                     }
                     if (mouses == 1) {
                         u[0].enter = true;
@@ -1194,7 +1383,10 @@ public class GameSparker extends AppletPolyfill implements Runnable {
                         xtgraphics.blendude(offImage);
                     }
                 } else {
-                    Medium.around(aconto1[3], true);
+                    if (GameFacts.numberOfPlayers < 5)
+                        Medium.around(aconto1[0], true);
+                    else
+                        Medium.around(aconto1[3], true);
                     if (u[0].enter || u[0].handb) {
                         xtgraphics.starcnt = 38;
                         u[0].enter = false;
@@ -1209,11 +1401,11 @@ public class GameSparker extends AppletPolyfill implements Runnable {
                         Medium.follow(aconto1[0], amadness[0].cxz, 0);
                         xtgraphics.stat(amadness, checkpoints, u[0], aconto1, true);
                         rd.setColor(new Color(255, 255, 255));
-                        rd.fillRect(0, 0,GameFacts.screenWidth, GameFacts.screenHeight);
+                        rd.fillRect(0, 0, GameFacts.screenWidth, GameFacts.screenHeight);
                     }
                 }
             }
-            if (xtgraphics.fase == -1) {
+            if (xtgraphics.fase == Phase.INSTANTREPLAY) {
                 if (k1 == 0) {
                     int i4 = 0;
                     do {
@@ -1280,13 +1472,13 @@ public class GameSparker extends AppletPolyfill implements Runnable {
                 } while (++l9 < GameFacts.numberOfPlayers);
                 if (++k1 == 300) {
                     k1 = 0;
-                    xtgraphics.fase = -6;
+                    xtgraphics.fase = Phase.PAUSETRIGGER;
                 } else {
                     xtgraphics.replyn();
                 }
                 Medium.around(aconto1[0], false);
             }
-            if (xtgraphics.fase == -2) {
+            if (xtgraphics.fase == Phase.CAUGHTHIGHLIGHT) {
                 if (record.hcaught && record.wasted == 0 && record.whenwasted != 229 && checkpoints.stage <= 2
                         && xtgraphics.looped != 0)
                     record.hcaught = false;
@@ -1295,15 +1487,15 @@ public class GameSparker extends AppletPolyfill implements Runnable {
                     Medium.adv = (int) (900F * Medium.random());
                     Medium.vxz = (int) (360F * Medium.random());
                     k1 = 0;
-                    xtgraphics.fase = -3;
+                    xtgraphics.fase = Phase.GAMEHIGHLIGHT;
                     i2 = 0;
                     j2 = 0;
                 } else {
                     k1 = -2;
-                    xtgraphics.fase = -4;
+                    xtgraphics.fase = Phase.POSTGAMEFADEOUT;
                 }
             }
-            if (xtgraphics.fase == -3) {
+            if (xtgraphics.fase == Phase.GAMEHIGHLIGHT) {
                 if (k1 == 0) {
                     if (record.wasted == 0) {
                         if (record.whenwasted == 229) {
@@ -1375,7 +1567,7 @@ public class GameSparker extends AppletPolyfill implements Runnable {
                 if (j2 == 2 && k1 == 299)
                     u[0].enter = true;
                 if (u[0].enter || u[0].handb) {
-                    xtgraphics.fase = -4;
+                    xtgraphics.fase = Phase.POSTGAMEFADEOUT;
                     u[0].enter = false;
                     u[0].handb = false;
                     k1 = -7;
@@ -1389,7 +1581,7 @@ public class GameSparker extends AppletPolyfill implements Runnable {
                         if (record.closefinish == 0) {
                             if (i2 == 9 || i2 == 11) {
                                 rd.setColor(new Color(255, 255, 255));
-                                rd.fillRect(0, 0,GameFacts.screenWidth, GameFacts.screenHeight);
+                                rd.fillRect(0, 0, GameFacts.screenWidth, GameFacts.screenHeight);
                             }
                             if (i2 == 0)
                                 Medium.around(aconto1[0], false);
@@ -1491,7 +1683,7 @@ public class GameSparker extends AppletPolyfill implements Runnable {
                     }
                 }
             }
-            if (xtgraphics.fase == -4) {
+            if (xtgraphics.fase == Phase.POSTGAMEFADEOUT) {
                 if (k1 <= 0) {
                     rd.drawImage(xtgraphics.mdness, 224, 30, null);
                     rd.drawImage(xtgraphics.dude[0], 70, 10, null);
@@ -1500,17 +1692,17 @@ public class GameSparker extends AppletPolyfill implements Runnable {
                     xtgraphics.fleximage(offImage, k1, checkpoints.stage);
                 k1++;
                 if (checkpoints.stage == GameFacts.numberOfStages && k1 == 10)
-                    xtgraphics.fase = -205;
+                    xtgraphics.fase = Phase.POSTGAME;
                 if (k1 == 12)
-                    xtgraphics.fase = -205;
+                    xtgraphics.fase = Phase.POSTGAME;
             }
-            if (xtgraphics.fase == -6) {
+            if (xtgraphics.fase == Phase.PAUSETRIGGER) {
                 repaint();
                 xtgraphics.pauseimage(offImage);
-                xtgraphics.fase = -7;
+                xtgraphics.fase = Phase.PAUSEMENU;
                 mouses = 0;
             }
-            if (xtgraphics.fase == -7) {
+            if (xtgraphics.fase == Phase.PAUSEMENU) {
                 xtgraphics.pausedgame(checkpoints.stage, u[0], record);
                 if (k1 != 0)
                     k1 = 0;
@@ -1520,18 +1712,18 @@ public class GameSparker extends AppletPolyfill implements Runnable {
                 if (mouses == 1)
                     mouses = 2;
             }
-            if (xtgraphics.fase == -8) {
+            if (xtgraphics.fase == Phase.NOTENOUGHREPLAYDATA) {
                 xtgraphics.cantreply();
                 if (++k1 == 150 || u[0].enter || u[0].handb || mouses == 1) {
-                    xtgraphics.fase = -7;
+                    xtgraphics.fase = Phase.PAUSEMENU;
                     mouses = 0;
                     u[0].enter = false;
                     u[0].handb = false;
                 }
             }
-            if (lostfcs && xtgraphics.fase != 176 && xtgraphics.fase != 111) {
-                if (xtgraphics.fase == 0)
-                    u[0].enter = true;
+            if (lostfcs && xtgraphics.fase != Phase.DRAWENVIRONMENT && xtgraphics.fase != Phase.LOADING) {
+                if (xtgraphics.fase == Phase.INGAME)
+                    u[0].enter = false;
                 else
                     xtgraphics.nofocus();
                 if (mouses == 1 || mouses == 2)
@@ -1541,7 +1733,8 @@ public class GameSparker extends AppletPolyfill implements Runnable {
             xtgraphics.playsounds(amadness[0], u[0], checkpoints.stage);
             date1 = new Date();
             long l5 = date1.getTime();
-            if (xtgraphics.fase == 0 || xtgraphics.fase == -1 || xtgraphics.fase == -3) {
+            if (xtgraphics.fase == Phase.INGAME || xtgraphics.fase == Phase.INSTANTREPLAY
+                    || xtgraphics.fase == Phase.GAMEHIGHLIGHT) {
                 if (!flag1) {
                     f1 = f;
                     flag1 = true;
@@ -1568,7 +1761,7 @@ public class GameSparker extends AppletPolyfill implements Runnable {
                     flag1 = false;
                     j1 = 0;
                 }
-                if (i1 == 0 || xtgraphics.fase != 176) {
+                if (i1 == 0 || xtgraphics.fase != Phase.DRAWENVIRONMENT) {
                     if (j1 == 10) {
                         if (l5 - l3 < 400L) {
                             f1 = (float) (f1 + 3.5D);
@@ -1611,9 +1804,49 @@ public class GameSparker extends AppletPolyfill implements Runnable {
                 System.gc();
                 gamer = null;
             }
+
+            // if (xtgraphics.devtriggered) {
+
+            // this could be useful for discord rich presence
+            switch (xtgraphics.fase) {
+                case INGAME:
+                    gameState = "In game\nStage " + checkpoints.stage + ": " + checkpoints.name +
+                    "\nPlayers: " + GameFacts.numberOfPlayers;
+                    gameStateID = 0;
+                    break;
+                case STAGESELECT:
+                    gameState = "Selecting a Stage";
+                    gameStateID = 1;
+                    break;
+                case ERRORLOADINGSTAGE:
+                    gameState = "Selecting a Stage";
+                    gameStateID = 3;
+                    break;
+                case CARSELECT:
+                    gameState = "Selecting a Car";
+                    gameStateID = 7;
+                    break;
+                case MAINMENU:
+                    gameState = "In main menu";
+                    gameStateID = 10;
+                    break;
+                case INSTRUCTIONS:
+                    gameState = "Reading game instructions";
+                    gameStateID = 11;
+                    break;
+                default:
+                    gameState = "Unknown State";
+                    gameStateID = -1738;
+                    break;
+            }
+
             long l2 = Math.round(f1) - (l5 - l4);
             if (l2 < i)
                 l2 = i;
+            if (xtgraphics.fase != Phase.LOADING && xtgraphics.debugmode) {
+                xtgraphics.gameMetrics.addFrameTimeSample((int) (l5 - l4));
+                xtgraphics.gameMetrics.render(rd);
+            }
             try {
                 Thread.sleep(l2);
             } catch (InterruptedException _ex) {
@@ -1712,10 +1945,13 @@ public class GameSparker extends AppletPolyfill implements Runnable {
         return string;
     }
 
-    private void catchlink(int i) {
+    private void catchlink(int i, xtGraphics xtg) {
         if (!lostfcs) {
             if (i == 0)
-                if (xm > 0 && xm < GameFacts.screenWidth && ym > 110 && ym < 169 || xm > 210 && xm < 460 && ym > 240 && ym < 259) {
+                if (xm > 0 && xm < GameFacts.screenWidth && ym > 110 && ym < 169
+                        || xm > Utility.centeredImageX(xtg.rpro)
+                                && xm < Utility.centeredImageX(xtg.rpro) + xtg.rpro.getWidth(null) && ym > 240
+                                && ym < 259) {
                     setCursor(new Cursor(Cursor.HAND_CURSOR));
                     if (mouses == 2)
                         openurl("http://www.radicalplay.com/");

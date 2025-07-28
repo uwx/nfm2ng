@@ -102,8 +102,8 @@ class StatList {
     /**
      * Aerial control
      * This controls how high or low you'll go if you do flips, or how far you'll go if you do rollspins.
-     * This also effects the statbar of Aerial com.radicalplay.nfm2.Control, but if this value is noticeably low, then the airs
-     * value will be used to display how much Aerial com.radicalplay.nfm2.Control a car has.
+     * This also effects the statbar of Aerial Control, but if this value is noticeably low, then the airs
+     * value will be used to display how much Aerial Control a car has.
      * @author Omar Waly
      */
     static final int[] airc = {

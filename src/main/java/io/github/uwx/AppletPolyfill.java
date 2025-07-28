@@ -12,7 +12,7 @@ import java.util.Map;
 @SuppressWarnings("deprecation")
 public abstract class AppletPolyfill extends JPanel {
     public AppletPolyfill() {
-        Map<Integer, Integer> legacyEventKeyMap = new HashMap<Integer, Integer>() {{
+        Map<Integer, Integer> legacyEventKeyMap = new HashMap<>() {{
             put(KeyEvent.VK_HOME, Event.HOME);
             put(KeyEvent.VK_END, Event.END);
             put(KeyEvent.VK_PAGE_UP, Event.PGUP);
@@ -137,6 +137,9 @@ public abstract class AppletPolyfill extends JPanel {
                 keyUp(sharedEvt, legacyEventKeyMap.get(e.getKeyCode()));
             }
         });
+
+        setFocusable(true);
+        requestFocusInWindow();
     }
 
     public void stop() {}

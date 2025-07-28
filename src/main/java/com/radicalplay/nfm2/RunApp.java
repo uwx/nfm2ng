@@ -25,14 +25,14 @@ class RunApp extends Panel {
                     16, 32, 48
             };
             for (int res : resols) {
-                icons.add(Toolkit.getDefaultToolkit().createImage("data/ico_" + res + ".png"));
+                icons.add(Toolkit.getDefaultToolkit().createImage("data/misc/ico_" + res + ".png"));
             }
         }
         return icons;
     }
 
     public static void main(String[] strings) {
-        HLogger.info("UNFM2 Console"); // Change this to the message of your preference
+        HLogger.info("Need For Madness NG"); // Change this to the message of your preference
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception ex) {
@@ -42,7 +42,7 @@ class RunApp extends Panel {
     }
 
     private static void startup() {
-        frame = new Frame("UNFM2");// Change this to the name of your preference
+        frame = new Frame("Need For Madness NG");// Change this to the name of your preference
         frame.setBackground(new Color(0, 0, 0));
         frame.setIgnoreRepaint(true);
         frame.setIconImages(getIcons());

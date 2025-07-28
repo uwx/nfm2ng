@@ -67,6 +67,10 @@ public class ContO {
     private int[] dam;
     private boolean[] notwall;
 
+    public boolean blackout = false;
+
+    private boolean bool16 = false;
+
     private void pdust(int i, Graphics2D rd, int j) {
         if (j * dov[i] > 0) {
             int k;
@@ -206,7 +210,7 @@ public class ContO {
         t = trackers;
         p = new Plane[GameFacts.polyLimit];
         boolean flag = false;
-        boolean flag1 = false;
+        boolean inTrack = false;
         int i = 0;
         float f = 1.0F;
         float f1 = 1.0F;
@@ -224,6 +228,8 @@ public class ContO {
         int i1 = 0;
         byte byte0 = 0;
 
+        boolean hasTracks = false;
+
         float[] nfmm_scale = {
                 1.0F, 1.0F, 1.0F
         };
@@ -240,6 +246,9 @@ public class ContO {
                     l = 0;
                     byte0 = 0;
                     flag4 = false;
+                    if (!bool16) {
+                        flag4 = false;
+                    }
                 }
                 if (flag) {
                     if (line.startsWith("gr")) {
@@ -313,67 +322,70 @@ public class ContO {
                     skd = new int[k1];
                     dam = new int[k1];
                     notwall = new boolean[k1];
+                    hasTracks = true; //fix from nfmm, this ensures that collision related stuff only get read if tracks(x) exists, otherwise vanilla nfm crashes without this
                 }
-                if (line.startsWith("<track>")) {
-                    flag1 = true;
-                    notwall[tnt] = false;
-                    dam[tnt] = 1;
-                    skd[tnt] = 0;
-                    ty[tnt] = 0;
-                    tx[tnt] = 0;
-                    tz[tnt] = 0;
-                    txy[tnt] = 0;
-                    tzy[tnt] = 0;
-                    trady[tnt] = 0;
-                    tradx[tnt] = 0;
-                    tradz[tnt] = 0;
-                    tc[tnt][0] = 0;
-                    tc[tnt][1] = 0;
-                    tc[tnt][2] = 0;
-                }
-                if (flag1) {
-                    if (line.startsWith("c")) {
-                        tc[tnt][0] = Utility.getint("c", line, 0);
-                        tc[tnt][1] = Utility.getint("c", line, 1);
-                        tc[tnt][2] = Utility.getint("c", line, 2);
+                if (hasTracks) {
+                    if (line.startsWith("<track>")) {
+                        inTrack = true;
+                        notwall[tnt] = false;
+                        dam[tnt] = 1;
+                        skd[tnt] = 0;
+                        ty[tnt] = 0;
+                        tx[tnt] = 0;
+                        tz[tnt] = 0;
+                        txy[tnt] = 0;
+                        tzy[tnt] = 0;
+                        trady[tnt] = 0;
+                        tradx[tnt] = 0;
+                        tradz[tnt] = 0;
+                        tc[tnt][0] = 0;
+                        tc[tnt][1] = 0;
+                        tc[tnt][2] = 0;
                     }
-                    if (line.startsWith("xy")) {
-                        txy[tnt] = Utility.getint("xy", line, 0);
+                    if (inTrack) {
+                        if (line.startsWith("c")) {
+                            tc[tnt][0] = Utility.getint("c", line, 0);
+                            tc[tnt][1] = Utility.getint("c", line, 1);
+                            tc[tnt][2] = Utility.getint("c", line, 2);
+                        }
+                        if (line.startsWith("xy")) {
+                            txy[tnt] = Utility.getint("xy", line, 0);
+                        }
+                        if (line.startsWith("zy")) {
+                            tzy[tnt] = Utility.getint("zy", line, 0);
+                        }
+                        if (line.startsWith("radx")) {
+                            tradx[tnt] = (int) (Utility.getint("radx", line, 0) * f);
+                        }
+                        if (line.startsWith("rady")) {
+                            trady[tnt] = (int) (Utility.getint("rady", line, 0) * f);
+                        }
+                        if (line.startsWith("radz")) {
+                            tradz[tnt] = (int) (Utility.getint("radz", line, 0) * f);
+                        }
+                        if (line.startsWith("ty")) {
+                            ty[tnt] = (int) (Utility.getint("ty", line, 0) * f);
+                        }
+                        if (line.startsWith("tx")) {
+                            tx[tnt] = (int) (Utility.getint("tx", line, 0) * f);
+                        }
+                        if (line.startsWith("tz")) {
+                            tz[tnt] = (int) (Utility.getint("tz", line, 0) * f);
+                        }
+                        if (line.startsWith("skid")) {
+                            skd[tnt] = Utility.getint("skid", line, 0);
+                        }
+                        if (line.startsWith("dam")) {
+                            dam[tnt] = 3;
+                        }
+                        if (line.startsWith("notwall")) {
+                            notwall[tnt] = true;
+                        }
                     }
-                    if (line.startsWith("zy")) {
-                        tzy[tnt] = Utility.getint("zy", line, 0);
+                    if (line.startsWith("</track>")) {
+                        inTrack = false;
+                        tnt++;
                     }
-                    if (line.startsWith("radx")) {
-                        tradx[tnt] = (int) (Utility.getint("radx", line, 0) * f);
-                    }
-                    if (line.startsWith("rady")) {
-                        trady[tnt] = (int) (Utility.getint("rady", line, 0) * f);
-                    }
-                    if (line.startsWith("radz")) {
-                        tradz[tnt] = (int) (Utility.getint("radz", line, 0) * f);
-                    }
-                    if (line.startsWith("ty")) {
-                        ty[tnt] = (int) (Utility.getint("ty", line, 0) * f);
-                    }
-                    if (line.startsWith("tx")) {
-                        tx[tnt] = (int) (Utility.getint("tx", line, 0) * f);
-                    }
-                    if (line.startsWith("tz")) {
-                        tz[tnt] = (int) (Utility.getint("tz", line, 0) * f);
-                    }
-                    if (line.startsWith("skid")) {
-                        skd[tnt] = Utility.getint("skid", line, 0);
-                    }
-                    if (line.startsWith("dam")) {
-                        dam[tnt] = 3;
-                    }
-                    if (line.startsWith("notwall")) {
-                        notwall[tnt] = true;
-                    }
-                }
-                if (line.startsWith("</track>")) {
-                    flag1 = false;
-                    tnt++;
                 }
                 if (line.startsWith("disp")) {
                     disp = Utility.getint("disp", line, 0);
@@ -386,6 +398,11 @@ public class ContO {
                 }
                 if (line.startsWith("stonecold")) {
                     noline = true;
+                }
+                if (line.startsWith("newstone")) {
+                    noline = true;
+                    flag4 = true;
+                    bool16 = true;
                 }
                 if (line.startsWith("road")) {
                     flag3 = true;
@@ -591,7 +608,7 @@ public class ContO {
                 }
 
                 for (int l3 = 0; l3 < npl; l3++) {
-                    p[ai1[l3]].d(rd, x - Medium.x, y - Medium.y, z - Medium.z, xz, xy, zy, wxz, wzy, noline, l);
+                    p[ai1[l3]].d(rd, x - Medium.x, y - Medium.y, z - Medium.z, xz, xy, zy, wxz, wzy, noline, l, blackout);
                     if (p[ai1[l3]].master != 0 && stg[p[ai1[l3]].master - 1] != 0) {
                         pdust(p[ai1[l3]].master - 1, rd, 1);
                     }

@@ -6,14 +6,6 @@ package com.radicalplay.nfm2;
  * @author Rafa, Kaffeinated, Omar Wally
  */
 class RadicalMath {
-
-    public static float sin_m_zy;
-    public static float cos_m_zy;
-    public static float sin_m_xz;
-    public static float cos_m_xz;
-    public static float sin_m_xy;
-    public static float cos_m_xy;
-
     private static final float[] tcos = new float[360];
     private static final float[] tsin = new float[360];
 

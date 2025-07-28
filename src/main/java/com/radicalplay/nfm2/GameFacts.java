@@ -13,9 +13,9 @@ public class GameFacts
 
      public static int numberOfPlayers = 7;
 
-     public static final int screenWidth = 670; //dont touch this if you don't know what you're doing
+     public static int screenWidth = 1280; //dont touch this if you don't know what you're doing
 
-     public static final int screenHeight = 400; //dont touch this if you don't know what you're doing
+     public static int screenHeight = 720; //dont touch this if you don't know what you're doing
 
      public static final int polyLimit = 300;
 }

@@ -7,17 +7,27 @@ import java.io.FileInputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-public class RadicalMod {
+public class RadicalMod implements RadicalMusic {
 
     private SuperClip sClip;
     private byte[] modf;
     private boolean playing;
     public int loaded;
 
-    public void stop() {
-        if (playing && loaded == 2) {
-            sClip.stop();
-            playing = false;
+    @Override
+    public void setPaused(boolean paused) {
+        if (paused) {
+            if (!playing && loaded == 2) {
+                sClip.resume();
+                if (sClip.stoped == 0) {
+                    playing = true;
+                }
+            }
+        } else {
+            if (playing && loaded == 2) {
+                sClip.stop();
+                playing = false;
+            }
         }
     }
 
@@ -42,15 +52,6 @@ public class RadicalMod {
         }
     }
 
-    public void resume() {
-        if (!playing && loaded == 2) {
-            sClip.resume();
-            if (sClip.stoped == 0) {
-                playing = true;
-            }
-        }
-    }
-
     void unloadAll() {
         if (playing && loaded == 2) {
             sClip.stop();
@@ -67,6 +68,7 @@ public class RadicalMod {
         System.gc();
     }
 
+    @Override
     public void play() {
         if (!playing && loaded == 2) {
             sClip.play();
@@ -76,7 +78,8 @@ public class RadicalMod {
         }
     }
 
-    void unloadMod() {
+    @Override
+    public void unload() {
         if (loaded == 2) {
             if (playing) {
                 sClip.stop();

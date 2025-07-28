@@ -85,6 +85,11 @@ public class Control {
     private boolean exitattack;
     private int avoidnlev;
 
+    /**
+     * This void is the entire code for the AI in NFM.
+     * 
+     * @author Omar Waly
+     */
     public void preform(Madness madness, ContO conto, CheckPoints checkpoints, Trackers trackers, int ncars) {
         left = false;
         right = false;
@@ -94,7 +99,7 @@ public class Control {
         if (!madness.dest) {
             if (madness.mtouch) {
                 if (stcnt > statusque) {
-                    acuracy = (7 - checkpoints.pos[madness.im]) * checkpoints.pos[0] * (6 - checkpoints.stage * 2);
+                    acuracy = (GameFacts.numberOfPlayers - checkpoints.pos[madness.im]) * checkpoints.pos[0] * (6 - checkpoints.stage * 2);
                     if (acuracy < 0) {
                         acuracy = 0;
                     }

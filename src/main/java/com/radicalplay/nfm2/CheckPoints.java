@@ -2,10 +2,10 @@ package com.radicalplay.nfm2;
 
 class CheckPoints {
 
-    public final int[] x = new int[140];
-    public final int[] z = new int[140];
-    public final int[] y = new int[140];
-    public final int[] typ = new int[140];
+    public final int[] x = new int[1400];
+    public final int[] z = new int[1400];
+    public final int[] y = new int[1400];
+    public final int[] typ = new int[1400];
     public int pcs = 0;
     public int nsp = 0;
     public int n = 0;
@@ -14,6 +14,9 @@ class CheckPoints {
     public final int[] fy = new int[5];
     public final boolean[] roted = new boolean[5];
     public final boolean[] special = new boolean[5];
+    static boolean customTrack = false;
+    static String trackname = "";
+    static String trackformat = "";
     public int fn = 0;
     public int stage = 1;
     public int nlaps = 0;
