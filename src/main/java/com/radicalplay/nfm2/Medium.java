@@ -70,8 +70,8 @@ public class Medium {
     public static int cx = GameFacts.screenWidth / 2;
     public static int cy = GameFacts.screenHeight / 2;
     public static int cz = 50;
-    public static int xz = 0;
-    public static int zy = 0;
+    public static float xz = 0;
+    public static float zy = 0;
     public static int x = 0;
     public static int y = 0;
     public static int z = 0;
@@ -82,8 +82,8 @@ public class Medium {
     public static int[] spz = new int[7];
     public static int[] sprad = new int[7];
     private static boolean td = false;
-    private static int bcxz = 0;
-    public static int vxz = 180;
+    private static float bcxz = 0;
+    public static float vxz = 180;
     public static int adv = 500;
     public static boolean vert = false;
     private static int trns = 1;
@@ -1830,14 +1830,14 @@ public class Medium {
         cpflik = !cpflik;
     }
 
-    public static void follow(ContO conto, int i, int j) {
+    public static void follow(ContO conto, float cxz, int lookback) {
         zy = 10;
-        int k = 2 + Math.abs(bcxz) / 4;
+        float k = 2f + Math.abs(bcxz) / 4f;
         if (k > 20) {
             k = 20;
         }
-        if (j != 0) {
-            if (j == 1) {
+        if (lookback != 0) {
+            if (lookback == 1) {
                 if (bcxz < 180) {
                     bcxz += k;
                 }
@@ -1845,7 +1845,7 @@ public class Medium {
                     bcxz = 180;
                 }
             }
-            if (j == -1) {
+            if (lookback == -1) {
                 if (bcxz > -180) {
                     bcxz -= k;
                 }
@@ -1862,10 +1862,10 @@ public class Medium {
         } else if (bcxz != 0) {
             bcxz = 0;
         }
-        i += bcxz;
-        xz = -i;
-        x = (conto.x - cx) + (int) ((800) * RadicalMath.sin(i));
-        z = (conto.z - cz) + (int) ((-800) * RadicalMath.cos(i));
+        cxz += bcxz;
+        xz = -cxz;
+        x = (conto.x - cx) + (int) ((800) * RadicalMath.sin(cxz));
+        z = (conto.z - cz) + (int) ((-800) * RadicalMath.cos(cxz));
         y = conto.y - 250 - cy;
         if (trns != 1) {
             trns = 1;
@@ -1934,13 +1934,12 @@ public class Medium {
         while (vxz > 360) {
             vxz -= 360;
         }
-        int j1 = -vxz + 90;
-        char c = '\0';
+        float j1 = -vxz + 90;
+        int c = 0;
         if (conto.x - x - cx > 0) {
-            c = '\264';
+            c = 180;
         }
-        int k1 = -(int) (90 + c
-                + Math.atan((double) (conto.z - z) / (double) (conto.x - x - cx)) / 0.017453292519943295D);
+        float k1 = -(float) (90 + c + Math.atan((double) (conto.z - z) / (double) (conto.x - x - cx)) / 0.017453292519943295D);
         int l1 = y;
         c = 0;
         if (l1 > 0) {
@@ -1949,11 +1948,10 @@ public class Medium {
         if (conto.y - l1 - cy < 0) {
             c = 65356;
         }
-        int i2 = (int) Math.sqrt(((conto.z - z) + cz) * ((conto.z - z) + cz) + (conto.x - x - cx) * (conto.x - x - cx));
-        int j2 = 25;
-        if (i2 != 0) {
-            j2 = (int) (90 + c
-                    - Math.atan((double) i2 / (double) (conto.y - l1 - cy)) / 0.017453292519943295D);
+        float i2 = (float) Math.sqrt(((conto.z - z) + cz) * ((conto.z - z) + cz) + (conto.x - x - cx) * (conto.x - x - cx));
+        float j2 = 25;
+        if (i2 > 0 || i2 < 0) {
+            j2 = (float) (90 + c - Math.atan((double) i2 / (double) (conto.y - l1 - cy)) / 0.017453292519943295D);
         }
         while (j1 < 0) {
             j1 += 360;

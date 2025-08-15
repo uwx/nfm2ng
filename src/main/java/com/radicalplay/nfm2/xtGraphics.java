@@ -610,12 +610,9 @@ class xtGraphics implements Runnable {
         int y = Medium.cy + (contos.y - Medium.y - Medium.cy);
         int z = Medium.cz + (contos.z - Medium.z - Medium.cz);
 
-        x = Utility.rotSingle(x, z, Medium.cx, Medium.cz, Medium.xz, RadicalMath.sin(Medium.xz),
-                RadicalMath.cos(Medium.xz))[0];
-        y = Utility.rotSingle(y, z, Medium.cy, Medium.cz, Medium.zy, RadicalMath.sin(Medium.zy),
-                RadicalMath.cos(Medium.zy))[0];
-        z = Utility.rotSingle(y, z, Medium.cy, Medium.cz, Medium.zy, RadicalMath.sin(Medium.zy),
-                RadicalMath.cos(Medium.zy))[1];
+        x = Utility.rotSingle(x, z, Medium.cx, Medium.cz, Medium.xz, RadicalMath.sin(Medium.xz), RadicalMath.cos(Medium.xz))[0];
+        y = Utility.rotSingle(y, z, Medium.cy, Medium.cz, Medium.zy, RadicalMath.sin(Medium.zy), RadicalMath.cos(Medium.zy))[0];
+        z = Utility.rotSingle(y, z, Medium.cy, Medium.cz, Medium.zy, RadicalMath.sin(Medium.zy), RadicalMath.cos(Medium.zy))[1];
 
         final int xScreenCoor = Utility.xs(x, z);
         final int yScreenCoor = Utility.cYs(y, z);

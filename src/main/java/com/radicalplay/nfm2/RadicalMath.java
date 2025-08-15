@@ -19,11 +19,11 @@ class RadicalMath {
         }
     }
 
-    static public float cos(int i) {
-        return tcos[Math.floorMod(i, 360)];
+    static public float cos(float i) {
+        return (float) Math.cos(i * 0.01745329251994329576922);
     }
 
-    static public float sin(int i) {
-        return tsin[Math.floorMod(i, 360)];
+    static public float sin(float i) {
+        return (float) Math.sin(i * 0.01745329251994329576922);
     }
 }
